@@ -1796,7 +1796,7 @@
             <param name="nvc">Name value collection.</param>
             <returns>List of tags.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.TagMetadata.FromTags(System.Collections.Generic.List{LiteGraph.Sdk.TagMetadata},System.Guid,System.Nullable{System.Guid},System.Nullable{System.Guid},System.Nullable{System.Guid})">
+        <member name="M:LiteGraph.Sdk.TagMetadata.FromTags(System.Collections.Generic.List{LiteGraph.Sdk.TagMetadata},System.Guid,System.Guid,System.Nullable{System.Guid},System.Nullable{System.Guid})">
             <summary>
             Retrieve tags from a given name value collection.
             </summary>

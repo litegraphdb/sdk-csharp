@@ -27,7 +27,7 @@
         /// <summary>
         /// Graph GUID.
         /// </summary>
-        public Guid? GraphGUID { get; set; } = null;
+        public Guid GraphGUID { get; set; } = default(Guid);
 
         /// <summary>
         /// Node GUID.
@@ -139,7 +139,7 @@
         public static NameValueCollection FromTags(
             List<TagMetadata> tags,
             Guid tenantGuid,
-            Guid? graphGuid = null,
+            Guid graphGuid,
             Guid? nodeGuid = null,
             Guid? edgeGuid = null)
         {
@@ -150,7 +150,7 @@
             var matchingTags = tags.Where(t =>
                 t != null &&
                 t.TenantGUID == tenantGuid &&
-                (graphGuid == null ? t.GraphGUID == null : t.GraphGUID == graphGuid) &&
+                t.GraphGUID == graphGuid &&
                 (nodeGuid == null ? t.NodeGUID == null : t.NodeGUID == nodeGuid) &&
                 (edgeGuid == null ? t.EdgeGUID == null : t.EdgeGUID == edgeGuid));
 
