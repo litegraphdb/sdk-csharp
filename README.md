@@ -23,6 +23,18 @@ Please feel free to start an issue or a discussion!
 
 Refer to the `Test.Sdk` project for a full example.
 
+```csharp
+using LiteGraph.Sdk;
+
+LiteGraphSdk sdk = new LiteGraphSdk("http://localhost:8701", "default");
+Guid tenantGuid = Guid.Parse("00000000-0000-0000-0000-000000000000");
+
+Graph graph = sdk.CreateGraph(tenantGuid, Guid.NewGuid(), "My graph");
+Node node1 = sdk.CreateNode(tenantGuid, graph.GUID, new Node { Name = "My node 1" });
+Node node2 = sdk.CreateNode(tenantGuid, graph.GUID, new Node { Name = "My node 2" });
+Edge edgeFrom1To2 = sdk.CreateEdge(tenantGuid, graph.GUID, new Edge { From = node1.GUID, To = node2.GUID });
+```
+
 ## Version History
 
 Please refer to ```CHANGELOG.md``` for version history.
