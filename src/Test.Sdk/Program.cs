@@ -955,6 +955,11 @@
 
         private static void NodeCreate()
         {
+            new Node
+            {
+                Name = "My node 1",
+
+            };
             ShowSampleNode();
             EnumerateResult(
                 _Sdk.CreateNode(

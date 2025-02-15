@@ -600,9 +600,17 @@
                 {
                     writer.WriteNumberValue(d);
                 }
+                else if (value is float f)
+                {
+                    writer.WriteNumberValue(f);
+                }
                 else if (value is bool b)
                 {
                     writer.WriteBooleanValue(b);
+                }
+                else if (value is Guid g)
+                {
+                    writer.WriteStringValue(g.ToString());
                 }
                 else if (value is Expr expr)
                 {
