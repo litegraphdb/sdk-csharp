@@ -330,6 +330,1141 @@
             Instantiate the object.
             </summary>
         </member>
+        <member name="T:LiteGraph.Sdk.Implementations.BatchMethods">
+            <summary>
+            Batch methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.BatchMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Batch methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.BatchMethods.Existence(System.Guid,System.Guid,LiteGraph.Sdk.ExistenceRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.CredentialMethods">
+            <summary>
+            Credential methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Credential methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.Create(LiteGraph.Sdk.Credential,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.Update(LiteGraph.Sdk.Credential,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.EdgeMethods">
+            <summary>
+            Edge methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Edge methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.Create(LiteGraph.Sdk.Edge,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.CreateMany(System.Guid,System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.Edge},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadNodeEdges(System.Guid,System.Guid,System.Guid,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,ExpressionTree.Expr,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadEdgesFromNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadEdgesToNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadEdgesBetweenNodes(System.Guid,System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.Update(LiteGraph.Sdk.Edge,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.DeleteByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.DeleteMany(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.DeleteNodeEdges(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ExistsByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.GraphMethods">
+            <summary>
+            Graph methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Graph methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.Create(LiteGraph.Sdk.Graph,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.Update(LiteGraph.Sdk.Graph,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.DeleteByGuid(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.LabelMethods">
+            <summary>
+            Label methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Label methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.Create(LiteGraph.Sdk.LabelMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.CreateMany(System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.LabelMetadata},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.Update(LiteGraph.Sdk.LabelMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.DeleteMany(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.NodeMethods">
+            <summary>
+            Node methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Node methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Create(LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.CreateMany(System.Guid,System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.Node},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Update(LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.DeleteByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.DeleteMany(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ExistsByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadParents(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadChildren(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadNeighbors(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadRoutes(LiteGraph.Sdk.SearchTypeEnum,System.Guid,System.Guid,System.Guid,System.Guid,ExpressionTree.Expr,ExpressionTree.Expr,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.TagMethods">
+            <summary>
+            Tag methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Tag methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.Create(LiteGraph.Sdk.TagMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.CreateMany(System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.TagMetadata},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadMany(System.Guid,System.Nullable{System.Guid},System.Nullable{System.Guid},System.Nullable{System.Guid},LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.Update(LiteGraph.Sdk.TagMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.DeleteMany(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.TenantMethods">
+            <summary>
+            Tenant methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Tenant methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.Create(LiteGraph.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.ReadMany(LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.ReadByGuid(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.Update(LiteGraph.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.DeleteByGuid(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.ExistsByGuid(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.UserMethods">
+            <summary>
+            User methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            User methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.Create(LiteGraph.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.Update(LiteGraph.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.VectorMethods">
+            <summary>
+            Vector methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Vector methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.Create(LiteGraph.Sdk.VectorMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.CreateMany(System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.VectorMetadata},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.Update(LiteGraph.Sdk.VectorMetadata,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.DeleteMany(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.SearchVectors(System.Guid,System.Nullable{System.Guid},LiteGraph.Sdk.VectorSearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.IBatchMethods">
+            <summary>
+            Interface for batch methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IBatchMethods.Existence(System.Guid,System.Guid,LiteGraph.Sdk.ExistenceRequest,System.Threading.CancellationToken)">
+            <summary>
+            Batch existence request.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="req">Existence request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Existence result.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.ICredentialMethods">
+            <summary>
+            Interface for credential methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.Create(LiteGraph.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Create a credential.
+            </summary>
+            <param name="credential">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read credentials.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credentials.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a credential by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.Update(LiteGraph.Sdk.Credential,System.Threading.CancellationToken)">
+            <summary>
+            Update a credential.
+            </summary>
+            <param name="cred">Credential.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a credential.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a credential exists by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.IEdgeMethods">
+            <summary>
+            Interface for edge methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.Create(LiteGraph.Sdk.Edge,System.Threading.CancellationToken)">
+            <summary>
+            Create an edge between two nodes.
+            </summary>
+            <param name="edge">Edge.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edge.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.CreateMany(System.Guid,System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.Edge},System.Threading.CancellationToken)">
+            <summary>
+            Create multiple edges.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edges">Edges.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read edges.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read edge.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edge.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadNodeEdges(System.Guid,System.Guid,System.Guid,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,ExpressionTree.Expr,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get edges connected to or initiated from a given node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="labels">Labels.</param>
+            <param name="tags">Tags upon which to filter edges.</param>
+            <param name="edgeFilter">
+            Edge filter expression for Data JSON body.
+            Expression left terms must follow the form of Sqlite JSON paths.
+            For example, to retrieve the 'Name' property, use '$.Name', OperatorEnum.Equals, '[name here]'.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadEdgesFromNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get edges from a given node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadEdgesToNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get edges to a given node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadEdgesBetweenNodes(System.Guid,System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get edges between two neighboring nodes.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="fromNodeGuid">From node GUID.</param>
+            <param name="toNodeGuid">To node GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edges.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.Update(LiteGraph.Sdk.Edge,System.Threading.CancellationToken)">
+            <summary>
+            Update edge.
+            </summary>
+            <param name="edge">Edge.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edge.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.DeleteByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete edge.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.DeleteNodeEdges(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all edges associated with a given node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.DeleteMany(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Delete multiple edges from a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuids">Edge GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ExistsByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if an edge exists by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search edges.
+            </summary>
+            <param name="req">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.IGraphMethods">
+            <summary>
+            Interface for graph methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.Create(LiteGraph.Sdk.Graph,System.Threading.CancellationToken)">
+            <summary>
+            Create a graph.
+            </summary>
+            <param name="graph">Graph.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read graphs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graphs.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a graph by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.Update(LiteGraph.Sdk.Graph,System.Threading.CancellationToken)">
+            <summary>
+            Update a graph.
+            </summary>
+            <param name="graph">Graph.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.DeleteByGuid(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Delete a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="force">True to forcefully delete associated data.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a graph exists by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search graphs.
+            </summary>
+            <param name="req">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.ILabelMethods">
+            <summary>
+            Interface for label methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.Create(LiteGraph.Sdk.LabelMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a label.
+            </summary>
+            <param name="label">Label.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Label.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.CreateMany(System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.LabelMetadata},System.Threading.CancellationToken)">
+            <summary>
+            Create multiple labels.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="labels">Labels.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Labels.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read labels.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Labels.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a label by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Label.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.Update(LiteGraph.Sdk.LabelMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a label.
+            </summary>
+            <param name="label">Label.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Label.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a label.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.DeleteMany(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Delete labels.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a label exists by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.INodeMethods">
+            <summary>
+            Interface for node methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.Create(LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
+            <summary>
+            Create a node.
+            </summary>
+            <param name="node">Node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.CreateMany(System.Guid,System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.Node},System.Threading.CancellationToken)">
+            <summary>
+            Create multiple nodes.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodes">Nodes.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read nodes.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.Update(LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
+            <summary>
+            Update node.
+            </summary>
+            <param name="node">Node.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.DeleteByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a node and all associated edges.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all nodes from a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.DeleteMany(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Delete multiple nodes from a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuids">Node GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ExistsByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check existence of a node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadParents(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get nodes that have edges connecting to the specified node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadChildren(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get nodes to which the specified node has connecting edges connecting.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadNeighbors(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get neighbors for a given node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Nodes.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadRoutes(LiteGraph.Sdk.SearchTypeEnum,System.Guid,System.Guid,System.Guid,System.Guid,ExpressionTree.Expr,ExpressionTree.Expr,System.Threading.CancellationToken)">
+            <summary>
+            Get routes between two nodes.
+            </summary>
+            <param name="searchType">Search type.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="fromNodeGuid">From node GUID.</param>
+            <param name="toNodeGuid">To node GUID.</param>
+            <param name="edgeFilter">
+            Edge filter expression for Data JSON body.
+            Expression left terms must follow the form of Sqlite JSON paths.
+            For example, to retrieve the 'Name' property, use '$.Name', OperatorEnum.Equals, '[name here]'.</param>
+            <param name="nodeFilter">
+            Node filter expression for Data JSON body.
+            Expression left terms must follow the form of Sqlite JSON paths.
+            For example, to retrieve the 'Name' property, use '$.Name', OperatorEnum.Equals, '[name here]'.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Route details.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search nodes.
+            </summary>
+            <param name="req">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.ITagMethods">
+            <summary>
+            Interface for tag methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.Create(LiteGraph.Sdk.TagMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a tag.
+            </summary>
+            <param name="tag">Tag.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tag.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.CreateMany(System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.TagMetadata},System.Threading.CancellationToken)">
+            <summary>
+            Create multiple tags.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="tags">Tags.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tags.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ReadMany(System.Guid,System.Nullable{System.Guid},System.Nullable{System.Guid},System.Nullable{System.Guid},LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read tags.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tags.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a tag by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tag.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.Update(LiteGraph.Sdk.TagMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a tag.
+            </summary>
+            <param name="tag">Tag.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tag.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a tag.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.DeleteMany(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Delete tags.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a tag exists by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.ITenantMethods">
+            <summary>
+            Interface for tenant methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.Create(LiteGraph.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.ReadMany(LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read tenants.
+            </summary>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">The number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenants.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.ReadByGuid(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a tenant by GUID.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.Update(LiteGraph.Sdk.TenantMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a tenant.
+            </summary>
+            <param name="tenant">Tenant.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tenant.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.DeleteByGuid(System.Guid,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Delete a tenant.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="force">True to force deletion of users and credentials.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.ExistsByGuid(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a tenant exists by GUID.
+            </summary>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.IUserMethods">
+            <summary>
+            Interface for user methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.Create(LiteGraph.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Create a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read users.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Users.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a user by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.Update(LiteGraph.Sdk.UserMaster,System.Threading.CancellationToken)">
+            <summary>
+            Update a user.
+            </summary>
+            <param name="user">User.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>User.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a user.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a user exists by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.IVectorMethods">
+            <summary>
+            Interface for vector methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.Create(LiteGraph.Sdk.VectorMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Create a vector.
+            </summary>
+            <param name="vector">Vector.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.CreateMany(System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.VectorMetadata},System.Threading.CancellationToken)">
+            <summary>
+            Create multiple vectors.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="vectors">Vectors.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vectors.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read vectors.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vectors.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read a vector by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.Update(LiteGraph.Sdk.VectorMetadata,System.Threading.CancellationToken)">
+            <summary>
+            Update a vector.
+            </summary>
+            <param name="vector">Vector.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.DeleteByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete a vector.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.DeleteMany(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Delete vectors.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Check if a vector exists by GUID.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guid">GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.SearchVectors(System.Guid,System.Nullable{System.Guid},LiteGraph.Sdk.VectorSearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Search vectors.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="searchReq">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector search result.</returns>
+        </member>
         <member name="T:LiteGraph.Sdk.LabelMetadata">
             <summary>
             Label metadata.
@@ -385,737 +1520,62 @@
             LiteGraph SDK. 
             </summary>
         </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Batch">
+            <summary>
+            Batch methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Credential">
+            <summary>
+            Credential methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Edge">
+            <summary>
+            Edge methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Graph">
+            <summary>
+            Graph methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Label">
+            <summary>
+            Label methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Node">
+            <summary>
+            Node methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Tag">
+            <summary>
+            Tag methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Tenant">
+            <summary>
+            Tenant methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.User">
+            <summary>
+            User methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Vector">
+            <summary>
+            Vector methods.
+            </summary>
+        </member>
         <member name="M:LiteGraph.Sdk.LiteGraphSdk.#ctor(System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint URL.</param>
             <param name="bearerToken">Bearer token.</param>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.TenantExists(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a tenant exists by GUID.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateTenant(System.Guid,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Create a tenant.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="name">Name.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenant.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadTenants(System.Threading.CancellationToken)">
-            <summary>
-            Read tenants.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenants.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadTenant(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read tenant.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenant.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateTenant(LiteGraph.Sdk.TenantMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Update a tenant.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenant">Tenant.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tenant.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteTenant(System.Guid,System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-            Delete a tenant.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="guid">GUID.</param>
-            <param name="force">Force recursive deletion of subordinate objects.  The request will otherwise fail if nodes exist in the graph.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UserExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a user exists by GUID.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary> 
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateUser(System.Guid,LiteGraph.Sdk.UserMaster,System.Threading.CancellationToken)">
-            <summary>
-            Create a user.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="user">User.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadUsers(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read users.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Users.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadUser(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read user.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateUser(System.Guid,LiteGraph.Sdk.UserMaster,System.Threading.CancellationToken)">
-            <summary>
-            Update a user.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="user">User.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>User.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteUser(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a user.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CredentialExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a credential exists by GUID.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary> 
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateCredential(System.Guid,LiteGraph.Sdk.Credential,System.Threading.CancellationToken)">
-            <summary>
-            Create a credential.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="credential">Credential.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadCredentials(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read credentials.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credentials.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadCredential(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read credential.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateCredential(System.Guid,LiteGraph.Sdk.Credential,System.Threading.CancellationToken)">
-            <summary>
-            Update a credential.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="credential">Credential.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Credential.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteCredential(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a credential.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.LabelExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a label exists by GUID.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary> 
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateLabel(System.Guid,LiteGraph.Sdk.LabelMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Create a label.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="label">Label.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Label.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadLabels(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read labels.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Labels.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadLabel(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read label.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Label.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateLabel(System.Guid,LiteGraph.Sdk.LabelMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Update a label.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="label">Label.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Label.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteLabel(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a label.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.TagExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a tag exists by GUID.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary> 
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateTag(System.Guid,LiteGraph.Sdk.TagMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Create a tag.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="tag">Tag.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tag.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadTags(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read tags.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tags.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadTag(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read tag.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tag.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateTag(System.Guid,LiteGraph.Sdk.TagMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Update a tag.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="tag">Tag.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Tag.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteTag(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a tag.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.VectorExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a vector exists by GUID.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary> 
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateVector(System.Guid,LiteGraph.Sdk.VectorMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Create a vector.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="vector">Vector.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Vector.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadVectors(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read vectors.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Vectors.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadVector(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read vector.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Vector.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateVector(System.Guid,LiteGraph.Sdk.VectorMetadata,System.Threading.CancellationToken)">
-            <summary>
-            Update a vector.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="vector">Vector.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Vector.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteVector(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a vector.
-            This is an administrative API, requring use of the admin bearer token.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.SearchVectors(System.Guid,System.Nullable{System.Guid},LiteGraph.Sdk.VectorSearchRequest,System.Threading.CancellationToken)">
-            <summary>
-            Search vectors.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="searchReq">Search request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Vector search result.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GraphExists(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a graph exists by GUID.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateGraph(System.Guid,System.Guid,System.String,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,System.Object,System.Collections.Generic.List{LiteGraph.Sdk.VectorMetadata},System.Threading.CancellationToken)">
-            <summary>
-            Create a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="name">Name.</param>
-            <param name="labels">Labels.</param>
-            <param name="tags">Tags.</param>
-            <param name="data">Data.</param>
-            <param name="vectors">Vectors.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadGraphs(System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read graphs.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graphs.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.SearchGraphs(System.Guid,LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
-            <summary>
-            Search graphs.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="searchReq">Search request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Search result.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateGraph(System.Guid,LiteGraph.Sdk.Graph,System.Threading.CancellationToken)">
-            <summary>
-            Update a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graph">Graph.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Graph.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteGraph(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-            Delete a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="force">Force recursive deletion of edges and nodes.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ExportGraphToGexf(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Export a graph to GEXF format.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>String containing GEXF XML data.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.BatchExistence(System.Guid,System.Guid,LiteGraph.Sdk.ExistenceRequest,System.Threading.CancellationToken)">
-            <summary>
-            Execute a batch existence request.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="req">Existence request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Existence result.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.NodeExists(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if a node exists by GUID.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateNodes(System.Guid,System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.Node},System.Threading.CancellationToken)">
-            <summary>
-            Create multiple nodes.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodes">Nodes.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateNode(System.Guid,System.Guid,LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
-            <summary>
-            Create a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="node">Node.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadNodes(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read nodes.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.SearchNodes(System.Guid,System.Guid,LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
-            <summary>
-            Search nodes.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="searchReq">Search request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Search result.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateNode(System.Guid,System.Guid,LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
-            <summary>
-            Update a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="node">Node.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Node.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteNodes(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete all nodes within a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteNodes(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
-            <summary>
-            Delete multiple nodes.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuids">List of node GUIDs.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.EdgeExists(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Check if an edge exists by GUID.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="guid">GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>True if exists.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateEdges(System.Guid,System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.Edge},System.Threading.CancellationToken)">
-            <summary>
-            Create multiple edges.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="edges">Edges.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.CreateEdge(System.Guid,System.Guid,LiteGraph.Sdk.Edge,System.Threading.CancellationToken)">
-            <summary>
-            Create an edge.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="edge">Edge.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edge.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read edges.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.SearchEdges(System.Guid,System.Guid,LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
-            <summary>
-            Search edges.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="searchReq">Search request.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Search result.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.ReadEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Read an edge.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="edgeGuid"></param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edge.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.UpdateEdge(System.Guid,System.Guid,LiteGraph.Sdk.Edge,System.Threading.CancellationToken)">
-            <summary>
-            Update an edge.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="edge">Edge.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edge.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete an edge.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="edgeGuid"></param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteEdges(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
-            <summary>
-            Delete multiple edges within a graph.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="edgeGuids">Edge GUIDs.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.DeleteEdges(System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Delete all edges.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Task.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetEdgesFromNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get edges from a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetEdgesToNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get edges to a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetEdgesBetween(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get edges from a given node to a given node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="fromNodeGuid">From node GUID.</param>
-            <param name="toNodeGuid">To node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetAllNodeEdges(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get all edges to or from a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Edges.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetChildrenFromNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get child nodes from a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetParentsFromNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get parent nodes from a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetNodeNeighbors(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get neighboring nodes from a node.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="nodeGuid">Node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Nodes.</returns>
-        </member>
-        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetRoutes(System.Guid,System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
-            <summary>
-            Get routes between two nodes.
-            </summary>
-            <param name="tenantGuid">Tenant GUID.</param>
-            <param name="graphGuid">Graph GUID.</param>
-            <param name="fromNodeGuid">From node GUID.</param>
-            <param name="toNodeGuid">To node GUID.</param>
-            <param name="token">Cancellation token.</param>
-            <returns>Routes.</returns>
         </member>
         <member name="T:LiteGraph.Sdk.Node">
             <summary>
@@ -1228,6 +1688,26 @@
             </summary>
         </member>
         <member name="M:LiteGraph.Sdk.RouteRequest.#ctor">
+            <summary>
+            Route request.
+            </summary>
+        </member>
+        <member name="T:LiteGraph.Sdk.RouteResponse">
+            <summary>
+            Route response.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.RouteResponse.Timestamp">
+            <summary>
+            Timestamp.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.RouteResponse.Routes">
+            <summary>
+            Routes.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.RouteResponse.#ctor">
             <summary>
             Route request.
             </summary>
