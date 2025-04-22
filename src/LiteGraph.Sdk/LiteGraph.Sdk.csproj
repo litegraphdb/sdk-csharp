@@ -4,7 +4,7 @@
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<Version>4.0.0</Version>
 		<Description>SDK for LiteGraph, a property graph database with support for graph relationships, tags, labels, metadata, data, and vectors.</Description>
-		<PackageReleaseNotes>Refactor, batch APIs.</PackageReleaseNotes>
+		<PackageReleaseNotes>Refactor.</PackageReleaseNotes>
 		<ApplicationIcon>assets\favicon.ico</ApplicationIcon>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>LiteGraph.Sdk</Title>

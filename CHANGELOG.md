@@ -2,6 +2,13 @@
 
 ## Current Version
 
+v4.0.x
+
+- Refactor to group and simplify APIs
+- Multiple bugfixes and QoL improvements
+
+## Previous Versions
+
 v3.1.x
 
 - Added support for labels on graphs, nodes, edges (string list)
@@ -11,7 +18,6 @@ v3.1.x
 - Internal refactor to reduce code bloat
 - Multiple bugfixes and QoL improvements
 
-## Previous Versions
 
 v3.0.x
 

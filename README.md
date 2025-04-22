@@ -8,11 +8,7 @@ LiteGraph is a property graph database with support for graph relationships, tag
 
 ## New in v4.0.x
 
-- Added support for labels on graphs, nodes, edges (string list)
-- Added support for vector persistence and search
-- Updated SDK, test, and Postman collections accordingly
-- Updated GEXF export to support labels and tags
-- Internal refactor to reduce code bloat
+- Refactor to group and simplify APIs
 - Multiple bugfixes and QoL improvements
 
 ## Bugs, Feedback, or Enhancement Requests
@@ -29,10 +25,10 @@ using LiteGraph.Sdk;
 LiteGraphSdk sdk = new LiteGraphSdk("http://localhost:8701", "default");
 Guid tenantGuid = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
-Graph graph = sdk.CreateGraph(tenantGuid, Guid.NewGuid(), "My graph");
-Node node1 = sdk.CreateNode(tenantGuid, graph.GUID, new Node { Name = "My node 1" });
-Node node2 = sdk.CreateNode(tenantGuid, graph.GUID, new Node { Name = "My node 2" });
-Edge edgeFrom1To2 = sdk.CreateEdge(tenantGuid, graph.GUID, new Edge { From = node1.GUID, To = node2.GUID });
+Graph graph = sdk.Graph.Create(new Graph { TenantGUID = tenantGuid, Name = "My graph" });
+Node node1 = sdk.Node.Create(new Node { TenantGUID = tenantGuid, GraphGUID = graph.GUID, Name = "My node 1" });
+Node node2 = sdk.Node.Create(new Node { TenantGUID = tenantGuid, GraphGUID + graph.GUID, Name = "My node 2" });
+Edge edgeFrom1To2 = sdk.Edge.Create(new Edge { TenantGUID = tenantGuid, GraphGUID = graph.GUID, From = node1.GUID, To = node2.GUID });
 ```
 
 ## Version History
