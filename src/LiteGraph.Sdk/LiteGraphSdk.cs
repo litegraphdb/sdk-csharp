@@ -20,6 +20,11 @@
         #region Public-Members
 
         /// <summary>
+        /// Admin methods.
+        /// </summary>
+        public IAdminMethods Admin { get; }
+
+        /// <summary>
         /// Batch methods.
         /// </summary>
         public IBatchMethods Batch { get; }
@@ -86,6 +91,7 @@
             string endpoint = "http://localhost:8701/",
             string bearerToken = "default") : base(endpoint, bearerToken)
         {
+            Admin = new AdminMethods(this);
             Batch = new BatchMethods(this);
             Credential = new CredentialMethods(this);
             Edge = new EdgeMethods(this);

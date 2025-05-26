@@ -51,6 +51,10 @@
                         ValidateConnectivity();
                         break;
 
+                    case "backup":
+                        BackupDatabase();
+                        break;
+
                     case "tenant":
                         SetTenant();
                         break;
@@ -279,6 +283,7 @@
             Console.WriteLine("  q               quit");
             Console.WriteLine("  cls             clear the screen");
             Console.WriteLine("  conn            validate connectivity");
+            Console.WriteLine("  backup          create a database backup");
             Console.WriteLine("  tenant          set the tenant GUID (currently " + _Tenant + ")");
             Console.WriteLine("  graph           set the graph GUID (currently " + _Graph + ")");
             Console.WriteLine("");
@@ -468,8 +473,19 @@
             Console.WriteLine("Connected: " + _Sdk.ValidateConnectivity().Result);
         }
 
+        #region Admin
+
+        private static void BackupDatabase()
+        {
+            string filename = Inputty.GetString("Backup filename:", null, true);
+            if (String.IsNullOrEmpty(filename)) return;
+            _Sdk.Admin.Backup(filename);
+        }
+
+        #endregion
+
         #region Tenant
-        
+
         private static void ShowSampleTenant()
         {
             Console.WriteLine("Sample JSON:");

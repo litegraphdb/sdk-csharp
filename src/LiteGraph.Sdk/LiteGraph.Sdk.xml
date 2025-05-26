@@ -4,6 +4,21 @@
         <name>LiteGraph.Sdk</name>
     </assembly>
     <members>
+        <member name="T:LiteGraph.Sdk.BackupRequest">
+            <summary>
+            Backup request.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupRequest.Filename">
+            <summary>
+            File to which the backup should be written.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.BackupRequest.#ctor">
+            <summary>
+            Backup requets.
+            </summary>
+        </member>
         <member name="T:LiteGraph.Sdk.Credential">
             <summary>
             Credentials.
@@ -329,6 +344,20 @@
             <summary>
             Instantiate the object.
             </summary>
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.AdminMethods">
+            <summary>
+            Admin methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            Admin methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.Backup(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.BatchMethods">
             <summary>
@@ -676,6 +705,18 @@
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.SearchVectors(System.Guid,System.Nullable{System.Guid},LiteGraph.Sdk.VectorSearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.IAdminMethods">
+            <summary>
+            Interface for admin methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IAdminMethods.Backup(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Database backup request.
+            </summary>
+            <param name="outputFilename">Output filename.</param>
+            <param name="token">Cancellation token.</param>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IBatchMethods">
             <summary>
@@ -1518,6 +1559,11 @@
         <member name="T:LiteGraph.Sdk.LiteGraphSdk">
             <summary>
             LiteGraph SDK. 
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Admin">
+            <summary>
+            Admin methods.
             </summary>
         </member>
         <member name="P:LiteGraph.Sdk.LiteGraphSdk.Batch">
