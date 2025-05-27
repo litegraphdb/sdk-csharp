@@ -4,6 +4,61 @@
         <name>LiteGraph.Sdk</name>
     </assembly>
     <members>
+        <member name="T:LiteGraph.Sdk.BackupFile">
+            <summary>
+            Backup file.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.Filename">
+            <summary>
+            Filename.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.Length">
+            <summary>
+            File length.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.MD5Hash">
+            <summary>
+            MD5 hash.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.SHA1Hash">
+            <summary>
+            SHA1 hash.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.SHA256Hash">
+            <summary>
+            SHA256 hash.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.CreatedUtc">
+            <summary>
+            Creation timestamp, in UTC.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.LastUpdateUtc">
+            <summary>
+            Timestamp from last update, in UTC.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.LastAccessUtc">
+            <summary>
+            Timestamp from last access, in UTC.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.BackupFile.Data">
+            <summary>
+            File contents.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.BackupFile.#ctor">
+            <summary>
+            Instantiate.
+            </summary>
+        </member>
         <member name="T:LiteGraph.Sdk.BackupRequest">
             <summary>
             Backup request.
@@ -357,6 +412,18 @@
             <param name="sdk">LiteGraph SDK.</param>
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.Backup(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.ListBackups(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.ReadBackup(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.BackupExists(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.DeleteBackup(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.BatchMethods">
@@ -716,6 +783,36 @@
             Database backup request.
             </summary>
             <param name="outputFilename">Output filename.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IAdminMethods.ListBackups(System.Threading.CancellationToken)">
+            <summary>
+            List backups request.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Enumerable of backup files.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IAdminMethods.ReadBackup(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read the contents of a backup file.
+            </summary>
+            <param name="backupFilename">Backup filename.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>File contents.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IAdminMethods.BackupExists(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if a backup file exists.
+            </summary>
+            <param name="backupFilename">Backup filename.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>True if exists.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IAdminMethods.DeleteBackup(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Delete a backup file.
+            </summary>
+            <param name="backupFilename">Backup filename.</param>
             <param name="token">Cancellation token.</param>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IBatchMethods">

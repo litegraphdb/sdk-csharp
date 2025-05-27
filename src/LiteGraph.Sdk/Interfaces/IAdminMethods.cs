@@ -22,5 +22,35 @@
         /// <param name="outputFilename">Output filename.</param>
         /// <param name="token">Cancellation token.</param>
         Task Backup(string outputFilename, CancellationToken token = default);
+
+        /// <summary>
+        /// List backups request.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumerable of backup files.</returns>
+        Task<List<BackupFile>> ListBackups(CancellationToken token = default);
+
+        /// <summary>
+        /// Read the contents of a backup file.
+        /// </summary>
+        /// <param name="backupFilename">Backup filename.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>File contents.</returns>
+        Task<BackupFile> ReadBackup(string backupFilename, CancellationToken token = default);
+
+        /// <summary>
+        /// Check if a backup file exists.
+        /// </summary>
+        /// <param name="backupFilename">Backup filename.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>True if exists.</returns>
+        Task<bool> BackupExists(string backupFilename, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete a backup file.
+        /// </summary>
+        /// <param name="backupFilename">Backup filename.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteBackup(string backupFilename, CancellationToken token = default);
     }
 }
