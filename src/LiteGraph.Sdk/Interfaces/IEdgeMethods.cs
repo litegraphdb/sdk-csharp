@@ -196,5 +196,13 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Search result.</returns>
         Task<SearchResult> Search(SearchRequest req, CancellationToken token = default);
+
+        /// <summary>
+        /// Read first.
+        /// </summary>
+        /// <param name="req">Search request.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Edge.</returns>
+        Task<Edge> ReadFirst(SearchRequest req, CancellationToken token = default);
     }
 }

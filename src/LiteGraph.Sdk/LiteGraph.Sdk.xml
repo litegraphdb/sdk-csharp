@@ -522,6 +522,9 @@
         <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.GraphMethods">
             <summary>
             Graph methods.
@@ -552,6 +555,9 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.LabelMethods">
@@ -640,6 +646,9 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Search(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.TagMethods">
@@ -1039,6 +1048,14 @@
             <param name="token">Cancellation token.</param>
             <returns>Search result.</returns>
         </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Read first.
+            </summary>
+            <param name="req">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Edge.</returns>
+        </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IGraphMethods">
             <summary>
             Interface for graph methods.
@@ -1104,6 +1121,14 @@
             <param name="req">Search request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Search result.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Read first.
+            </summary>
+            <param name="req">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph.</returns>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.ILabelMethods">
             <summary>
@@ -1330,6 +1355,14 @@
             <param name="req">Search request.</param>
             <param name="token">Cancellation token.</param>
             <returns>Search result.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
+            <summary>
+            Read first.
+            </summary>
+            <param name="req">Search request.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Node.</returns>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.ITagMethods">
             <summary>

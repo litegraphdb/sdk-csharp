@@ -180,6 +180,14 @@
             return await _Sdk.Post<SearchRequest, SearchResult>(url, req, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<Edge> ReadFirst(SearchRequest req, CancellationToken token = default)
+        {
+            if (req == null) throw new ArgumentNullException(nameof(req));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + req.TenantGUID + "/graphs/" + req.GraphGUID + "/edges/first";
+            return await _Sdk.Post<SearchRequest, Edge>(url, req, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

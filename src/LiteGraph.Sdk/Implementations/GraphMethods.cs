@@ -101,6 +101,14 @@
             return await _Sdk.Post<SearchRequest, SearchResult>(url, req, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<Graph> ReadFirst(SearchRequest req, CancellationToken token = default)
+        {
+            if (req == null) throw new ArgumentNullException(nameof(req));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + req.TenantGUID + "/graphs/first";
+            return await _Sdk.Post<SearchRequest, Graph>(url, req, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods
