@@ -52,5 +52,11 @@
         /// <param name="backupFilename">Backup filename.</param>
         /// <param name="token">Cancellation token.</param>
         Task DeleteBackup(string backupFilename, CancellationToken token = default);
+
+        /// <summary>
+        /// Flush an in-memory database to disk.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        Task FlushDatabase(CancellationToken token = default);
     }
 }

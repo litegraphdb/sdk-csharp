@@ -426,6 +426,9 @@
         <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.DeleteBackup(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.AdminMethods.FlushDatabase(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.BatchMethods">
             <summary>
             Batch methods.
@@ -822,6 +825,12 @@
             Delete a backup file.
             </summary>
             <param name="backupFilename">Backup filename.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IAdminMethods.FlushDatabase(System.Threading.CancellationToken)">
+            <summary>
+            Flush an in-memory database to disk.
+            </summary>
             <param name="token">Cancellation token.</param>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IBatchMethods">

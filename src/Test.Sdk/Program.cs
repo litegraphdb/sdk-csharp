@@ -55,6 +55,10 @@
                         BackupDatabase();
                         break;
 
+                    case "flush":
+                        FlushDatabase();
+                        break;
+
                     case "tenant":
                         SetTenant();
                         break;
@@ -479,7 +483,12 @@
         {
             string filename = Inputty.GetString("Backup filename:", null, true);
             if (String.IsNullOrEmpty(filename)) return;
-            _Sdk.Admin.Backup(filename);
+            _Sdk.Admin.Backup(filename).Wait();
+        }
+
+        private static void FlushDatabase()
+        {
+            _Sdk.Admin.FlushDatabase().Wait();
         }
 
         #endregion

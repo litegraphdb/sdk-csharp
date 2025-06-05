@@ -87,6 +87,13 @@
             await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task FlushDatabase(CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/flush";
+            await _Sdk.PostRaw(url, null, "application/octet-stream", token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods
