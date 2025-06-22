@@ -109,6 +109,29 @@
             return await _Sdk.Post<SearchRequest, Graph>(url, req, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<EnumerationResult<Graph>> Enumerate(EnumerationQuery query, CancellationToken token = default)
+        {
+            if (query == null) throw new ArgumentNullException(nameof(query));
+            if (query.TenantGUID == null) throw new ArgumentNullException(nameof(query.TenantGUID));
+            string url = _Sdk.Endpoint + "v2.0/tenants/" + query.TenantGUID.Value + "/graphs";
+            return await _Sdk.Post<EnumerationQuery, EnumerationResult<Graph>>(url, query, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<GraphStatistics> GetStatistics(Guid tenantGuid, Guid guid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + guid + "/stats";
+            return await _Sdk.Post<object, GraphStatistics>(url, new { }, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<Dictionary<Guid, GraphStatistics>> GetStatistics(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/stats";
+            return await _Sdk.Post<object, Dictionary<Guid, GraphStatistics>>(url, new { }, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

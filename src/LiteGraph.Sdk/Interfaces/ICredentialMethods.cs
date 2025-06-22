@@ -71,5 +71,13 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
         Task<bool> ExistsByGuid(Guid tenantGuid, Guid guid, CancellationToken token = default);
+
+        /// <summary>
+        /// Enumerate.
+        /// </summary>
+        /// <param name="query">Enumeration query.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result.</returns>
+        Task<EnumerationResult<Credential>> Enumerate(EnumerationQuery query, CancellationToken token = default);
     }
 }

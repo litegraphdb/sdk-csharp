@@ -88,5 +88,30 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Graph.</returns>
         Task<Graph> ReadFirst(SearchRequest req, CancellationToken token = default);
+
+        /// <summary>
+        /// Enumerate.
+        /// </summary>
+        /// <param name="query">Enumeration query.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result.</returns>
+        Task<EnumerationResult<Graph>> Enumerate(EnumerationQuery query, CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve graph statistics.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="guid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graph statistics.</returns>
+        Task<GraphStatistics> GetStatistics(Guid tenantGuid, Guid guid, CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve graph statistics.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <returns>Dictionary of graph statistics.</returns>
+        /// <param name="token">Cancellation token.</param>
+        Task<Dictionary<Guid, GraphStatistics>> GetStatistics(Guid tenantGuid, CancellationToken token = default);
     }
 }

@@ -105,5 +105,13 @@
             Guid? graphGuid, 
             VectorSearchRequest searchReq, 
             CancellationToken token = default);
+
+        /// <summary>
+        /// Enumerate.
+        /// </summary>
+        /// <param name="query">Enumeration query.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result.</returns>
+        Task<EnumerationResult<VectorMetadata>> Enumerate(EnumerationQuery query, CancellationToken token = default);
     }
 }

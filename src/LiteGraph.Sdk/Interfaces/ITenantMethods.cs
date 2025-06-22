@@ -67,5 +67,28 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>True if exists.</returns>
         Task<bool> ExistsByGuid(Guid guid, CancellationToken token = default);
+
+        /// <summary>
+        /// Enumerate.
+        /// </summary>
+        /// <param name="query">Enumeration query.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result.</returns>
+        Task<EnumerationResult<TenantMetadata>> Enumerate(EnumerationQuery query, CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve tenant statistics.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Tenant statistics.</returns>
+        Task<TenantStatistics> GetStatistics(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve tenant statistics.
+        /// </summary>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Dictionary of tenant statistics.</returns>
+        Task<Dictionary<Guid, TenantStatistics>> GetStatistics(CancellationToken token = default);
     }
 }
