@@ -204,5 +204,13 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Edge.</returns>
         Task<Edge> ReadFirst(SearchRequest req, CancellationToken token = default);
+
+        /// <summary>
+        /// Enumerate.
+        /// </summary>
+        /// <param name="query">Enumeration query.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result.</returns>
+        Task<EnumerationResult<Edge>> Enumerate(EnumerationQuery query, CancellationToken token = default);
     }
 }

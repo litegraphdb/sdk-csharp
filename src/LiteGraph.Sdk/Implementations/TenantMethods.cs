@@ -1,6 +1,7 @@
 ﻿namespace LiteGraph.Sdk.Implementations
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
@@ -89,6 +90,28 @@
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + guid;
             return await _Sdk.Head(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<EnumerationResult<TenantMetadata>> Enumerate(EnumerationQuery query, CancellationToken token = default)
+        {
+            if (query == null) throw new ArgumentNullException(nameof(query));
+            string url = _Sdk.Endpoint + "v2.0/tenants";
+            return await _Sdk.Post<EnumerationQuery, EnumerationResult<TenantMetadata>>(url, query, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<TenantStatistics> GetStatistics(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/stats";
+            return await _Sdk.Post<object, TenantStatistics>(url, new { }, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<Dictionary<Guid, TenantStatistics>> GetStatistics(CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/stats";
+            return await _Sdk.Post<object, Dictionary<Guid, TenantStatistics>>(url, new { }, token).ConfigureAwait(false);
         }
 
         #endregion

@@ -207,6 +207,15 @@
             return await _Sdk.Post<SearchRequest, Node>(url, req, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<EnumerationResult<Node>> Enumerate(EnumerationQuery query, CancellationToken token = default)
+        {
+            if (query == null) throw new ArgumentNullException(nameof(query));
+            if (query.TenantGUID == null) throw new ArgumentNullException(nameof(query.TenantGUID));
+            string url = _Sdk.Endpoint + "v2.0/tenants/" + query.TenantGUID.Value + "/nodes";
+            return await _Sdk.Post<EnumerationQuery, EnumerationResult<Node>>(url, query, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

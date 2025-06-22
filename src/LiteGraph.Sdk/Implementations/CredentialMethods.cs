@@ -91,6 +91,15 @@
             return await _Sdk.Head(url, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<EnumerationResult<Credential>> Enumerate(EnumerationQuery query, CancellationToken token = default)
+        {
+            if (query == null) throw new ArgumentNullException(nameof(query));
+            if (query.TenantGUID == null) throw new ArgumentNullException(nameof(query.TenantGUID));
+            string url = _Sdk.Endpoint + "v2.0/tenants/" + query.TenantGUID.Value + "/credentials";
+            return await _Sdk.Post<EnumerationQuery, EnumerationResult<Credential>>(url, query, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

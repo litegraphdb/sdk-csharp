@@ -201,5 +201,13 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Node.</returns>
         Task<Node> ReadFirst(SearchRequest req, CancellationToken token = default);
+
+        /// <summary>
+        /// Enumerate.
+        /// </summary>
+        /// <param name="query">Enumeration query.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Enumeration result.</returns>
+        Task<EnumerationResult<Node>> Enumerate(EnumerationQuery query, CancellationToken token = default);
     }
 }
