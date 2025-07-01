@@ -48,6 +48,15 @@
         Task<UserMaster> ReadByGuid(Guid tenantGuid, Guid guid, CancellationToken token = default);
 
         /// <summary>
+        /// Read users by GUIDs.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="guids">GUIDs.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List.</returns>
+        Task<List<UserMaster>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default);
+
+        /// <summary>
         /// Update a user.
         /// </summary>
         /// <param name="user">User.</param>

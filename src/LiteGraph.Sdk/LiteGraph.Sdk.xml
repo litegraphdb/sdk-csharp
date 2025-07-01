@@ -613,6 +613,9 @@
         <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.Update(LiteGraph.Sdk.Credential,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -646,6 +649,9 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadNodeEdges(System.Guid,System.Guid,System.Guid,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,ExpressionTree.Expr,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
@@ -704,6 +710,9 @@
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.Update(LiteGraph.Sdk.Graph,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -751,6 +760,9 @@
         <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.Update(LiteGraph.Sdk.LabelMetadata,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -787,6 +799,9 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Update(LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
@@ -848,6 +863,9 @@
         <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:LiteGraph.Sdk.Implementations.TagMethods.Update(LiteGraph.Sdk.TagMetadata,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -881,6 +899,9 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.ReadByGuid(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.ReadByGuids(System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.Update(LiteGraph.Sdk.TenantMetadata,System.Threading.CancellationToken)">
@@ -921,6 +942,9 @@
         <member name="M:LiteGraph.Sdk.Implementations.UserMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="M:LiteGraph.Sdk.Implementations.UserMethods.Update(LiteGraph.Sdk.UserMaster,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
@@ -954,6 +978,9 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.Update(LiteGraph.Sdk.VectorMetadata,System.Threading.CancellationToken)">
@@ -1069,6 +1096,15 @@
             <param name="token">Cancellation token.</param>
             <returns>Credential.</returns>
         </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read credentials by GUIDs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
+        </member>
         <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.Update(LiteGraph.Sdk.Credential,System.Threading.CancellationToken)">
             <summary>
             Update a credential.
@@ -1145,6 +1181,16 @@
             <param name="edgeGuid">Edge GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Edge.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read edges by GUIDs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="guids">Edge GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
         </member>
         <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadNodeEdges(System.Guid,System.Guid,System.Guid,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,ExpressionTree.Expr,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
             <summary>
@@ -1302,6 +1348,15 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read graphs by GUIDs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
+        </member>
         <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.Update(LiteGraph.Sdk.Graph,System.Threading.CancellationToken)">
             <summary>
             Update a graph.
@@ -1410,6 +1465,15 @@
             <param name="token">Cancellation token.</param>
             <returns>Label.</returns>
         </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read labels by GUIDs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
+        </member>
         <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.Update(LiteGraph.Sdk.LabelMetadata,System.Threading.CancellationToken)">
             <summary>
             Update a label.
@@ -1494,6 +1558,16 @@
             <param name="nodeGuid">Node GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Node.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read nodes by GUIDs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="guids">Node GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
         </member>
         <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.Update(LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
             <summary>
@@ -1663,6 +1737,15 @@
             <param name="token">Cancellation token.</param>
             <returns>Tag.</returns>
         </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read tags by GUIDs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
+        </member>
         <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.Update(LiteGraph.Sdk.TagMetadata,System.Threading.CancellationToken)">
             <summary>
             Update a tag.
@@ -1733,6 +1816,14 @@
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Tenant.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.ReadByGuids(System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read tenants by GUIDs.
+            </summary>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
         </member>
         <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.Update(LiteGraph.Sdk.TenantMetadata,System.Threading.CancellationToken)">
             <summary>
@@ -1813,6 +1904,15 @@
             <param name="token">Cancellation token.</param>
             <returns>User.</returns>
         </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read users by GUIDs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
+        </member>
         <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.Update(LiteGraph.Sdk.UserMaster,System.Threading.CancellationToken)">
             <summary>
             Update a user.
@@ -1886,6 +1986,15 @@
             <param name="guid">GUID.</param>
             <param name="token">Cancellation token.</param>
             <returns>Vector.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+            <summary>
+            Read vectors by GUIDs.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="guids">GUIDs.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List.</returns>
         </member>
         <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.Update(LiteGraph.Sdk.VectorMetadata,System.Threading.CancellationToken)">
             <summary>

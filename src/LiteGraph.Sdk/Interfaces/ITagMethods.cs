@@ -63,6 +63,15 @@
         Task<TagMetadata> ReadByGuid(Guid tenantGuid, Guid guid, CancellationToken token = default);
 
         /// <summary>
+        /// Read tags by GUIDs.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="guids">GUIDs.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List.</returns>
+        Task<List<TagMetadata>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default);
+
+        /// <summary>
         /// Update a tag.
         /// </summary>
         /// <param name="tag">Tag.</param>

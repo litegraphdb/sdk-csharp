@@ -48,6 +48,15 @@
         Task<Graph> ReadByGuid(Guid tenantGuid, Guid guid, CancellationToken token = default);
 
         /// <summary>
+        /// Read graphs by GUIDs.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="guids">GUIDs.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List.</returns>
+        Task<List<Graph>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default);
+
+        /// <summary>
         /// Update a graph.
         /// </summary>
         /// <param name="graph">Graph.</param>

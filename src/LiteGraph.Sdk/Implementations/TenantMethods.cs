@@ -70,6 +70,14 @@
         }
 
         /// <inheritdoc />
+        public async Task<List<TenantMetadata>> ReadByGuids(List<Guid> guids, CancellationToken token = default)
+        {
+            if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
+            string url = _Sdk.Endpoint + "v1.0/tenants?guids=" + string.Join(",", guids);
+            return await _Sdk.Get<List<TenantMetadata>>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<TenantMetadata> Update(TenantMetadata tenant, CancellationToken token = default)
         {
             if (tenant == null) throw new ArgumentNullException(nameof(tenant));
@@ -104,14 +112,14 @@
         public async Task<TenantStatistics> GetStatistics(Guid tenantGuid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/stats";
-            return await _Sdk.Post<object, TenantStatistics>(url, new { }, token).ConfigureAwait(false);
+            return await _Sdk.Get<TenantStatistics>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public async Task<Dictionary<Guid, TenantStatistics>> GetStatistics(CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/stats";
-            return await _Sdk.Post<object, Dictionary<Guid, TenantStatistics>>(url, new { }, token).ConfigureAwait(false);
+            return await _Sdk.Get<Dictionary<Guid, TenantStatistics>>(url, token).ConfigureAwait(false);
         }
 
         #endregion

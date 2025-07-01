@@ -79,6 +79,14 @@
         }
 
         /// <inheritdoc />
+        public async Task<List<Edge>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, CancellationToken token = default)
+        {
+            if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges?guids=" + string.Join(",", guids);
+            return await _Sdk.Get<List<Edge>>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<List<Edge>> ReadNodeEdges(
             Guid tenantGuid,
             Guid graphGuid,
@@ -193,7 +201,7 @@
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (query.TenantGUID == null) throw new ArgumentNullException(nameof(query.TenantGUID));
-            string url = _Sdk.Endpoint + "v2.0/tenants/" + query.TenantGUID.Value + "/edges";
+            string url = _Sdk.Endpoint + "v2.0/tenants/" + query.TenantGUID.Value + "/graphs/" + query.GraphGUID.Value + "/edges";
             return await _Sdk.Post<EnumerationQuery, EnumerationResult<Edge>>(url, query, token).ConfigureAwait(false);
         }
 

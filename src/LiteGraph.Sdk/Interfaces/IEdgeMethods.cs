@@ -60,6 +60,16 @@
         /// <returns>Edge.</returns>
         Task<Edge> ReadByGuid(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default);
 
+        /// <summary>
+        /// Read edges by GUIDs.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="guids">Edge GUIDs.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List.</returns>
+        Task<List<Edge>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, CancellationToken token = default);
+
 
         /// <summary>
         /// Get edges connected to or initiated from a given node.

@@ -57,6 +57,15 @@
         Task<LabelMetadata> ReadByGuid(Guid tenantGuid, Guid guid, CancellationToken token = default);
 
         /// <summary>
+        /// Read labels by GUIDs.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="guids">GUIDs.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List.</returns>
+        Task<List<LabelMetadata>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default);
+
+        /// <summary>
         /// Update a label.
         /// </summary>
         /// <param name="label">Label.</param>

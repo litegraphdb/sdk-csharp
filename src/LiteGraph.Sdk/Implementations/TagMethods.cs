@@ -80,6 +80,14 @@
         }
 
         /// <inheritdoc />
+        public async Task<List<TagMetadata>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default)
+        {
+            if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/tags?guids=" + string.Join(",", guids);
+            return await _Sdk.Get<List<TagMetadata>>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<TagMetadata> Update(TagMetadata tag, CancellationToken token = default)
         {
             if (tag == null) throw new ArgumentNullException(nameof(tag));

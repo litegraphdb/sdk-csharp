@@ -70,6 +70,14 @@
         }
 
         /// <inheritdoc />
+        public async Task<List<Credential>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default)
+        {
+            if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/credentials?guids=" + string.Join(",", guids);
+            return await _Sdk.Get<List<Credential>>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<Credential> Update(Credential cred, CancellationToken token = default)
         {
             if (cred == null) throw new ArgumentNullException(nameof(cred));

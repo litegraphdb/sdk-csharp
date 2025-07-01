@@ -77,6 +77,14 @@
         }
 
         /// <inheritdoc />
+        public async Task<List<LabelMetadata>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default)
+        {
+            if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/labels?guids=" + string.Join(",", guids);
+            return await _Sdk.Get<List<LabelMetadata>>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<LabelMetadata> Update(LabelMetadata label, CancellationToken token = default)
         {
             if (label == null) throw new ArgumentNullException(nameof(label));

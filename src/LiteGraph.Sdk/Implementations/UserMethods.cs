@@ -68,6 +68,14 @@
         }
 
         /// <inheritdoc />
+        public async Task<List<UserMaster>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default)
+        {
+            if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/users?guids=" + string.Join(",", guids);
+            return await _Sdk.Get<List<UserMaster>>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<UserMaster> Update(UserMaster user, CancellationToken token = default)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));

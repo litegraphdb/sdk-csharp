@@ -45,6 +45,14 @@
         Task<TenantMetadata> ReadByGuid(Guid guid, CancellationToken token = default);
 
         /// <summary>
+        /// Read tenants by GUIDs.
+        /// </summary>
+        /// <param name="guids">GUIDs.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List.</returns>
+        Task<List<TenantMetadata>> ReadByGuids(List<Guid> guids, CancellationToken token = default);
+
+        /// <summary>
         /// Update a tenant.
         /// </summary>
         /// <param name="tenant">Tenant.</param>

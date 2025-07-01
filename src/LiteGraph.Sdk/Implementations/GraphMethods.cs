@@ -71,6 +71,14 @@
         }
 
         /// <inheritdoc />
+        public async Task<List<Graph>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default)
+        {
+            if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs?guids=" + string.Join(",", guids);
+            return await _Sdk.Get<List<Graph>>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<Graph> Update(Graph graph, CancellationToken token = default)
         {
             if (graph == null) throw new ArgumentNullException(nameof(graph));
@@ -122,14 +130,14 @@
         public async Task<GraphStatistics> GetStatistics(Guid tenantGuid, Guid guid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + guid + "/stats";
-            return await _Sdk.Post<object, GraphStatistics>(url, new { }, token).ConfigureAwait(false);
+            return await _Sdk.Get<GraphStatistics>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public async Task<Dictionary<Guid, GraphStatistics>> GetStatistics(Guid tenantGuid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/stats";
-            return await _Sdk.Post<object, Dictionary<Guid, GraphStatistics>>(url, new { }, token).ConfigureAwait(false);
+            return await _Sdk.Get<Dictionary<Guid, GraphStatistics>>(url, token).ConfigureAwait(false);
         }
 
         #endregion

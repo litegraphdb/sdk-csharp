@@ -61,6 +61,16 @@
         Task<Node> ReadByGuid(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
 
         /// <summary>
+        /// Read nodes by GUIDs.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="guids">Node GUIDs.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>List.</returns>
+        Task<List<Node>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, CancellationToken token = default);
+
+        /// <summary>
         /// Update node.
         /// </summary>
         /// <param name="node">Node.</param>

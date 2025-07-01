@@ -73,10 +73,18 @@
         }
 
         /// <inheritdoc />
-        public async Task<VectorMetadata>  ReadByGuid(Guid tenantGuid, Guid guid, CancellationToken token = default)
+        public async Task<VectorMetadata> ReadByGuid(Guid tenantGuid, Guid guid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/vectors/" + guid;
             return await _Sdk.Get<VectorMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<VectorMetadata>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default)
+        {
+            if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/vectors?guids=" + string.Join(",", guids);
+            return await _Sdk.Get<List<VectorMetadata>>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />

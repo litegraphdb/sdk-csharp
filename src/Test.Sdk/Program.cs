@@ -81,6 +81,12 @@
                     case "tenant read":
                         TenantRead();
                         break;
+                    case "tenant enum":
+                        TenantEnumerate();
+                        break;
+                    case "tenant stats":
+                        TenantStats();
+                        break;
                     case "tenant delete":
                         TenantDelete();
                         break;
@@ -99,6 +105,9 @@
                         break;
                     case "user read":
                         UserRead();
+                        break;
+                    case "user enum":
+                        UserEnumerate();
                         break;
                     case "user delete":
                         UserDelete();
@@ -119,6 +128,9 @@
                     case "cred read":
                         CredentialRead();
                         break;
+                    case "cred enum":
+                        CredentialEnumerate();
+                        break;
                     case "cred delete":
                         CredentialDelete();
                         break;
@@ -137,6 +149,9 @@
                         break;
                     case "label read":
                         LabelRead();
+                        break;
+                    case "label enum":
+                        LabelEnumerate();
                         break;
                     case "label delete":
                         LabelDelete();
@@ -157,6 +172,9 @@
                     case "tag read":
                         TagRead();
                         break;
+                    case "tag enum":
+                        TagEnumerate();
+                        break;
                     case "tag delete":
                         TagDelete();
                         break;
@@ -176,6 +194,9 @@
                     case "vector read":
                         VectorRead();
                         break;
+                    case "vector enum":
+                        VectorEnumerate();
+                        break;
                     case "vector delete":
                         VectorDelete();
                         break;
@@ -194,6 +215,12 @@
                         break;
                     case "graph read":
                         GraphRead();
+                        break;
+                    case "graph enum":
+                        GraphEnumerate();
+                        break;
+                    case "graph stats":
+                        GraphStats();
                         break;
                     case "graph delete":
                         GraphDelete();
@@ -216,6 +243,9 @@
                         break;
                     case "node read":
                         NodeRead();
+                        break;
+                    case "node enum":
+                        NodeEnumerate();
                         break;
                     case "node delete":
                         NodeDelete();
@@ -248,6 +278,9 @@
                         break;
                     case "edge read":
                         EdgeRead();
+                        break;
+                    case "edge enum":
+                        EdgeEnumerate();
                         break;
                     case "edge delete":
                         EdgeDelete();
@@ -292,17 +325,17 @@
             Console.WriteLine("  graph           set the graph GUID (currently " + _Graph + ")");
             Console.WriteLine("");
             Console.WriteLine("Administrative commands (requires administrative bearer token):");
-            Console.WriteLine("  Tenants       : tenant [create|update|all|read|delete|exists]");
-            Console.WriteLine("  Users         : user [create|update|all|read|delete|exists]");
-            Console.WriteLine("  Credentials   : cred [create|update|all|read|delete|exists]");
-            Console.WriteLine("  Labels        : label [create|update|all|read|delete|exists]");
-            Console.WriteLine("  Tags          : tag [create|update|all|read|delete|exists]");
-            Console.WriteLine("  Vectors       : vector [create|update|all|read|delete|exists]");
+            Console.WriteLine("  Tenants       : tenant [create|update|all|read|enum|stats|delete|exists]");
+            Console.WriteLine("  Users         : user [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Credentials   : cred [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Labels        : label [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Tags          : tag [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Vectors       : vector [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("");
             Console.WriteLine("User commands:");
-            Console.WriteLine("  Graphs        : graph [create|update|all|read|delete|exists|search]");
-            Console.WriteLine("  Nodes         : node [create|update|all|read|delete|exists|search|edges|parents|children]");
-            Console.WriteLine("  Edges         : edge [create|update|all|read|delete|exists|from|to|search|between]");
+            Console.WriteLine("  Graphs        : graph [create|update|all|read|enum|stats|delete|exists|search]");
+            Console.WriteLine("  Nodes         : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
+            Console.WriteLine("  Edges         : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
             Console.WriteLine("  Vector search : vsearch");
             Console.WriteLine("");
             Console.WriteLine("Routing commands:");
@@ -384,8 +417,8 @@
         private static SearchRequest BuildSearchRequest(bool includeGraphGuid)
         {
             List<string> labels = GetLabels();
-            NameValueCollection nvc = GetNameValueCollection();
-            Expr expr = GetExpression();
+            NameValueCollection nvc = BuildNameValueCollection();
+            Expr expr = BuildExpression();
 
             SearchRequest req = new SearchRequest();
             req.TenantGUID = Inputty.GetGuid("Tenant GUID:", _Tenant);
@@ -399,8 +432,8 @@
         private static VectorSearchRequest BuildVectorSearchRequest()
         {
             List<string> labels = GetLabels();
-            NameValueCollection nvc = GetNameValueCollection();
-            Expr expr = GetExpression();
+            NameValueCollection nvc = BuildNameValueCollection();
+            Expr expr = BuildExpression();
             List<float> embeddings = GetEmbeddings();
 
             VectorSearchRequest req = new VectorSearchRequest();
@@ -419,7 +452,7 @@
             return req;
         }
 
-        static NameValueCollection GetNameValueCollection()
+        private static NameValueCollection BuildNameValueCollection()
         {
             Console.WriteLine("");
             Console.WriteLine("Add keys and values to build a name value collection");
@@ -439,7 +472,7 @@
             return ret;
         }
 
-        static Expr GetExpression()
+        private static Expr BuildExpression()
         {
             Console.WriteLine("");
             Console.WriteLine("Add JSON values to build an expression");
@@ -461,6 +494,15 @@
             Console.WriteLine("Using expression: " + expr.ToString());
             Console.WriteLine("");
             return expr;
+        }
+         
+        private static EnumerationQuery BuildEnumerationQuery()
+        {
+            return new EnumerationQuery
+            {
+                TenantGUID = _Tenant,
+                GraphGUID = _Graph
+            };
         }
 
         private static void EnumerateResult(object obj)
@@ -534,6 +576,16 @@
                 GetGuid("GUID:", _Tenant)).Result);
         }
 
+        private static void TenantEnumerate()
+        {
+            EnumerateResult(_Sdk.Tenant.Enumerate(BuildEnumerationQuery()).Result);
+        }
+
+        private static void TenantStats()
+        {
+            EnumerateResult(_Sdk.Tenant.GetStatistics().Result);
+        }
+
         private static void TenantDelete()
         {
             _Sdk.Tenant.DeleteByGuid(
@@ -581,6 +633,11 @@
             EnumerateResult(_Sdk.User.ReadByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Result);
+        }
+
+        private static void UserEnumerate()
+        {
+            EnumerateResult(_Sdk.User.Enumerate(BuildEnumerationQuery()).Result);
         }
 
         private static void UserUpdate()
@@ -634,6 +691,11 @@
                 GetGuid("GUID:")).Result);
         }
 
+        private static void CredentialEnumerate()
+        {
+            EnumerateResult(_Sdk.Credential.Enumerate(BuildEnumerationQuery()).Result);
+        }
+
         private static void CredentialUpdate()
         {
             ShowSampleCredential();
@@ -683,6 +745,11 @@
             EnumerateResult(_Sdk.Label.ReadByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Result);
+        }
+
+        private static void LabelEnumerate()
+        {
+            EnumerateResult(_Sdk.Label.Enumerate(BuildEnumerationQuery()).Result);
         }
 
         private static void LabelUpdate()
@@ -735,6 +802,11 @@
             EnumerateResult(_Sdk.Tag.ReadByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Result);
+        }
+
+        private static void TagEnumerate()
+        {
+            EnumerateResult(_Sdk.Tag.Enumerate(BuildEnumerationQuery()).Result);
         }
 
         private static void TagUpdate()
@@ -793,6 +865,11 @@
             EnumerateResult(_Sdk.Vector.ReadByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Result);
+        }
+
+        private static void VectorEnumerate()
+        {
+            EnumerateResult(_Sdk.Vector.Enumerate(BuildEnumerationQuery()).Result);
         }
 
         private static void VectorUpdate()
@@ -873,10 +950,20 @@
                 GetGuid("GUID:", _Graph)).Result);
         }
 
+        private static void GraphEnumerate()
+        {
+            EnumerateResult(_Sdk.Graph.Enumerate(BuildEnumerationQuery()).Result);
+        }
+
         private static void GraphUpdate()
         {
             ShowSampleGraph();
             EnumerateResult(_Sdk.Graph.Update(Serializer.DeserializeJson<Graph>(GetJson("Graph JSON:"))).Result);
+        }
+
+        private static void GraphStats()
+        {
+            EnumerateResult(_Sdk.Graph.GetStatistics(_Tenant).Result);
         }
 
         private static void GraphDelete()
@@ -977,6 +1064,11 @@
                     GetGuid("Node GUID:")
                 )
                 .Result);
+        }
+
+        private static void NodeEnumerate()
+        {
+            EnumerateResult(_Sdk.Node.Enumerate(BuildEnumerationQuery()).Result);
         }
 
         private static void NodeUpdate()
@@ -1114,6 +1206,11 @@
                     GetGuid("Edge GUID:")
                 )
                 .Result);
+        }
+
+        private static void EdgeEnumerate()
+        {
+            EnumerateResult(_Sdk.Edge.Enumerate(BuildEnumerationQuery()).Result);
         }
 
         private static void EdgeUpdate()
