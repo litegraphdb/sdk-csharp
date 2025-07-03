@@ -496,9 +496,9 @@
             return expr;
         }
          
-        private static EnumerationQuery BuildEnumerationQuery()
+        private static EnumerationRequest BuildEnumerationQuery()
         {
-            return new EnumerationQuery
+            return new EnumerationRequest
             {
                 TenantGUID = _Tenant,
                 GraphGUID = _Graph

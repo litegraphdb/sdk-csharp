@@ -104,6 +104,6 @@
         /// <param name="query">Enumeration query.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
-        Task<EnumerationResult<LabelMetadata>> Enumerate(EnumerationQuery query, CancellationToken token = default);
+        Task<EnumerationResult<LabelMetadata>> Enumerate(EnumerationRequest query, CancellationToken token = default);
     }
 }

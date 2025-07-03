@@ -87,6 +87,6 @@
         /// <param name="query">Enumeration query.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
-        Task<EnumerationResult<UserMaster>> Enumerate(EnumerationQuery query, CancellationToken token = default);
+        Task<EnumerationResult<UserMaster>> Enumerate(EnumerationRequest query, CancellationToken token = default);
     }
 }

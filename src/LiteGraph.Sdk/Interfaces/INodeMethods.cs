@@ -218,6 +218,6 @@
         /// <param name="query">Enumeration query.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
-        Task<EnumerationResult<Node>> Enumerate(EnumerationQuery query, CancellationToken token = default);
+        Task<EnumerationResult<Node>> Enumerate(EnumerationRequest query, CancellationToken token = default);
     }
 }

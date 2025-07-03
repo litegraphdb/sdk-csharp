@@ -45,6 +45,11 @@
         }
 
         /// <summary>
+        /// Name on which to match.
+        /// </summary>
+        public string Name { get; set; } = null;
+
+        /// <summary>
         /// Labels.
         /// </summary>
         public List<string> Labels

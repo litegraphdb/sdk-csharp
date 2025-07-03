@@ -104,7 +104,7 @@
         /// <param name="query">Enumeration query.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
-        Task<EnumerationResult<Graph>> Enumerate(EnumerationQuery query, CancellationToken token = default);
+        Task<EnumerationResult<Graph>> Enumerate(EnumerationRequest query, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve graph statistics.

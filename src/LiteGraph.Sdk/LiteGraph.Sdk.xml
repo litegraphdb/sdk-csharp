@@ -274,67 +274,67 @@
             Cost descending.
             </summary>
         </member>
-        <member name="T:LiteGraph.Sdk.EnumerationQuery">
+        <member name="T:LiteGraph.Sdk.EnumerationRequest">
             <summary>
             Object used to request enumeration.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.TenantGUID">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.TenantGUID">
             <summary>
             Tenant GUID.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.UserGUID">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.UserGUID">
             <summary>
             User GUID.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.GraphGUID">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.GraphGUID">
             <summary>
             Graph GUID.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.Ordering">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.Ordering">
             <summary>
             Order by.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.IncludeData">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.IncludeData">
             <summary>
             Boolean indicating if an object's data property should be included.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.IncludeSubordinates">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.IncludeSubordinates">
             <summary>
             Boolean indicating if an object's subordinate objects (i.e. labels, tags, vectors) should be included.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.MaxResults">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.MaxResults">
             <summary>
             Maximum number of results to retrieve.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.ContinuationToken">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.ContinuationToken">
             <summary>
             Continuation token.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.Labels">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.Labels">
             <summary>
             Search labels.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.Tags">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.Tags">
             <summary>
             Search tags.
             </summary>
         </member>
-        <member name="P:LiteGraph.Sdk.EnumerationQuery.Expr">
+        <member name="P:LiteGraph.Sdk.EnumerationRequest.Expr">
             <summary>
             Expression.
             </summary>
         </member>
-        <member name="M:LiteGraph.Sdk.EnumerationQuery.#ctor">
+        <member name="M:LiteGraph.Sdk.EnumerationRequest.#ctor">
             <summary>
             Instantiate.
             </summary>
@@ -625,7 +625,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.EdgeMethods">
@@ -687,7 +687,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.GraphMethods">
@@ -728,7 +728,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
@@ -775,7 +775,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.NodeMethods">
@@ -837,7 +837,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadFirst(LiteGraph.Sdk.SearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.TagMethods">
@@ -878,7 +878,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.TenantMethods">
@@ -913,7 +913,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.ExistsByGuid(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.GetStatistics(System.Guid,System.Threading.CancellationToken)">
@@ -954,7 +954,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.UserMethods.ExistsByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.UserMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.VectorMethods">
@@ -998,7 +998,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.SearchVectors(System.Guid,System.Nullable{System.Guid},LiteGraph.Sdk.VectorSearchRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IAdminMethods">
@@ -1130,7 +1130,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -1308,7 +1308,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Edge.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -1399,7 +1399,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -1507,7 +1507,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -1685,7 +1685,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Node.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -1779,7 +1779,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -1849,7 +1849,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.ITenantMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -1938,7 +1938,7 @@
             <param name="token">Cancellation token.</param>
             <returns>True if exists.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -2039,7 +2039,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Vector search result.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.Enumerate(LiteGraph.Sdk.EnumerationQuery,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <summary>
             Enumerate.
             </summary>
@@ -2491,6 +2491,11 @@
         <member name="P:LiteGraph.Sdk.SearchRequest.Skip">
             <summary>
             The number of records to skip.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.SearchRequest.Name">
+            <summary>
+            Name on which to match.
             </summary>
         </member>
         <member name="P:LiteGraph.Sdk.SearchRequest.Labels">

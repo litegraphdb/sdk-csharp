@@ -216,12 +216,12 @@
         }
 
         /// <inheritdoc />
-        public async Task<EnumerationResult<Node>> Enumerate(EnumerationQuery query, CancellationToken token = default)
+        public async Task<EnumerationResult<Node>> Enumerate(EnumerationRequest query, CancellationToken token = default)
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (query.TenantGUID == null) throw new ArgumentNullException(nameof(query.TenantGUID));
             string url = _Sdk.Endpoint + "v2.0/tenants/" + query.TenantGUID.Value + "/graphs/" + query.GraphGUID.Value + "/nodes";
-            return await _Sdk.Post<EnumerationQuery, EnumerationResult<Node>>(url, query, token).ConfigureAwait(false);
+            return await _Sdk.Post<EnumerationRequest, EnumerationResult<Node>>(url, query, token).ConfigureAwait(false);
         }
 
         #endregion

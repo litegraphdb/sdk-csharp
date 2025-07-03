@@ -82,7 +82,7 @@
         /// <param name="query">Enumeration query.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
-        Task<EnumerationResult<TenantMetadata>> Enumerate(EnumerationQuery query, CancellationToken token = default);
+        Task<EnumerationResult<TenantMetadata>> Enumerate(EnumerationRequest query, CancellationToken token = default);
 
         /// <summary>
         /// Retrieve tenant statistics.

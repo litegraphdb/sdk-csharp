@@ -115,12 +115,12 @@
         }
 
         /// <inheritdoc />
-        public async Task<EnumerationResult<LabelMetadata>> Enumerate(EnumerationQuery query, CancellationToken token = default)
+        public async Task<EnumerationResult<LabelMetadata>> Enumerate(EnumerationRequest query, CancellationToken token = default)
         {
             if (query == null) throw new ArgumentNullException(nameof(query));
             if (query.TenantGUID == null) throw new ArgumentNullException(nameof(query.TenantGUID));
             string url = _Sdk.Endpoint + "v2.0/tenants/" + query.TenantGUID.Value + "/labels";
-            return await _Sdk.Post<EnumerationQuery, EnumerationResult<LabelMetadata>>(url, query, token).ConfigureAwait(false);
+            return await _Sdk.Post<EnumerationRequest, EnumerationResult<LabelMetadata>>(url, query, token).ConfigureAwait(false);
         }
 
         #endregion
