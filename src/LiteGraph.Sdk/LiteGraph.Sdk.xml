@@ -3119,6 +3119,26 @@
             Vector search type.
             </summary>
         </member>
+        <member name="P:LiteGraph.Sdk.VectorSearchRequest.TopK">
+            <summary>
+            Specify the top K number of results to return.  Default is 100.  Value can be null, but if not null, must be greater than zero.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorSearchRequest.MinimumScore">
+            <summary>
+            Minimum score.  Default value is 0.  Value must be null, or, zero or greater.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorSearchRequest.MaximumDistance">
+            <summary>
+            Maximum distance.  Default value is the maximum float value.  Value must be null, or, greater than zero.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorSearchRequest.MinimumInnerProduct">
+            <summary>
+            Minimum inner product.  Default value is 0.  Value must be null, or, zero or greater.
+            </summary>
+        </member>
         <member name="P:LiteGraph.Sdk.VectorSearchRequest.Labels">
             <summary>
             Search labels.

@@ -1,6 +1,7 @@
 ﻿namespace LiteGraph.Sdk
 {
     using ExpressionTree;
+    using LiteGraph.Sdk;
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
@@ -32,6 +33,70 @@
         /// Vector search type.
         /// </summary>
         public VectorSearchTypeEnum SearchType { get; set; } = VectorSearchTypeEnum.CosineSimilarity;
+
+        /// <summary>
+        /// Specify the top K number of results to return.  Default is 100.  Value can be null, but if not null, must be greater than zero.
+        /// </summary>
+        public int? TopK
+        {
+            get
+            {
+                return _TopK;
+            }
+            set
+            {
+                if (value != null && value.Value < 1) throw new ArgumentOutOfRangeException(nameof(TopK));
+                _TopK = value;
+            }
+        }
+
+        /// <summary>
+        /// Minimum score.  Default value is 0.  Value must be null, or, zero or greater.
+        /// </summary>
+        public float? MinimumScore
+        {
+            get
+            {
+                return _MinimumScore;
+            }
+            set
+            {
+                if (value != null && value.Value < 0) throw new ArgumentOutOfRangeException(nameof(MinimumScore));
+                _MinimumScore = value;
+            }
+        }
+
+        /// <summary>
+        /// Maximum distance.  Default value is the maximum float value.  Value must be null, or, greater than zero.
+        /// </summary>
+        public float? MaximumDistance
+        {
+            get
+            {
+                return _MaximumDistance;
+            }
+            set
+            {
+                if (value != null && value.Value <= 0) throw new ArgumentOutOfRangeException(nameof(MaximumDistance));
+                _MaximumDistance = value;
+            }
+        }
+
+        /// <summary>
+        /// Minimum inner product.  Default value is 0.  Value must be null, or, zero or greater.
+        /// </summary>
+        public float? MinimumInnerProduct
+        {
+            get
+            {
+                return _MinimumInnerProduct;
+            }
+            set
+            {
+                if (value != null && value.Value < 0) throw new ArgumentOutOfRangeException(nameof(MinimumInnerProduct));
+                _MinimumInnerProduct = value;
+            }
+        }
 
         /// <summary>
         /// Search labels.
@@ -78,6 +143,11 @@
         #endregion
 
         #region Private-Members
+
+        private int? _TopK = 100;
+        private float? _MinimumScore = 0.0f;
+        private float? _MaximumDistance = float.MaxValue;
+        private float? _MinimumInnerProduct = 0.0f;
 
         private List<string> _Labels = new List<string>();
         private NameValueCollection _Tags = new NameValueCollection(StringComparer.InvariantCultureIgnoreCase);
