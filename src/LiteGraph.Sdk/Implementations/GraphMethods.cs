@@ -170,6 +170,32 @@
             return await _Sdk.Get<VectorIndexStatistics>(url, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<SearchResult> GetSubgraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            Guid nodeGuid,
+            int maxDepth = 2,
+            int maxNodes = 0,
+            int maxEdges = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default)
+        {
+            if (maxDepth < 0) throw new ArgumentOutOfRangeException(nameof(maxDepth));
+            if (maxNodes < 0) throw new ArgumentOutOfRangeException(nameof(maxNodes));
+            if (maxEdges < 0) throw new ArgumentOutOfRangeException(nameof(maxEdges));
+
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/subgraph";
+            url += "?maxDepth=" + maxDepth;
+            url += "&maxNodes=" + maxNodes;
+            url += "&maxEdges=" + maxEdges;
+            if (includeData) url += "&incldata";
+            if (includeSubordinates) url += "&inclsub";
+
+            return await _Sdk.Get<SearchResult>(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods
