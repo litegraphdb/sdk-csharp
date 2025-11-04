@@ -321,6 +321,16 @@
                     case "vsearch":
                         VectorSearch();
                         break;
+
+                    case "auth tenants":
+                        AuthGetTenantsForEmail();
+                        break;
+                    case "auth generate token":
+                        AuthGenerateToken();
+                        break;
+                    case "auth token details":
+                        AuthGetTokenDetails();
+                        break;
                 }
 
                 Console.WriteLine("");
@@ -331,27 +341,32 @@
         {
             Console.WriteLine("");
             Console.WriteLine("Available commands:");
-            Console.WriteLine("  ?               help, this menu");
-            Console.WriteLine("  q               quit");
-            Console.WriteLine("  cls             clear the screen");
-            Console.WriteLine("  conn            validate connectivity");
-            Console.WriteLine("  backup          create a database backup");
-            Console.WriteLine("  tenant          set the tenant GUID (currently " + _Tenant + ")");
-            Console.WriteLine("  graph           set the graph GUID (currently " + _Graph + ")");
+            Console.WriteLine("  ?                            help, this menu");
+            Console.WriteLine("  q                            quit");
+            Console.WriteLine("  cls                          clear the screen");
+            Console.WriteLine("  conn                         validate connectivity");
+            Console.WriteLine("  backup                       create a database backup");
+            Console.WriteLine("  tenant                       set the tenant GUID (currently " + _Tenant + ")");
+            Console.WriteLine("  graph                        set the graph GUID (currently " + _Graph + ")");
             Console.WriteLine("");
             Console.WriteLine("Administrative commands (requires administrative bearer token):");
-            Console.WriteLine("  Tenants       : tenant [create|update|all|read|enum|stats|delete|exists]");
-            Console.WriteLine("  Users         : user [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Credentials   : cred [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Labels        : label [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Tags          : tag [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Vectors       : vector [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Tenants                    : tenant [create|update|all|read|enum|stats|delete|exists]");
+            Console.WriteLine("  Users                      : user [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Credentials                : cred [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Labels                     : label [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Tags                       : tag [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Vectors                    : vector [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("");
             Console.WriteLine("User commands:");
-            Console.WriteLine("  Graphs        : graph [create|update|all|read|enum|stats|delete|exists|search|enable index|rebuild index|delete index|read index config|index stats]");
-            Console.WriteLine("  Nodes         : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
-            Console.WriteLine("  Edges         : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
-            Console.WriteLine("  Vector search : vsearch");
+            Console.WriteLine("  Graphs                     : graph [create|update|all|read|enum|stats|delete|exists|search|enable index|rebuild index|delete index|read index config|index stats]");
+            Console.WriteLine("  Nodes                      : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
+            Console.WriteLine("  Edges                      : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
+            Console.WriteLine("  Vector search              : vsearch");
+            Console.WriteLine("");
+            Console.WriteLine("Authentication commands:");
+            Console.WriteLine("  auth tenants               : Get tenants for email");
+            Console.WriteLine("  auth generate token        : Generate authentication token");
+            Console.WriteLine("  auth token details         : Get token details");
             Console.WriteLine("");
             Console.WriteLine("Routing commands:");
             Console.WriteLine("  route");
@@ -1373,6 +1388,34 @@
                     req.GraphGUID,
                     req)
                 .Result);
+        }
+
+        #endregion
+
+        #region Authentication
+
+        private static void AuthGetTenantsForEmail()
+        {
+            string email = Inputty.GetString("Email:", null, false);
+            if (String.IsNullOrEmpty(email)) return;
+            EnumerateResult(_Sdk.UserAuthentication.GetTenantsForEmail(email).Result);
+        }
+
+        private static void AuthGenerateToken()
+        {
+            string email = Inputty.GetString("Email:", null, false);
+            if (String.IsNullOrEmpty(email)) return;
+            string password = Inputty.GetString("Password:", null, false);
+            if (String.IsNullOrEmpty(password)) return;
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            EnumerateResult(_Sdk.UserAuthentication.GenerateToken(email, password, tenantGuid).Result);
+        }
+
+        private static void AuthGetTokenDetails()
+        {
+            string authToken = Inputty.GetString("Authentication Token:", null, false);
+            if (String.IsNullOrEmpty(authToken)) return;
+            EnumerateResult(_Sdk.UserAuthentication.GetTokenDetails(authToken).Result);
         }
 
         #endregion

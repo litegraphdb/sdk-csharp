@@ -74,6 +74,11 @@
         /// </summary>
         public IVectorMethods Vector { get; }
 
+        /// <summary>
+        /// User authentication methods.
+        /// </summary>
+        public IUserAuthentication UserAuthentication { get; }
+
         #endregion
 
         #region Private-Members
@@ -102,6 +107,7 @@
             Tenant = new TenantMethods(this);
             User = new UserMethods(this);
             Vector = new VectorMethods(this);
+            UserAuthentication = new UserAuthentication(this);
         }
 
         #endregion

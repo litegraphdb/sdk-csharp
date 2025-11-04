@@ -4,6 +4,56 @@
         <name>LiteGraph.Sdk</name>
     </assembly>
     <members>
+        <member name="T:LiteGraph.Sdk.AuthenticationToken">
+            <summary>
+            Authentication token details.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.TimestampUtc">
+            <summary>
+            Timestamp when the token was issued, in UTC time.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.ExpirationUtc">
+            <summary>
+            Timestamp when the token will expire, in UTC time.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.IsExpired">
+            <summary>
+            Boolean to indicate if the token is expired.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.Tenant">
+            <summary>
+            Tenant.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.UserGUID">
+            <summary>
+            User GUID.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.User">
+            <summary>
+            User.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.Token">
+            <summary>
+            Token.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.Valid">
+            <summary>
+            Boolean indicating whether or not the token is valid.
+            </summary>
+        </member>
         <member name="T:LiteGraph.Sdk.BackupFile">
             <summary>
             Backup file.
@@ -935,6 +985,26 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.GetStatistics(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.UserAuthentication">
+            <summary>
+            User authentication methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            User authentication methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GetTenantsForEmail(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GenerateToken(System.String,System.String,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GetTokenDetails(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.UserMethods">
@@ -1933,6 +2003,37 @@
             <param name="token">Cancellation token.</param>
             <returns>Dictionary of tenant statistics.</returns>
         </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.IUserAuthentication">
+            <summary>
+            Interface for user authentication methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GetTenantsForEmail(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get tenants for an email address.
+            </summary>
+            <param name="email">Email address.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>List of tenants.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GenerateToken(System.String,System.String,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Generate a security token.
+            </summary>
+            <param name="email">Email address.</param>
+            <param name="password">Password.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GetTokenDetails(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get token details.
+            </summary>
+            <param name="authToken">Authentication token string.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token details.</returns>
+        </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IUserMethods">
             <summary>
             Interface for user methods.
@@ -2218,6 +2319,11 @@
             Vector methods.
             </summary>
         </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.UserAuthentication">
+            <summary>
+            User authentication methods.
+            </summary>
+        </member>
         <member name="M:LiteGraph.Sdk.LiteGraphSdk.#ctor(System.String,System.String)">
             <summary>
             Instantiate.
@@ -2460,6 +2566,16 @@
             </summary>
             <typeparam name="T">Type.</typeparam>
             <param name="url">URL.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.SdkBase.Get``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Read an object with custom headers.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="headers">Custom headers dictionary.</param>
             <param name="token">Cancellation token.</param>
             <returns>Instance.</returns>
         </member>
