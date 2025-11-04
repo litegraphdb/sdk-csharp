@@ -22,5 +22,3 @@ namespace LiteGraph.Sdk
         HnswSqlite
     }
 }
-
-

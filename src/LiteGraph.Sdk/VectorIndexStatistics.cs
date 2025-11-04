@@ -83,5 +83,3 @@ namespace LiteGraph.Sdk
         public string DistanceMetric { get; set; }
     }
 }
-
-
