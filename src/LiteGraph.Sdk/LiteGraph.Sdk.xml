@@ -737,6 +737,21 @@
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetStatistics(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.EnableVectorIndexing(System.Guid,System.Guid,LiteGraph.Sdk.VectorIndexConfiguration,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.RebuildVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.DeleteVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadVectorIndexConfig(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetVectorIndexStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.LabelMethods">
             <summary>
             Label methods.
@@ -1423,6 +1438,52 @@
             <param name="tenantGuid">Tenant GUID.</param>
             <returns>Dictionary of graph statistics.</returns>
             <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.EnableVectorIndexing(System.Guid,System.Guid,LiteGraph.Sdk.VectorIndexConfiguration,System.Threading.CancellationToken)">
+            <summary>
+            Enable vector indexing for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="config">Vector index configuration.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.RebuildVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Rebuild the vector index for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.DeleteVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete the vector index for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadVectorIndexConfig(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read the vector index configuration for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector index configuration.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.GetVectorIndexStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Get vector index statistics for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector index statistics.</returns>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.ILabelMethods">
             <summary>
@@ -3007,6 +3068,161 @@
         <member name="M:LiteGraph.Sdk.UserMaster.#ctor">
             <summary>
             Instantiate.
+            </summary>
+        </member>
+        <member name="T:LiteGraph.Sdk.VectorIndexConfiguration">
+            <summary>
+            Configuration for vector indexing.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexType">
+            <summary>
+            Type of vector indexing to use.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexFile">
+            <summary>
+            When vector indexing is enabled, the name of the file used to hold the index.
+            Required for SQLite-based indices.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexThreshold">
+            <summary>
+            When vector indexing is enabled, the number of vectors required to use the index.
+            Brute force computation is often faster than use of an index for smaller batches of vectors.
+            Default is null. When set, the minimum value is 1.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorDimensionality">
+            <summary>
+            When vector indexing is enabled, the dimensionality of vectors that will be stored in this graph.
+            Required for vector indexing. When set, the minimum value is 1.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexM">
+            <summary>
+            HNSW M parameter - number of bi-directional links created for each new element during construction.
+            Higher values lead to better recall but higher memory consumption and slower insertion.
+            Default is 16. Valid range is 2-100.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexEf">
+            <summary>
+            HNSW Ef parameter - size of the dynamic list used during k-NN search.
+            Higher values lead to better recall but slower search.
+            Default is 50. Valid range is 1 to 10000.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexEfConstruction">
+            <summary>
+            HNSW EfConstruction parameter - size of the dynamic list used during index construction.
+            Higher values lead to better index quality but slower construction.
+            Default is 200. Valid range is 1 to 10000.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.VectorIndexConfiguration.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="T:LiteGraph.Sdk.VectorIndexStatistics">
+            <summary>
+            Statistics for a vector index.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.VectorCount">
+            <summary>
+            Total number of vectors in the index.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.Dimensions">
+            <summary>
+            Dimensionality of vectors in the index.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.IndexType">
+            <summary>
+            Type of index being used.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.M">
+            <summary>
+            M parameter (number of bi-directional links per node).
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.EfConstruction">
+            <summary>
+            EfConstruction parameter (size of dynamic candidate list during index construction).
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.DefaultEf">
+            <summary>
+            Default Ef parameter (size of dynamic candidate list during search).
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.IndexFile">
+            <summary>
+            Index file path if using persistent storage.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.IndexFileSizeBytes">
+            <summary>
+            Size of the index file in bytes (if applicable).
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.EstimatedMemoryBytes">
+            <summary>
+            Estimated memory usage in bytes.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.LastRebuildUtc">
+            <summary>
+            Last time the index was rebuilt.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.LastAddUtc">
+            <summary>
+            Last time a vector was added.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.LastRemoveUtc">
+            <summary>
+            Last time a vector was removed.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.LastSearchUtc">
+            <summary>
+            Last time a search was performed.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.IsLoaded">
+            <summary>
+            Whether the index is currently loaded in memory.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.DistanceMetric">
+            <summary>
+            Distance metric being used.
+            </summary>
+        </member>
+        <member name="T:LiteGraph.Sdk.VectorIndexTypeEnum">
+            <summary>
+            Vector index type.
+            </summary>
+        </member>
+        <member name="F:LiteGraph.Sdk.VectorIndexTypeEnum.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:LiteGraph.Sdk.VectorIndexTypeEnum.HnswRam">
+            <summary>
+            Hierarchical navigable small world, in RAM only.
+            </summary>
+        </member>
+        <member name="F:LiteGraph.Sdk.VectorIndexTypeEnum.HnswSqlite">
+            <summary>
+            Hierarchical navigable small world, in a separate Sqlite database.
             </summary>
         </member>
         <member name="T:LiteGraph.Sdk.VectorMetadata">

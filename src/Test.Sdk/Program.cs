@@ -228,6 +228,21 @@
                     case "graph search":
                         GraphSearch();
                         break;
+                    case "graph enable index":
+                        GraphEnableVectorIndex();
+                        break;
+                    case "graph rebuild index":
+                        GraphRebuildVectorIndex();
+                        break;
+                    case "graph delete index":
+                        GraphDeleteVectorIndex();
+                        break;
+                    case "graph read index config":
+                        GraphReadVectorIndexConfig();
+                        break;
+                    case "graph index stats":
+                        GraphVectorIndexStats();
+                        break;
 
                     case "node exists":
                         NodeExists();
@@ -333,7 +348,7 @@
             Console.WriteLine("  Vectors       : vector [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("");
             Console.WriteLine("User commands:");
-            Console.WriteLine("  Graphs        : graph [create|update|all|read|enum|stats|delete|exists|search]");
+            Console.WriteLine("  Graphs        : graph [create|update|all|read|enum|stats|delete|exists|search|enable index|rebuild index|delete index|read index config|index stats]");
             Console.WriteLine("  Nodes         : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
             Console.WriteLine("  Edges         : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
             Console.WriteLine("  Vector search : vsearch");
@@ -979,6 +994,64 @@
             SearchRequest req = BuildSearchRequest(false);
             if (req == null) return;
             EnumerateResult(_Sdk.Graph.Search(req).Result);
+        }
+
+        private static void ShowSampleVectorIndexConfig()
+        {
+            Console.WriteLine("Sample JSON:");
+            Console.WriteLine(Serializer.SerializeJson(new VectorIndexConfiguration
+            {
+                VectorIndexType = VectorIndexTypeEnum.HnswSqlite,
+                VectorIndexFile = "graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+                VectorIndexThreshold = null,
+                VectorDimensionality = 384,
+                VectorIndexM = 16,
+                VectorIndexEf = 50,
+                VectorIndexEfConstruction = 200
+            }, false));
+        }
+
+        private static void GraphEnableVectorIndex()
+        {
+            ShowSampleVectorIndexConfig();
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            string json = GetJson("Vector Index Configuration JSON:");
+            if (String.IsNullOrEmpty(json)) return;
+            
+            VectorIndexConfiguration config = Serializer.DeserializeJson<VectorIndexConfiguration>(json);
+            _Sdk.Graph.EnableVectorIndexing(tenantGuid, graphGuid, config).Wait();
+            Console.WriteLine("Vector indexing enabled successfully.");
+        }
+
+        private static void GraphRebuildVectorIndex()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            _Sdk.Graph.RebuildVectorIndex(tenantGuid, graphGuid).Wait();
+            Console.WriteLine("Vector index rebuild initiated successfully.");
+        }
+
+        private static void GraphDeleteVectorIndex()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            _Sdk.Graph.DeleteVectorIndex(tenantGuid, graphGuid).Wait();
+            Console.WriteLine("Vector index deleted successfully.");
+        }
+
+        private static void GraphReadVectorIndexConfig()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            EnumerateResult(_Sdk.Graph.ReadVectorIndexConfig(tenantGuid, graphGuid).Result);
+        }
+
+        private static void GraphVectorIndexStats()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            EnumerateResult(_Sdk.Graph.GetVectorIndexStatistics(tenantGuid, graphGuid).Result);
         }
 
         #endregion

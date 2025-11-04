@@ -2,15 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Data;
-    using System.Linq;
-    using System.Reflection.Emit;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using ExpressionTree;
+    using LiteGraph.Sdk;
     using LiteGraph.Sdk.Interfaces;
 
     /// <summary>
@@ -138,6 +132,42 @@
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/stats";
             return await _Sdk.Get<Dictionary<Guid, GraphStatistics>>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task EnableVectorIndexing(Guid tenantGuid, Guid graphGuid, VectorIndexConfiguration config, CancellationToken token = default)
+        {
+            if (config == null) throw new ArgumentNullException(nameof(config));
+            string url = _Sdk.Endpoint + "v2.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectorindex/enable";
+            await _Sdk.PutUpdate<VectorIndexConfiguration>(url, config, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task RebuildVectorIndex(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v2.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectorindex/rebuild";
+            await _Sdk.Post<object, object>(url, new { }, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteVectorIndex(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v2.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectorindex";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<VectorIndexConfiguration> ReadVectorIndexConfig(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectorindex/config";
+            return await _Sdk.Get<VectorIndexConfiguration>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<VectorIndexStatistics> GetVectorIndexStatistics(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectorindex/stats";
+            return await _Sdk.Get<VectorIndexStatistics>(url, token).ConfigureAwait(false);
         }
 
         #endregion
