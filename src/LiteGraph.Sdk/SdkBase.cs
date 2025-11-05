@@ -328,6 +328,62 @@
         }
 
         /// <summary>
+        /// Read an object with custom headers.
+        /// </summary>
+        /// <typeparam name="T">Type.</typeparam>
+        /// <param name="url">URL.</param>
+        /// <param name="headers">Custom headers dictionary.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Instance.</returns>
+        public async Task<T> Get<T>(string url, Dictionary<string, string> headers, CancellationToken token = default) where T : class
+        {
+            if (String.IsNullOrEmpty(url)) throw new ArgumentNullException(nameof(url));
+
+            using (RestRequest req = new RestRequest(url))
+            {
+                req.TimeoutMilliseconds = TimeoutMs;
+                req.Authorization.BearerToken = BearerToken;
+
+                if (headers != null)
+                {
+                    foreach (var header in headers)
+                    {
+                        req.Headers.Add(header.Key, header.Value);
+                    }
+                }
+
+                using (RestResponse resp = await req.SendAsync(token).ConfigureAwait(false))
+                {
+                    if (resp != null)
+                    {
+                        if (resp.StatusCode >= 200 && resp.StatusCode <= 299)
+                        {
+                            Log(SeverityEnum.Debug, "success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            if (!String.IsNullOrEmpty(resp.DataAsString))
+                            {
+                                return Serializer.DeserializeJson<T>(resp.DataAsString);
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            Log(SeverityEnum.Warn, "non-success reported from " + url + ": " + resp.StatusCode + ", " + resp.ContentLength + " bytes");
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        Log(SeverityEnum.Warn, "no response from " + url);
+                        return null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Read an object.
         /// </summary>
         /// <param name="url">URL.</param>

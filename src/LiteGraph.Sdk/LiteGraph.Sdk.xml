@@ -4,6 +4,56 @@
         <name>LiteGraph.Sdk</name>
     </assembly>
     <members>
+        <member name="T:LiteGraph.Sdk.AuthenticationToken">
+            <summary>
+            Authentication token details.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.TimestampUtc">
+            <summary>
+            Timestamp when the token was issued, in UTC time.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.ExpirationUtc">
+            <summary>
+            Timestamp when the token will expire, in UTC time.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.IsExpired">
+            <summary>
+            Boolean to indicate if the token is expired.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.TenantGUID">
+            <summary>
+            Tenant GUID.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.Tenant">
+            <summary>
+            Tenant.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.UserGUID">
+            <summary>
+            User GUID.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.User">
+            <summary>
+            User.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.Token">
+            <summary>
+            Token.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.AuthenticationToken.Valid">
+            <summary>
+            Boolean indicating whether or not the token is valid.
+            </summary>
+        </member>
         <member name="T:LiteGraph.Sdk.BackupFile">
             <summary>
             Backup file.
@@ -737,6 +787,24 @@
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetStatistics(System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.EnableVectorIndexing(System.Guid,System.Guid,LiteGraph.Sdk.VectorIndexConfiguration,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.RebuildVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.DeleteVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadVectorIndexConfig(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetVectorIndexStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetSubgraph(System.Guid,System.Guid,System.Guid,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.LabelMethods">
             <summary>
             Label methods.
@@ -920,6 +988,26 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.TenantMethods.GetStatistics(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:LiteGraph.Sdk.Implementations.UserAuthentication">
+            <summary>
+            User authentication methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.#ctor(LiteGraph.Sdk.LiteGraphSdk)">
+            <summary>
+            User authentication methods.
+            </summary>
+            <param name="sdk">LiteGraph SDK.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GetTenantsForEmail(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GenerateToken(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GetTokenDetails(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.UserMethods">
@@ -1424,6 +1512,67 @@
             <returns>Dictionary of graph statistics.</returns>
             <param name="token">Cancellation token.</param>
         </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.EnableVectorIndexing(System.Guid,System.Guid,LiteGraph.Sdk.VectorIndexConfiguration,System.Threading.CancellationToken)">
+            <summary>
+            Enable vector indexing for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="config">Vector index configuration.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.RebuildVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Rebuild the vector index for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.DeleteVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete the vector index for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Task.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadVectorIndexConfig(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read the vector index configuration for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector index configuration.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.GetVectorIndexStatistics(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Get vector index statistics for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vector index statistics.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.GetSubgraph(System.Guid,System.Guid,System.Guid,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Retrieve a subgraph starting from a specific node, traversing up to a specified depth.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Starting node GUID.</param>
+            <param name="maxDepth">Maximum depth to traverse (0 = only the starting node, 1 = immediate neighbors, etc.).</param>
+            <param name="maxNodes">Maximum number of nodes to retrieve (0 = unlimited).</param>
+            <param name="maxEdges">Maximum number of edges to retrieve (0 = unlimited).</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Search result containing nodes and edges in the subgraph.</returns>
+        </member>
         <member name="T:LiteGraph.Sdk.Interfaces.ILabelMethods">
             <summary>
             Interface for label methods.
@@ -1872,6 +2021,33 @@
             <param name="token">Cancellation token.</param>
             <returns>Dictionary of tenant statistics.</returns>
         </member>
+        <member name="T:LiteGraph.Sdk.Interfaces.IUserAuthentication">
+            <summary>
+            Interface for user authentication methods.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GetTenantsForEmail(System.Threading.CancellationToken)">
+            <summary>
+            Get tenants for the email address associated with this SDK instance.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>List of tenants.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GenerateToken(System.Threading.CancellationToken)">
+            <summary>
+            Get details for the current bearer token.
+            </summary>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token details.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GetTokenDetails(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get token details.
+            </summary>
+            <param name="authToken">Authentication token string.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Authentication token details.</returns>
+        </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IUserMethods">
             <summary>
             Interface for user methods.
@@ -2157,12 +2333,52 @@
             Vector methods.
             </summary>
         </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.UserAuthentication">
+            <summary>
+            User authentication methods.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Email">
+            <summary>
+            User email
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Password">
+            <summary>
+            User password
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.TenantGuid">
+            <summary>
+            Tenant GUID
+            </summary>
+        </member>
         <member name="M:LiteGraph.Sdk.LiteGraphSdk.#ctor(System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint URL.</param>
             <param name="bearerToken">Bearer token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.LiteGraphSdk.#ctor(System.String,System.String,System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate with token-based authentication.
+            This constructor will authenticate using email and password, generate a token, and use it for subsequent requests.
+            </summary>
+            <param name="email">User email.</param>
+            <param name="password">User password.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="endpoint">Endpoint URL.</param>
+            <param name="bearerToken">Bearer token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetTenantsForEmail(System.String,System.String)">
+            <summary>
+            Get tenants for an email address.
+            This static method can be used to retrieve all tenants associated with an email before instantiating the SDK.
+            </summary>
+            <param name="email">Email address.</param>
+            <param name="endpoint">Endpoint URL. Defaults to http://localhost:8701</param>
+            <returns>List of tenant metadata.</returns>
         </member>
         <member name="T:LiteGraph.Sdk.Node">
             <summary>
@@ -2399,6 +2615,16 @@
             </summary>
             <typeparam name="T">Type.</typeparam>
             <param name="url">URL.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Instance.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.SdkBase.Get``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Threading.CancellationToken)">
+            <summary>
+            Read an object with custom headers.
+            </summary>
+            <typeparam name="T">Type.</typeparam>
+            <param name="url">URL.</param>
+            <param name="headers">Custom headers dictionary.</param>
             <param name="token">Cancellation token.</param>
             <returns>Instance.</returns>
         </member>
@@ -3007,6 +3233,161 @@
         <member name="M:LiteGraph.Sdk.UserMaster.#ctor">
             <summary>
             Instantiate.
+            </summary>
+        </member>
+        <member name="T:LiteGraph.Sdk.VectorIndexConfiguration">
+            <summary>
+            Configuration for vector indexing.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexType">
+            <summary>
+            Type of vector indexing to use.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexFile">
+            <summary>
+            When vector indexing is enabled, the name of the file used to hold the index.
+            Required for SQLite-based indices.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexThreshold">
+            <summary>
+            When vector indexing is enabled, the number of vectors required to use the index.
+            Brute force computation is often faster than use of an index for smaller batches of vectors.
+            Default is null. When set, the minimum value is 1.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorDimensionality">
+            <summary>
+            When vector indexing is enabled, the dimensionality of vectors that will be stored in this graph.
+            Required for vector indexing. When set, the minimum value is 1.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexM">
+            <summary>
+            HNSW M parameter - number of bi-directional links created for each new element during construction.
+            Higher values lead to better recall but higher memory consumption and slower insertion.
+            Default is 16. Valid range is 2-100.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexEf">
+            <summary>
+            HNSW Ef parameter - size of the dynamic list used during k-NN search.
+            Higher values lead to better recall but slower search.
+            Default is 50. Valid range is 1 to 10000.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexConfiguration.VectorIndexEfConstruction">
+            <summary>
+            HNSW EfConstruction parameter - size of the dynamic list used during index construction.
+            Higher values lead to better index quality but slower construction.
+            Default is 200. Valid range is 1 to 10000.
+            </summary>
+        </member>
+        <member name="M:LiteGraph.Sdk.VectorIndexConfiguration.#ctor">
+            <summary>
+            Instantiate the object.
+            </summary>
+        </member>
+        <member name="T:LiteGraph.Sdk.VectorIndexStatistics">
+            <summary>
+            Statistics for a vector index.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.VectorCount">
+            <summary>
+            Total number of vectors in the index.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.Dimensions">
+            <summary>
+            Dimensionality of vectors in the index.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.IndexType">
+            <summary>
+            Type of index being used.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.M">
+            <summary>
+            M parameter (number of bi-directional links per node).
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.EfConstruction">
+            <summary>
+            EfConstruction parameter (size of dynamic candidate list during index construction).
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.DefaultEf">
+            <summary>
+            Default Ef parameter (size of dynamic candidate list during search).
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.IndexFile">
+            <summary>
+            Index file path if using persistent storage.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.IndexFileSizeBytes">
+            <summary>
+            Size of the index file in bytes (if applicable).
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.EstimatedMemoryBytes">
+            <summary>
+            Estimated memory usage in bytes.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.LastRebuildUtc">
+            <summary>
+            Last time the index was rebuilt.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.LastAddUtc">
+            <summary>
+            Last time a vector was added.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.LastRemoveUtc">
+            <summary>
+            Last time a vector was removed.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.LastSearchUtc">
+            <summary>
+            Last time a search was performed.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.IsLoaded">
+            <summary>
+            Whether the index is currently loaded in memory.
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.VectorIndexStatistics.DistanceMetric">
+            <summary>
+            Distance metric being used.
+            </summary>
+        </member>
+        <member name="T:LiteGraph.Sdk.VectorIndexTypeEnum">
+            <summary>
+            Vector index type.
+            </summary>
+        </member>
+        <member name="F:LiteGraph.Sdk.VectorIndexTypeEnum.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:LiteGraph.Sdk.VectorIndexTypeEnum.HnswRam">
+            <summary>
+            Hierarchical navigable small world, in RAM only.
+            </summary>
+        </member>
+        <member name="F:LiteGraph.Sdk.VectorIndexTypeEnum.HnswSqlite">
+            <summary>
+            Hierarchical navigable small world, in a separate Sqlite database.
             </summary>
         </member>
         <member name="T:LiteGraph.Sdk.VectorMetadata">

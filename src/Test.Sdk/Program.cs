@@ -1,7 +1,9 @@
 ﻿namespace Test.Sdk
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.Specialized;
+    using System.Linq;
     using ExpressionTree;
     using GetSomeInput;
     using LiteGraph.Sdk;
@@ -228,6 +230,27 @@
                     case "graph search":
                         GraphSearch();
                         break;
+                    case "graph subgraph":
+                        GraphSubgraph();
+                        break;
+                    case "test subgraph":
+                        TestSubgraph();
+                        break;
+                    case "graph enable index":
+                        GraphEnableVectorIndex();
+                        break;
+                    case "graph rebuild index":
+                        GraphRebuildVectorIndex();
+                        break;
+                    case "graph delete index":
+                        GraphDeleteVectorIndex();
+                        break;
+                    case "graph read index config":
+                        GraphReadVectorIndexConfig();
+                        break;
+                    case "graph index stats":
+                        GraphVectorIndexStats();
+                        break;
 
                     case "node exists":
                         NodeExists();
@@ -306,6 +329,16 @@
                     case "vsearch":
                         VectorSearch();
                         break;
+
+                    case "auth tenants":
+                        AuthGetTenantsForEmail();
+                        break;
+                    case "auth generate token":
+                        AuthGenerateToken();
+                        break;
+                    case "auth token details":
+                        AuthGetTokenDetails();
+                        break;
                 }
 
                 Console.WriteLine("");
@@ -316,27 +349,35 @@
         {
             Console.WriteLine("");
             Console.WriteLine("Available commands:");
-            Console.WriteLine("  ?               help, this menu");
-            Console.WriteLine("  q               quit");
-            Console.WriteLine("  cls             clear the screen");
-            Console.WriteLine("  conn            validate connectivity");
-            Console.WriteLine("  backup          create a database backup");
-            Console.WriteLine("  tenant          set the tenant GUID (currently " + _Tenant + ")");
-            Console.WriteLine("  graph           set the graph GUID (currently " + _Graph + ")");
+            Console.WriteLine("  ?                            help, this menu");
+            Console.WriteLine("  q                            quit");
+            Console.WriteLine("  cls                          clear the screen");
+            Console.WriteLine("  conn                         validate connectivity");
+            Console.WriteLine("  backup                       create a database backup");
+            Console.WriteLine("  tenant                       set the tenant GUID (currently " + _Tenant + ")");
+            Console.WriteLine("  graph                        set the graph GUID (currently " + _Graph + ")");
             Console.WriteLine("");
             Console.WriteLine("Administrative commands (requires administrative bearer token):");
-            Console.WriteLine("  Tenants       : tenant [create|update|all|read|enum|stats|delete|exists]");
-            Console.WriteLine("  Users         : user [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Credentials   : cred [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Labels        : label [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Tags          : tag [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Vectors       : vector [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Tenants                    : tenant [create|update|all|read|enum|stats|delete|exists]");
+            Console.WriteLine("  Users                      : user [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Credentials                : cred [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Labels                     : label [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Tags                       : tag [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Vectors                    : vector [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("");
             Console.WriteLine("User commands:");
-            Console.WriteLine("  Graphs        : graph [create|update|all|read|enum|stats|delete|exists|search]");
-            Console.WriteLine("  Nodes         : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
-            Console.WriteLine("  Edges         : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
-            Console.WriteLine("  Vector search : vsearch");
+            Console.WriteLine("  Graphs                     : graph [create|update|all|read|enum|stats|delete|exists|search|subgraph|enable index|rebuild index|delete index|read index config|index stats]");
+            Console.WriteLine("  Nodes                      : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
+            Console.WriteLine("  Edges                      : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
+            Console.WriteLine("  Vector search              : vsearch");
+            Console.WriteLine("");
+            Console.WriteLine("Test commands:");
+            Console.WriteLine("  Subgraph automated test    : test subgraph");
+            Console.WriteLine("");
+            Console.WriteLine("Authentication commands:");
+            Console.WriteLine("  auth tenants               : Get tenants for email");
+            Console.WriteLine("  auth generate token        : Generate authentication token");
+            Console.WriteLine("  auth token details         : Get token details");
             Console.WriteLine("");
             Console.WriteLine("Routing commands:");
             Console.WriteLine("  route");
@@ -981,6 +1022,498 @@
             EnumerateResult(_Sdk.Graph.Search(req).Result);
         }
 
+        private static void GraphSubgraph()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            Guid nodeGuid = GetGuid("Node GUID:", default(Guid));
+            
+            string maxDepthStr = Inputty.GetString("Max depth (default 2):", "2", true);
+            int maxDepth = 2;
+            if (!String.IsNullOrEmpty(maxDepthStr) && int.TryParse(maxDepthStr, out int parsedDepth))
+            {
+                maxDepth = parsedDepth;
+            }
+            
+            string maxNodesStr = Inputty.GetString("Max nodes (default 0 = unlimited):", "0", true);
+            int maxNodes = 0;
+            if (!String.IsNullOrEmpty(maxNodesStr) && int.TryParse(maxNodesStr, out int parsedNodes))
+            {
+                maxNodes = parsedNodes;
+            }
+            
+            string maxEdgesStr = Inputty.GetString("Max edges (default 0 = unlimited):", "0", true);
+            int maxEdges = 0;
+            if (!String.IsNullOrEmpty(maxEdgesStr) && int.TryParse(maxEdgesStr, out int parsedEdges))
+            {
+                maxEdges = parsedEdges;
+            }
+            
+            bool includeData = Inputty.GetBoolean("Include data:", false);
+            bool includeSubordinates = Inputty.GetBoolean("Include subordinates:", false);
+            
+            SearchResult result = _Sdk.Graph.GetSubgraph(
+                tenantGuid,
+                graphGuid,
+                nodeGuid,
+                maxDepth,
+                maxNodes,
+                maxEdges,
+                includeData,
+                includeSubordinates).Result;
+            
+            EnumerateResult(result);
+        }
+
+        private static void TestSubgraph()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("=== AUTOMATED SUBGRAPH TEST ===");
+            Console.WriteLine("");
+
+            #region Create Tenant and Graph
+
+            Console.WriteLine("Creating test tenant and graph...");
+            TenantMetadata tenant = _Sdk.Tenant.Create(new TenantMetadata { Name = "Subgraph Test Tenant" }).Result;
+            Console.WriteLine("| Created tenant: " + tenant.GUID);
+
+            Graph graph = _Sdk.Graph.Create(new Graph
+            {
+                TenantGUID = tenant.GUID,
+                Name = "Subgraph Test Graph"
+            }).Result;
+            Console.WriteLine("| Created graph: " + graph.GUID);
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Create Nodes
+
+            // Create a hierarchical structure for testing:
+            // Node A (root/starting node)
+            //   -> Node B, C (layer 1)
+            //       -> Node D, E (from B, layer 2)
+            //       -> Node F (from C, layer 2)
+            //           -> Node G (from D, layer 3)
+
+            Console.WriteLine("Creating test nodes...");
+            Node nodeA = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node A (Root)",
+                Data = new { Type = "Root", Level = 0 }
+            }).Result;
+            Console.WriteLine("  | Created Node A: " + nodeA.GUID);
+
+            Node nodeB = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node B (Layer 1)",
+                Data = new { Type = "Layer1", Level = 1 }
+            }).Result;
+            Console.WriteLine("  | Created Node B: " + nodeB.GUID);
+
+            Node nodeC = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node C (Layer 1)",
+                Data = new { Type = "Layer1", Level = 1 }
+            }).Result;
+            Console.WriteLine("  | Created Node C: " + nodeC.GUID);
+
+            Node nodeD = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node D (Layer 2)",
+                Data = new { Type = "Layer2", Level = 2 }
+            }).Result;
+            Console.WriteLine("  | Created Node D: " + nodeD.GUID);
+
+            Node nodeE = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node E (Layer 2)",
+                Data = new { Type = "Layer2", Level = 2 }
+            }).Result;
+            Console.WriteLine("  | Created Node E: " + nodeE.GUID);
+
+            Node nodeF = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node F (Layer 2)",
+                Data = new { Type = "Layer2", Level = 2 }
+            }).Result;
+            Console.WriteLine("  | Created Node F: " + nodeF.GUID);
+
+            Node nodeG = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node G (Layer 3)",
+                Data = new { Type = "Layer3", Level = 3 }
+            }).Result;
+            Console.WriteLine("  | Created Node G: " + nodeG.GUID);
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Create Edges
+
+            Console.WriteLine("Creating test edges...");
+            Edge edgeAB = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeA.GUID,
+                To = nodeB.GUID,
+                Name = "A -> B",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge A->B: " + edgeAB.GUID);
+
+            Edge edgeAC = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeA.GUID,
+                To = nodeC.GUID,
+                Name = "A -> C",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge A->C: " + edgeAC.GUID);
+
+            Edge edgeBD = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeB.GUID,
+                To = nodeD.GUID,
+                Name = "B -> D",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge B->D: " + edgeBD.GUID);
+
+            Edge edgeBE = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeB.GUID,
+                To = nodeE.GUID,
+                Name = "B -> E",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge B->E: " + edgeBE.GUID);
+
+            Edge edgeCF = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeC.GUID,
+                To = nodeF.GUID,
+                Name = "C -> F",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge C->F: " + edgeCF.GUID);
+
+            Edge edgeDG = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeD.GUID,
+                To = nodeG.GUID,
+                Name = "D -> G",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge D->G: " + edgeDG.GUID);
+
+            // Add a back edge to test bidirectional traversal
+            Edge edgeCA = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeC.GUID,
+                To = nodeA.GUID,
+                Name = "C -> A (back edge)",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge C->A (back): " + edgeCA.GUID);
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Test Subgraph Retrieval
+
+            Console.WriteLine("=== TESTING SUBGRAPH RETRIEVAL ===");
+            Console.WriteLine("");
+            Console.WriteLine("Graph Structure:");
+            Console.WriteLine("  A (root)");
+            Console.WriteLine("  ├─> B");
+            Console.WriteLine("  │   ├─> D");
+            Console.WriteLine("  │   │   └─> G");
+            Console.WriteLine("  │   └─> E");
+            Console.WriteLine("  └─> C");
+            Console.WriteLine("      ├─> F");
+            Console.WriteLine("      └─> A (back edge)");
+            Console.WriteLine("");
+
+            // Test Case 1: Max depth 0 (only starting node)
+            Console.WriteLine("--- Test Case 1: Max Depth 0 (starting node only) ---");
+            SearchResult result1 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 0,
+                maxNodes: 0,
+                maxEdges: 0,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            if (result1 == null)
+            {
+                Console.WriteLine("  [ERROR] Result is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            Console.WriteLine("  Nodes: " + (result1.Nodes?.Count ?? 0) + " (expected: 1)");
+            Console.WriteLine("  Edges: " + (result1.Edges?.Count ?? 0) + " (expected: 0)");
+            bool test1Pass = (result1.Nodes?.Count ?? 0) == 1 && (result1.Edges?.Count ?? 0) == 0;
+            Console.WriteLine("  Result: " + (test1Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("");
+
+            // Test Case 2: Max depth 1 (immediate neighbors)
+            Console.WriteLine("--- Test Case 2: Max Depth 1 (immediate neighbors) ---");
+            SearchResult result2 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 1,
+                maxNodes: 0,
+                maxEdges: 0,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            if (result2 == null)
+            {
+                Console.WriteLine("  [ERROR] Result is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            Console.WriteLine("  Nodes: " + (result2.Nodes?.Count ?? 0) + " (expected: 3 - A, B, C)");
+            Console.WriteLine("  Edges: " + (result2.Edges?.Count ?? 0) + " (expected: 2 - A->B, A->C)");
+            bool test2Pass = (result2.Nodes?.Count ?? 0) >= 3 && (result2.Edges?.Count ?? 0) >= 2;
+            Console.WriteLine("  Result: " + (test2Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("");
+
+            // Test Case 3: Max depth 2 (two layers)
+            Console.WriteLine("--- Test Case 3: Max Depth 2 (two layers) ---");
+            SearchResult result3 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 0,
+                maxEdges: 0,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            if (result3 == null)
+            {
+                Console.WriteLine("  [ERROR] Result is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            Console.WriteLine("  Nodes: " + (result3.Nodes?.Count ?? 0) + " (expected: 6 - A, B, C, D, E, F)");
+            Console.WriteLine("  Edges: " + (result3.Edges?.Count ?? 0) + " (expected: 5 - A->B, A->C, B->D, B->E, C->F)");
+            bool test3Pass = (result3.Nodes?.Count ?? 0) >= 6 && (result3.Edges?.Count ?? 0) >= 5;
+            Console.WriteLine("  Result: " + (test3Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("");
+
+            // Test Case 4: Max nodes limit
+            Console.WriteLine("--- Test Case 4: Max Nodes Limit (3) ---");
+            SearchResult result4 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 3,
+                maxEdges: 0,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            if (result4 == null)
+            {
+                Console.WriteLine("  [ERROR] Result is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            Console.WriteLine("  Nodes: " + (result4.Nodes?.Count ?? 0) + " (expected: 3)");
+            bool test4Pass = (result4.Nodes?.Count ?? 0) == 3;
+            Console.WriteLine("  Result: " + (test4Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("");
+
+            // Test Case 5: Max edges limit
+            Console.WriteLine("--- Test Case 5: Max Edges Limit (2) ---");
+            SearchResult result5 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 0,
+                maxEdges: 2,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            if (result5 == null)
+            {
+                Console.WriteLine("  [ERROR] Result is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            Console.WriteLine("  Edges: " + (result5.Edges?.Count ?? 0) + " (expected: 2)");
+            bool test5Pass = (result5.Edges?.Count ?? 0) == 2;
+            Console.WriteLine("  Result: " + (test5Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("");
+
+            // Test Case 6: Include data
+            Console.WriteLine("--- Test Case 6: Include Data ---");
+            SearchResult result6 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 1,
+                maxNodes: 0,
+                maxEdges: 0,
+                includeData: true,
+                includeSubordinates: false).Result;
+
+            if (result6 == null)
+            {
+                Console.WriteLine("  [ERROR] Result is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            bool hasData = result6.Nodes?.Any(n => n.Data != null) ?? false;
+            Console.WriteLine("  Data included: " + hasData + " (expected: true)");
+            Console.WriteLine("  Result: " + (hasData ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("");
+
+            // Validation checks
+            Console.WriteLine("=== VALIDATION ===");
+            Console.WriteLine("");
+
+            if (result3.Edges != null && result3.Nodes != null)
+            {
+                HashSet<Guid> nodeGuids = new HashSet<Guid>(result3.Nodes.Select(n => n.GUID));
+                int invalidEdges = 0;
+
+                foreach (Edge edge in result3.Edges)
+                {
+                    if (!nodeGuids.Contains(edge.From) || !nodeGuids.Contains(edge.To))
+                    {
+                        Console.WriteLine("  [WARNING] Edge " + edge.GUID + " connects to nodes outside the subgraph!");
+                        invalidEdges++;
+                    }
+                }
+
+                if (invalidEdges == 0)
+                    Console.WriteLine("  [OK] All edges connect nodes within the subgraph");
+                else
+                    Console.WriteLine("  [ERROR] " + invalidEdges + " edge(s) connect to nodes outside the subgraph");
+            }
+
+            Console.WriteLine("");
+            Console.WriteLine("=== TEST SUMMARY ===");
+            Console.WriteLine("  Test Case 1 (Max Depth 0): " + (test1Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 2 (Max Depth 1): " + (test2Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 3 (Max Depth 2): " + (test3Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 4 (Max Nodes): " + (test4Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 5 (Max Edges): " + (test5Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 6 (Include Data): " + (hasData ? "PASS" : "FAIL"));
+
+            int passCount = (test1Pass ? 1 : 0) + (test2Pass ? 1 : 0) + (test3Pass ? 1 : 0) + (test4Pass ? 1 : 0) + (test5Pass ? 1 : 0) + (hasData ? 1 : 0);
+            Console.WriteLine("");
+            Console.WriteLine("  Total: " + passCount + "/6 tests passed");
+            Console.WriteLine("");
+
+            Console.WriteLine("Cleaning up test data...");
+            _Sdk.Graph.DeleteByGuid(tenant.GUID, graph.GUID, force: true).Wait();
+            _Sdk.Tenant.DeleteByGuid(tenant.GUID, force: true).Wait();
+            Console.WriteLine("  Cleanup complete.");
+            Console.WriteLine("");
+
+            #endregion
+        }
+
+        private static void ShowSampleVectorIndexConfig()
+        {
+            Console.WriteLine("Sample JSON:");
+            Console.WriteLine(Serializer.SerializeJson(new VectorIndexConfiguration
+            {
+                VectorIndexType = VectorIndexTypeEnum.HnswSqlite,
+                VectorIndexFile = "graph-00000000-0000-0000-0000-000000000000-hnsw.db",
+                VectorIndexThreshold = null,
+                VectorDimensionality = 384,
+                VectorIndexM = 16,
+                VectorIndexEf = 50,
+                VectorIndexEfConstruction = 200
+            }, false));
+        }
+
+        private static void GraphEnableVectorIndex()
+        {
+            ShowSampleVectorIndexConfig();
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            string json = GetJson("Vector Index Configuration JSON:");
+            if (String.IsNullOrEmpty(json)) return;
+            
+            VectorIndexConfiguration config = Serializer.DeserializeJson<VectorIndexConfiguration>(json);
+            _Sdk.Graph.EnableVectorIndexing(tenantGuid, graphGuid, config).Wait();
+            Console.WriteLine("Vector indexing enabled successfully.");
+        }
+
+        private static void GraphRebuildVectorIndex()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            _Sdk.Graph.RebuildVectorIndex(tenantGuid, graphGuid).Wait();
+            Console.WriteLine("Vector index rebuild initiated successfully.");
+        }
+
+        private static void GraphDeleteVectorIndex()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            _Sdk.Graph.DeleteVectorIndex(tenantGuid, graphGuid).Wait();
+            Console.WriteLine("Vector index deleted successfully.");
+        }
+
+        private static void GraphReadVectorIndexConfig()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            EnumerateResult(_Sdk.Graph.ReadVectorIndexConfig(tenantGuid, graphGuid).Result);
+        }
+
+        private static void GraphVectorIndexStats()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            EnumerateResult(_Sdk.Graph.GetVectorIndexStatistics(tenantGuid, graphGuid).Result);
+        }
+
         #endregion
 
         #region Node
@@ -1300,6 +1833,43 @@
                     req.GraphGUID,
                     req)
                 .Result);
+        }
+
+        #endregion
+
+        #region Authentication
+
+        private static void AuthGetTenantsForEmail()
+        {
+            string endpoint = Inputty.GetString("Endpoint:", _Endpoint, false);
+            if (String.IsNullOrEmpty(endpoint)) return;
+            string email = Inputty.GetString("Email:", null, false);
+            if (String.IsNullOrEmpty(email)) return;
+
+            EnumerateResult(LiteGraphSdk.GetTenantsForEmail(email, endpoint));
+        }
+
+        private static void AuthGenerateToken()
+        {
+            string endpoint = Inputty.GetString("Endpoint:", _Endpoint, false);
+            if (String.IsNullOrEmpty(endpoint)) return;
+            string email = Inputty.GetString("Email:", null, false);
+            if (String.IsNullOrEmpty(email)) return;
+            string password = Inputty.GetString("Password:", null, false);
+            if (String.IsNullOrEmpty(password)) return;
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+
+            using (LiteGraphSdk authSdk = new LiteGraphSdk(email, password, tenantGuid, endpoint))
+            {
+                EnumerateResult(authSdk.UserAuthentication.GenerateToken().Result);
+            }
+        }
+
+        private static void AuthGetTokenDetails()
+        {
+            string authToken = Inputty.GetString("Authentication Token:", null, false);
+            if (String.IsNullOrEmpty(authToken)) return;
+            EnumerateResult(_Sdk.UserAuthentication.GetTokenDetails(authToken).Result);
         }
 
         #endregion

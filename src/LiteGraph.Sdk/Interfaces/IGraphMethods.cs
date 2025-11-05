@@ -1,15 +1,10 @@
 ﻿namespace LiteGraph.Sdk.Interfaces
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Data;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using ExpressionTree;
-    using LiteGraph;
+    using LiteGraph.Sdk;
 
     /// <summary>
     /// Interface for graph methods.
@@ -122,5 +117,75 @@
         /// <returns>Dictionary of graph statistics.</returns>
         /// <param name="token">Cancellation token.</param>
         Task<Dictionary<Guid, GraphStatistics>> GetStatistics(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Enable vector indexing for a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="config">Vector index configuration.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        Task EnableVectorIndexing(Guid tenantGuid, Guid graphGuid, VectorIndexConfiguration config, CancellationToken token = default);
+
+        /// <summary>
+        /// Rebuild the vector index for a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        Task RebuildVectorIndex(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete the vector index for a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Task.</returns>
+        Task DeleteVectorIndex(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read the vector index configuration for a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vector index configuration.</returns>
+        Task<VectorIndexConfiguration> ReadVectorIndexConfig(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Get vector index statistics for a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vector index statistics.</returns>
+        Task<VectorIndexStatistics> GetVectorIndexStatistics(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Retrieve a subgraph starting from a specific node, traversing up to a specified depth.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="nodeGuid">Starting node GUID.</param>
+        /// <param name="maxDepth">Maximum depth to traverse (0 = only the starting node, 1 = immediate neighbors, etc.).</param>
+        /// <param name="maxNodes">Maximum number of nodes to retrieve (0 = unlimited).</param>
+        /// <param name="maxEdges">Maximum number of edges to retrieve (0 = unlimited).</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Search result containing nodes and edges in the subgraph.</returns>
+        Task<SearchResult> GetSubgraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            Guid nodeGuid,
+            int maxDepth = 2,
+            int maxNodes = 0,
+            int maxEdges = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default);
     }
 }
