@@ -4,10 +4,8 @@ namespace LiteGraph.Sdk.Implementations
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
-    using LiteGraph.Sdk.Interfaces;
     using LiteGraph.Sdk;
-    using RestWrapper;
-    using System.Net.Http;
+    using LiteGraph.Sdk.Interfaces;
 
     /// <summary>
     /// User authentication methods.
@@ -40,32 +38,31 @@ namespace LiteGraph.Sdk.Implementations
         #region Public-Methods
 
         /// <inheritdoc />
-        public async Task<List<TenantMetadata>> GetTenantsForEmail(string email, CancellationToken token = default)
+        public async Task<List<TenantMetadata>> GetTenantsForEmail(CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(email)) throw new ArgumentNullException(nameof(email));
+            if (String.IsNullOrEmpty(_Sdk.Email)) 
+                throw new InvalidOperationException("Email is not set. Use the constructor with email/password/tenantGuid to set the email.");
+
             string url = _Sdk.Endpoint + "v1.0/token/tenants";
 
             Dictionary<string, string> headers = new Dictionary<string, string>
             {
-                { "x-email", email }
+                { "x-email", _Sdk.Email }
             };
 
             return await _Sdk.Get<List<TenantMetadata>>(url, headers, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<AuthenticationToken> GenerateToken(string email, string password, Guid tenantGuid, CancellationToken token = default)
+        public async Task<AuthenticationToken> GenerateToken(CancellationToken token = default)
         {
-            if (String.IsNullOrEmpty(email)) throw new ArgumentNullException(nameof(email));
-            if (String.IsNullOrEmpty(password)) throw new ArgumentNullException(nameof(password));
-
             string url = _Sdk.Endpoint + "v1.0/token";
 
             Dictionary<string, string> headers = new Dictionary<string, string>
             {
-                { "x-email", email },
-                { "x-password", password },
-                { "x-tenant-guid", tenantGuid.ToString() }
+                { "x-email", _Sdk.Email },
+                { "x-password", _Sdk.Password },
+                { "x-tenant-guid", _Sdk.TenantGuid.ToString() }
             };
 
             return await _Sdk.Get<AuthenticationToken>(url, headers, token).ConfigureAwait(false);

@@ -1001,10 +1001,10 @@
             </summary>
             <param name="sdk">LiteGraph SDK.</param>
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GetTenantsForEmail(System.String,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GetTenantsForEmail(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GenerateToken(System.String,System.String,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GenerateToken(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.UserAuthentication.GetTokenDetails(System.String,System.Threading.CancellationToken)">
@@ -2026,23 +2026,19 @@
             Interface for user authentication methods.
             </summary>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GetTenantsForEmail(System.String,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GetTenantsForEmail(System.Threading.CancellationToken)">
             <summary>
-            Get tenants for an email address.
+            Get tenants for the email address associated with this SDK instance.
             </summary>
-            <param name="email">Email address.</param>
             <param name="token">Cancellation token.</param>
             <returns>List of tenants.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GenerateToken(System.String,System.String,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GenerateToken(System.Threading.CancellationToken)">
             <summary>
-            Generate a security token.
+            Get details for the current bearer token.
             </summary>
-            <param name="email">Email address.</param>
-            <param name="password">Password.</param>
-            <param name="tenantGuid">Tenant GUID.</param>
             <param name="token">Cancellation token.</param>
-            <returns>Authentication token.</returns>
+            <returns>Authentication token details.</returns>
         </member>
         <member name="M:LiteGraph.Sdk.Interfaces.IUserAuthentication.GetTokenDetails(System.String,System.Threading.CancellationToken)">
             <summary>
@@ -2342,12 +2338,47 @@
             User authentication methods.
             </summary>
         </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Email">
+            <summary>
+            User email
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.Password">
+            <summary>
+            User password
+            </summary>
+        </member>
+        <member name="P:LiteGraph.Sdk.LiteGraphSdk.TenantGuid">
+            <summary>
+            Tenant GUID
+            </summary>
+        </member>
         <member name="M:LiteGraph.Sdk.LiteGraphSdk.#ctor(System.String,System.String)">
             <summary>
             Instantiate.
             </summary>
             <param name="endpoint">Endpoint URL.</param>
             <param name="bearerToken">Bearer token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.LiteGraphSdk.#ctor(System.String,System.String,System.Guid,System.String,System.String)">
+            <summary>
+            Instantiate with token-based authentication.
+            This constructor will authenticate using email and password, generate a token, and use it for subsequent requests.
+            </summary>
+            <param name="email">User email.</param>
+            <param name="password">User password.</param>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="endpoint">Endpoint URL.</param>
+            <param name="bearerToken">Bearer token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.LiteGraphSdk.GetTenantsForEmail(System.String,System.String)">
+            <summary>
+            Get tenants for an email address.
+            This static method can be used to retrieve all tenants associated with an email before instantiating the SDK.
+            </summary>
+            <param name="email">Email address.</param>
+            <param name="endpoint">Endpoint URL. Defaults to http://localhost:8701</param>
+            <returns>List of tenant metadata.</returns>
         </member>
         <member name="T:LiteGraph.Sdk.Node">
             <summary>

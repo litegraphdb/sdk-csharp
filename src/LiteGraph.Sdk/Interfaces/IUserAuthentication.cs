@@ -12,22 +12,18 @@ namespace LiteGraph.Sdk.Interfaces
     public interface IUserAuthentication
     {
         /// <summary>
-        /// Get tenants for an email address.
+        /// Get tenants for the email address associated with this SDK instance.
         /// </summary>
-        /// <param name="email">Email address.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>List of tenants.</returns>
-        Task<List<TenantMetadata>> GetTenantsForEmail(string email, CancellationToken token = default);
+        Task<List<TenantMetadata>> GetTenantsForEmail(CancellationToken token = default);
 
         /// <summary>
-        /// Generate a security token.
+        /// Get details for the current bearer token.
         /// </summary>
-        /// <param name="email">Email address.</param>
-        /// <param name="password">Password.</param>
-        /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="token">Cancellation token.</param>
-        /// <returns>Authentication token.</returns>
-        Task<AuthenticationToken> GenerateToken(string email, string password, Guid tenantGuid, CancellationToken token = default);
+        /// <returns>Authentication token details.</returns>
+        Task<AuthenticationToken> GenerateToken(CancellationToken token = default);
 
         /// <summary>
         /// Get token details.

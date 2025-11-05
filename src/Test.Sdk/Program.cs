@@ -1841,19 +1841,28 @@
 
         private static void AuthGetTenantsForEmail()
         {
+            string endpoint = Inputty.GetString("Endpoint:", _Endpoint, false);
+            if (String.IsNullOrEmpty(endpoint)) return;
             string email = Inputty.GetString("Email:", null, false);
             if (String.IsNullOrEmpty(email)) return;
-            EnumerateResult(_Sdk.UserAuthentication.GetTenantsForEmail(email).Result);
+
+            EnumerateResult(LiteGraphSdk.GetTenantsForEmail(email, endpoint));
         }
 
         private static void AuthGenerateToken()
         {
+            string endpoint = Inputty.GetString("Endpoint:", _Endpoint, false);
+            if (String.IsNullOrEmpty(endpoint)) return;
             string email = Inputty.GetString("Email:", null, false);
             if (String.IsNullOrEmpty(email)) return;
             string password = Inputty.GetString("Password:", null, false);
             if (String.IsNullOrEmpty(password)) return;
             Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
-            EnumerateResult(_Sdk.UserAuthentication.GenerateToken(email, password, tenantGuid).Result);
+
+            using (LiteGraphSdk authSdk = new LiteGraphSdk(email, password, tenantGuid, endpoint))
+            {
+                EnumerateResult(authSdk.UserAuthentication.GenerateToken().Result);
+            }
         }
 
         private static void AuthGetTokenDetails()
