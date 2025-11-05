@@ -805,6 +805,9 @@
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetSubgraph(System.Guid,System.Guid,System.Guid,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetSubgraphStatistics(System.Guid,System.Guid,System.Guid,System.Int32,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.LabelMethods">
             <summary>
             Label methods.
@@ -1572,6 +1575,19 @@
             <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Search result containing nodes and edges in the subgraph.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.GetSubgraphStatistics(System.Guid,System.Guid,System.Guid,System.Int32,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Get statistics for a subgraph starting from a specific node, traversing up to a specified depth.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Starting node GUID.</param>
+            <param name="maxDepth">Maximum depth to traverse (0 = only the starting node, 1 = immediate neighbors, etc.).</param>
+            <param name="maxNodes">Maximum number of nodes to retrieve (0 = unlimited).</param>
+            <param name="maxEdges">Maximum number of edges to retrieve (0 = unlimited).</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graph statistics containing node and edge counts for the subgraph.</returns>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.ILabelMethods">
             <summary>
