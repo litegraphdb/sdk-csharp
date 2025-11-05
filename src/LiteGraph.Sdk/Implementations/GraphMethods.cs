@@ -196,6 +196,28 @@
             return await _Sdk.Get<SearchResult>(url, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<GraphStatistics> GetSubgraphStatistics(
+            Guid tenantGuid,
+            Guid graphGuid,
+            Guid nodeGuid,
+            int maxDepth = 2,
+            int maxNodes = 0,
+            int maxEdges = 0,
+            CancellationToken token = default)
+        {
+            if (maxDepth < 0) throw new ArgumentOutOfRangeException(nameof(maxDepth));
+            if (maxNodes < 0) throw new ArgumentOutOfRangeException(nameof(maxNodes));
+            if (maxEdges < 0) throw new ArgumentOutOfRangeException(nameof(maxEdges));
+
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/subgraph/stats";
+            url += "?maxDepth=" + maxDepth;
+            url += "&maxNodes=" + maxNodes;
+            url += "&maxEdges=" + maxEdges;
+
+            return await _Sdk.Get<GraphStatistics>(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

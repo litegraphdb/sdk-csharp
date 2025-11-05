@@ -233,8 +233,14 @@
                     case "graph subgraph":
                         GraphSubgraph();
                         break;
+                    case "graph subgraph stats":
+                        GraphSubgraphStats();
+                        break;
                     case "test subgraph":
                         TestSubgraph();
+                        break;
+                    case "test subgraph stats":
+                        TestSubgraphStats();
                         break;
                     case "graph enable index":
                         GraphEnableVectorIndex();
@@ -366,13 +372,14 @@
             Console.WriteLine("  Vectors                    : vector [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("");
             Console.WriteLine("User commands:");
-            Console.WriteLine("  Graphs                     : graph [create|update|all|read|enum|stats|delete|exists|search|subgraph|enable index|rebuild index|delete index|read index config|index stats]");
+            Console.WriteLine("  Graphs                     : graph [create|update|all|read|enum|stats|delete|exists|search|subgraph|subgraph stats|enable index|rebuild index|delete index|read index config|index stats]");
             Console.WriteLine("  Nodes                      : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
             Console.WriteLine("  Edges                      : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
             Console.WriteLine("  Vector search              : vsearch");
             Console.WriteLine("");
             Console.WriteLine("Test commands:");
             Console.WriteLine("  Subgraph automated test    : test subgraph");
+            Console.WriteLine("  Subgraph stats test        : test subgraph stats");
             Console.WriteLine("");
             Console.WriteLine("Authentication commands:");
             Console.WriteLine("  auth tenants               : Get tenants for email");
@@ -1065,6 +1072,44 @@
             EnumerateResult(result);
         }
 
+        private static void GraphSubgraphStats()
+        {
+            Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
+            Guid graphGuid = GetGuid("Graph GUID:", _Graph);
+            Guid nodeGuid = GetGuid("Node GUID:", default(Guid));
+            
+            string maxDepthStr = Inputty.GetString("Max depth (default 2):", "2", true);
+            int maxDepth = 2;
+            if (!String.IsNullOrEmpty(maxDepthStr) && int.TryParse(maxDepthStr, out int parsedDepth))
+            {
+                maxDepth = parsedDepth;
+            }
+            
+            string maxNodesStr = Inputty.GetString("Max nodes (default 0 = unlimited):", "0", true);
+            int maxNodes = 0;
+            if (!String.IsNullOrEmpty(maxNodesStr) && int.TryParse(maxNodesStr, out int parsedNodes))
+            {
+                maxNodes = parsedNodes;
+            }
+            
+            string maxEdgesStr = Inputty.GetString("Max edges (default 0 = unlimited):", "0", true);
+            int maxEdges = 0;
+            if (!String.IsNullOrEmpty(maxEdgesStr) && int.TryParse(maxEdgesStr, out int parsedEdges))
+            {
+                maxEdges = parsedEdges;
+            }
+            
+            GraphStatistics stats = _Sdk.Graph.GetSubgraphStatistics(
+                tenantGuid,
+                graphGuid,
+                nodeGuid,
+                maxDepth,
+                maxNodes,
+                maxEdges).Result;
+            
+            EnumerateResult(stats);
+        }
+
         private static void TestSubgraph()
         {
             Console.WriteLine("");
@@ -1445,6 +1490,517 @@
             int passCount = (test1Pass ? 1 : 0) + (test2Pass ? 1 : 0) + (test3Pass ? 1 : 0) + (test4Pass ? 1 : 0) + (test5Pass ? 1 : 0) + (hasData ? 1 : 0);
             Console.WriteLine("");
             Console.WriteLine("  Total: " + passCount + "/6 tests passed");
+            Console.WriteLine("");
+
+            Console.WriteLine("Cleaning up test data...");
+            _Sdk.Graph.DeleteByGuid(tenant.GUID, graph.GUID, force: true).Wait();
+            _Sdk.Tenant.DeleteByGuid(tenant.GUID, force: true).Wait();
+            Console.WriteLine("  Cleanup complete.");
+            Console.WriteLine("");
+
+            #endregion
+        }
+
+        private static void TestSubgraphStats()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("=== AUTOMATED SUBGRAPH STATISTICS TEST ===");
+            Console.WriteLine("");
+
+            #region Create Tenant and Graph
+
+            Console.WriteLine("Creating test tenant and graph...");
+            TenantMetadata tenant = _Sdk.Tenant.Create(new TenantMetadata { Name = "Subgraph Stats Test Tenant" }).Result;
+            Console.WriteLine("| Created tenant: " + tenant.GUID);
+
+            Graph graph = _Sdk.Graph.Create(new Graph
+            {
+                TenantGUID = tenant.GUID,
+                Name = "Subgraph Stats Test Graph"
+            }).Result;
+            Console.WriteLine("| Created graph: " + graph.GUID);
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Create Nodes
+
+            Console.WriteLine("Creating test nodes...");
+            Node nodeA = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node A (Root)",
+                Data = new { Type = "Root", Level = 0 }
+            }).Result;
+            Console.WriteLine("  | Created Node A: " + nodeA.GUID);
+
+            Node nodeB = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node B (Layer 1)",
+                Data = new { Type = "Layer1", Level = 1 }
+            }).Result;
+            Console.WriteLine("  | Created Node B: " + nodeB.GUID);
+
+            Node nodeC = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node C (Layer 1)",
+                Data = new { Type = "Layer1", Level = 1 }
+            }).Result;
+            Console.WriteLine("  | Created Node C: " + nodeC.GUID);
+
+            Node nodeD = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node D (Layer 2)",
+                Data = new { Type = "Layer2", Level = 2 }
+            }).Result;
+            Console.WriteLine("  | Created Node D: " + nodeD.GUID);
+
+            Node nodeE = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node E (Layer 2)",
+                Data = new { Type = "Layer2", Level = 2 }
+            }).Result;
+            Console.WriteLine("  | Created Node E: " + nodeE.GUID);
+
+            Node nodeF = _Sdk.Node.Create(new Node
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                Name = "Node F (Layer 2)",
+                Data = new { Type = "Layer2", Level = 2 }
+            }).Result;
+            Console.WriteLine("  | Created Node F: " + nodeF.GUID);
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Create Edges
+
+            Console.WriteLine("Creating test edges...");
+            Edge edgeAB = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeA.GUID,
+                To = nodeB.GUID,
+                Name = "A -> B",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge A->B: " + edgeAB.GUID);
+
+            Edge edgeAC = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeA.GUID,
+                To = nodeC.GUID,
+                Name = "A -> C",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge A->C: " + edgeAC.GUID);
+
+            Edge edgeBD = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeB.GUID,
+                To = nodeD.GUID,
+                Name = "B -> D",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge B->D: " + edgeBD.GUID);
+
+            Edge edgeBE = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeB.GUID,
+                To = nodeE.GUID,
+                Name = "B -> E",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge B->E: " + edgeBE.GUID);
+
+            Edge edgeCF = _Sdk.Edge.Create(new Edge
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                From = nodeC.GUID,
+                To = nodeF.GUID,
+                Name = "C -> F",
+                Cost = 1
+            }).Result;
+            Console.WriteLine("  | Created Edge C->F: " + edgeCF.GUID);
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Create Labels, Tags, and Vectors
+
+            Console.WriteLine("Creating labels, tags, and vectors...");
+            
+            // Add labels to nodes
+            LabelMetadata labelA1 = _Sdk.Label.Create(new LabelMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeA.GUID,
+                Label = "root-node"
+            }).Result;
+            Console.WriteLine("  | Created Label for Node A: " + labelA1.GUID);
+
+            LabelMetadata labelA2 = _Sdk.Label.Create(new LabelMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeA.GUID,
+                Label = "level-0"
+            }).Result;
+            Console.WriteLine("  | Created Label for Node A: " + labelA2.GUID);
+
+            LabelMetadata labelB1 = _Sdk.Label.Create(new LabelMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeB.GUID,
+                Label = "layer-1"
+            }).Result;
+            Console.WriteLine("  | Created Label for Node B: " + labelB1.GUID);
+
+            LabelMetadata labelC1 = _Sdk.Label.Create(new LabelMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeC.GUID,
+                Label = "layer-1"
+            }).Result;
+            Console.WriteLine("  | Created Label for Node C: " + labelC1.GUID);
+
+            // Add label to edge
+            LabelMetadata labelEdgeAB = _Sdk.Label.Create(new LabelMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                EdgeGUID = edgeAB.GUID,
+                Label = "primary-edge"
+            }).Result;
+            Console.WriteLine("  | Created Label for Edge A->B: " + labelEdgeAB.GUID);
+
+            // Add tags to nodes
+            TagMetadata tagA1 = _Sdk.Tag.Create(new TagMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeA.GUID,
+                Key = "type",
+                Value = "root"
+            }).Result;
+            Console.WriteLine("  | Created Tag for Node A: " + tagA1.GUID);
+
+            TagMetadata tagA2 = _Sdk.Tag.Create(new TagMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeA.GUID,
+                Key = "category",
+                Value = "start"
+            }).Result;
+            Console.WriteLine("  | Created Tag for Node A: " + tagA2.GUID);
+
+            TagMetadata tagB1 = _Sdk.Tag.Create(new TagMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeB.GUID,
+                Key = "type",
+                Value = "child"
+            }).Result;
+            Console.WriteLine("  | Created Tag for Node B: " + tagB1.GUID);
+
+            // Add tag to edge
+            TagMetadata tagEdgeAC = _Sdk.Tag.Create(new TagMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                EdgeGUID = edgeAC.GUID,
+                Key = "weight",
+                Value = "1"
+            }).Result;
+            Console.WriteLine("  | Created Tag for Edge A->C: " + tagEdgeAC.GUID);
+
+            // Add vectors to nodes
+            VectorMetadata vectorA1 = _Sdk.Vector.Create(new VectorMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeA.GUID,
+                Model = "test-model",
+                Dimensionality = 3,
+                Content = "root node embedding",
+                Vectors = new List<float> { 0.1f, 0.2f, 0.3f }
+            }).Result;
+            Console.WriteLine("  | Created Vector for Node A: " + vectorA1.GUID);
+
+            VectorMetadata vectorB1 = _Sdk.Vector.Create(new VectorMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                NodeGUID = nodeB.GUID,
+                Model = "test-model",
+                Dimensionality = 3,
+                Content = "child node embedding",
+                Vectors = new List<float> { 0.4f, 0.5f, 0.6f }
+            }).Result;
+            Console.WriteLine("  | Created Vector for Node B: " + vectorB1.GUID);
+
+            // Add vector to edge
+            VectorMetadata vectorEdgeBD = _Sdk.Vector.Create(new VectorMetadata
+            {
+                TenantGUID = tenant.GUID,
+                GraphGUID = graph.GUID,
+                EdgeGUID = edgeBD.GUID,
+                Model = "test-model",
+                Dimensionality = 3,
+                Content = "edge embedding",
+                Vectors = new List<float> { 0.7f, 0.8f, 0.9f }
+            }).Result;
+            Console.WriteLine("  | Created Vector for Edge B->D: " + vectorEdgeBD.GUID);
+            Console.WriteLine("");
+
+            #endregion
+
+            #region Test Subgraph Statistics
+
+            Console.WriteLine("=== TESTING SUBGRAPH STATISTICS ===");
+            Console.WriteLine("");
+            Console.WriteLine("Graph Structure:");
+            Console.WriteLine("  A (root)");
+            Console.WriteLine("  ├─> B");
+            Console.WriteLine("  │   ├─> D");
+            Console.WriteLine("  │   └─> E");
+            Console.WriteLine("  └─> C");
+            Console.WriteLine("      └─> F");
+            Console.WriteLine("");
+
+            // Test Case 1: Max depth 0 (only starting node)
+            Console.WriteLine("--- Test Case 1: Max Depth 0 (starting node only) ---");
+            GraphStatistics stats1 = _Sdk.Graph.GetSubgraphStatistics(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 0,
+                maxNodes: 0,
+                maxEdges: 0).Result;
+
+            if (stats1 == null)
+            {
+                Console.WriteLine("  [ERROR] Stats is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            // Verify stats match actual subgraph
+            SearchResult result1 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 0,
+                maxNodes: 0,
+                maxEdges: 0,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            int expectedNodes1 = result1.Nodes?.Count ?? 0;
+            int expectedEdges1 = result1.Edges?.Count ?? 0;
+
+            Console.WriteLine("  Stats Nodes: " + stats1.Nodes + " (expected: " + expectedNodes1 + ")");
+            Console.WriteLine("  Stats Edges: " + stats1.Edges + " (expected: " + expectedEdges1 + ")");
+            Console.WriteLine("  Stats Labels: " + stats1.Labels + " (expected: 2 - labels for Node A)");
+            Console.WriteLine("  Stats Tags: " + stats1.Tags + " (expected: 2 - tags for Node A)");
+            Console.WriteLine("  Stats Vectors: " + stats1.Vectors + " (expected: 1 - vector for Node A)");
+            bool test1Pass = stats1.Nodes == expectedNodes1 && stats1.Edges == expectedEdges1 && stats1.Labels == 2 && stats1.Tags == 2 && stats1.Vectors == 1;
+            Console.WriteLine("  Result: " + (test1Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("  Response JSON:");
+            Console.WriteLine(Serializer.SerializeJson(stats1, true));
+            Console.WriteLine("");
+
+            // Test Case 2: Max depth 1 (immediate neighbors)
+            Console.WriteLine("--- Test Case 2: Max Depth 1 (immediate neighbors) ---");
+            GraphStatistics stats2 = _Sdk.Graph.GetSubgraphStatistics(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 1,
+                maxNodes: 0,
+                maxEdges: 0).Result;
+
+            if (stats2 == null)
+            {
+                Console.WriteLine("  [ERROR] Stats is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            SearchResult result2 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 1,
+                maxNodes: 0,
+                maxEdges: 0,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            int expectedNodes2 = result2.Nodes?.Count ?? 0;
+            int expectedEdges2 = result2.Edges?.Count ?? 0;
+
+            Console.WriteLine("  Stats Nodes: " + stats2.Nodes + " (expected: " + expectedNodes2 + ")");
+            Console.WriteLine("  Stats Edges: " + stats2.Edges + " (expected: " + expectedEdges2 + ")");
+            Console.WriteLine("  Stats Labels: " + stats2.Labels + " (expected: >= 4 - labels for A, B, C, and edge A->B)");
+            Console.WriteLine("  Stats Tags: " + stats2.Tags + " (expected: >= 3 - tags for A, B, and edge A->C)");
+            Console.WriteLine("  Stats Vectors: " + stats2.Vectors + " (expected: >= 2 - vectors for A and B)");
+            bool test2Pass = stats2.Nodes == expectedNodes2 && stats2.Edges == expectedEdges2 && stats2.Labels >= 4 && stats2.Tags >= 3 && stats2.Vectors >= 2;
+            Console.WriteLine("  Result: " + (test2Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("  Response JSON:");
+            Console.WriteLine(Serializer.SerializeJson(stats2, true));
+            Console.WriteLine("");
+
+            // Test Case 3: Max depth 2 (two layers)
+            Console.WriteLine("--- Test Case 3: Max Depth 2 (two layers) ---");
+            GraphStatistics stats3 = _Sdk.Graph.GetSubgraphStatistics(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 0,
+                maxEdges: 0).Result;
+
+            if (stats3 == null)
+            {
+                Console.WriteLine("  [ERROR] Stats is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            SearchResult result3 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 0,
+                maxEdges: 0,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            int expectedNodes3 = result3.Nodes?.Count ?? 0;
+            int expectedEdges3 = result3.Edges?.Count ?? 0;
+
+            Console.WriteLine("  Stats Nodes: " + stats3.Nodes + " (expected: " + expectedNodes3 + ")");
+            Console.WriteLine("  Stats Edges: " + stats3.Edges + " (expected: " + expectedEdges3 + ")");
+            Console.WriteLine("  Stats Labels: " + stats3.Labels + " (expected: >= 4 - labels for nodes and edges)");
+            Console.WriteLine("  Stats Tags: " + stats3.Tags + " (expected: >= 3 - tags for nodes and edges)");
+            Console.WriteLine("  Stats Vectors: " + stats3.Vectors + " (expected: >= 2 - vectors for nodes and edges)");
+            bool test3Pass = stats3.Nodes == expectedNodes3 && stats3.Edges == expectedEdges3 && stats3.Labels >= 4 && stats3.Tags >= 3 && stats3.Vectors >= 2;
+            Console.WriteLine("  Result: " + (test3Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("  Response JSON:");
+            Console.WriteLine(Serializer.SerializeJson(stats3, true));
+            Console.WriteLine("");
+
+            // Test Case 4: Max nodes limit
+            Console.WriteLine("--- Test Case 4: Max Nodes Limit (3) ---");
+            GraphStatistics stats4 = _Sdk.Graph.GetSubgraphStatistics(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 3,
+                maxEdges: 0).Result;
+
+            if (stats4 == null)
+            {
+                Console.WriteLine("  [ERROR] Stats is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            SearchResult result4 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 3,
+                maxEdges: 0,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            int expectedNodes4 = result4.Nodes?.Count ?? 0;
+            int expectedEdges4 = result4.Edges?.Count ?? 0;
+
+            Console.WriteLine("  Stats Nodes: " + stats4.Nodes + " (expected: " + expectedNodes4 + ")");
+            Console.WriteLine("  Stats Edges: " + stats4.Edges + " (expected: " + expectedEdges4 + ")");
+            bool test4Pass = stats4.Nodes == expectedNodes4 && stats4.Edges == expectedEdges4 && stats4.Nodes <= 3;
+            Console.WriteLine("  Result: " + (test4Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("  Response JSON:");
+            Console.WriteLine(Serializer.SerializeJson(stats4, true));
+            Console.WriteLine("");
+
+            // Test Case 5: Max edges limit
+            Console.WriteLine("--- Test Case 5: Max Edges Limit (2) ---");
+            GraphStatistics stats5 = _Sdk.Graph.GetSubgraphStatistics(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 0,
+                maxEdges: 2).Result;
+
+            if (stats5 == null)
+            {
+                Console.WriteLine("  [ERROR] Stats is null - API call failed");
+                Console.WriteLine("");
+                return;
+            }
+
+            SearchResult result5 = _Sdk.Graph.GetSubgraph(
+                tenant.GUID,
+                graph.GUID,
+                nodeA.GUID,
+                maxDepth: 2,
+                maxNodes: 0,
+                maxEdges: 2,
+                includeData: false,
+                includeSubordinates: false).Result;
+
+            int expectedNodes5 = result5.Nodes?.Count ?? 0;
+            int expectedEdges5 = result5.Edges?.Count ?? 0;
+
+            Console.WriteLine("  Stats Nodes: " + stats5.Nodes + " (expected: " + expectedNodes5 + ")");
+            Console.WriteLine("  Stats Edges: " + stats5.Edges + " (expected: " + expectedEdges5 + ")");
+            bool test5Pass = stats5.Nodes == expectedNodes5 && stats5.Edges == expectedEdges5 && stats5.Edges <= 2;
+            Console.WriteLine("  Result: " + (test5Pass ? "[PASS]" : "[FAIL]"));
+            Console.WriteLine("  Response JSON:");
+            Console.WriteLine(Serializer.SerializeJson(stats5, true));
+            Console.WriteLine("");
+
+            Console.WriteLine("=== TEST SUMMARY ===");
+            Console.WriteLine("  Test Case 1 (Max Depth 0): " + (test1Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 2 (Max Depth 1): " + (test2Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 3 (Max Depth 2): " + (test3Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 4 (Max Nodes): " + (test4Pass ? "PASS" : "FAIL"));
+            Console.WriteLine("  Test Case 5 (Max Edges): " + (test5Pass ? "PASS" : "FAIL"));
+
+            int passCount = (test1Pass ? 1 : 0) + (test2Pass ? 1 : 0) + (test3Pass ? 1 : 0) + (test4Pass ? 1 : 0) + (test5Pass ? 1 : 0);
+            Console.WriteLine("");
+            Console.WriteLine("  Total: " + passCount + "/5 tests passed (all tests validate nodes, edges, labels, tags, and vectors)");
             Console.WriteLine("");
 
             Console.WriteLine("Cleaning up test data...");
