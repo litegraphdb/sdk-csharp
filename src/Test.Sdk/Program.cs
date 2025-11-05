@@ -1352,8 +1352,9 @@
             }
 
             Console.WriteLine("  Nodes: " + (result2.Nodes?.Count ?? 0) + " (expected: 3 - A, B, C)");
-            Console.WriteLine("  Edges: " + (result2.Edges?.Count ?? 0) + " (expected: 2 - A->B, A->C)");
-            bool test2Pass = (result2.Nodes?.Count ?? 0) >= 3 && (result2.Edges?.Count ?? 0) >= 2;
+            Console.WriteLine("  Edges: " + (result2.Edges?.Count ?? 0) + " (expected: 3 - A->B, A->C, C->A)");
+            Console.WriteLine("  Note: Includes back edge C->A since both endpoints are in subgraph");
+            bool test2Pass = (result2.Nodes?.Count ?? 0) >= 3 && (result2.Edges?.Count ?? 0) >= 3;
             Console.WriteLine("  Result: " + (test2Pass ? "[PASS]" : "[FAIL]"));
             Console.WriteLine("");
 
@@ -1377,8 +1378,9 @@
             }
 
             Console.WriteLine("  Nodes: " + (result3.Nodes?.Count ?? 0) + " (expected: 6 - A, B, C, D, E, F)");
-            Console.WriteLine("  Edges: " + (result3.Edges?.Count ?? 0) + " (expected: 5 - A->B, A->C, B->D, B->E, C->F)");
-            bool test3Pass = (result3.Nodes?.Count ?? 0) >= 6 && (result3.Edges?.Count ?? 0) >= 5;
+            Console.WriteLine("  Edges: " + (result3.Edges?.Count ?? 0) + " (expected: 6 - A->B, A->C, B->D, B->E, C->F, C->A)");
+            Console.WriteLine("  Note: Includes back edge C->A since both endpoints are in subgraph");
+            bool test3Pass = (result3.Nodes?.Count ?? 0) >= 6 && (result3.Edges?.Count ?? 0) >= 6;
             Console.WriteLine("  Result: " + (test3Pass ? "[PASS]" : "[FAIL]"));
             Console.WriteLine("");
 
