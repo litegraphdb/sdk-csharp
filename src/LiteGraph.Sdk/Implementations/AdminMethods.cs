@@ -44,7 +44,7 @@
         public async Task Backup(string outputFilename, CancellationToken token = default)
         {
             if (String.IsNullOrEmpty(outputFilename)) throw new ArgumentNullException(nameof(outputFilename));
-            string url = _Sdk.Endpoint + "v1.0/backup";
+            string url = _Sdk.Endpoint + "v1.0/backups";
 
             BackupRequest req = new BackupRequest
             {
