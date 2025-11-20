@@ -45,7 +45,7 @@
         {
             if (req == null) throw new ArgumentNullException(nameof(req));
             if (!req.ContainsExistenceRequest()) throw new ArgumentException("Supplied existence request contains no valid existence filters.");
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graph/" + graphGuid + "/existence";
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/existence";
             return await _Sdk.Post<ExistenceRequest, ExistenceResult>(url, req, token).ConfigureAwait(false);
         }
 
