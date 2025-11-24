@@ -72,17 +72,21 @@
         }
 
         /// <inheritdoc />
-        public async Task<Edge> ReadByGuid(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
+        public async Task<Edge> ReadByGuid(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/" + edgeGuid;
+            if (includeData) url += "?incldata";
+            if (includeSubordinates) url += (includeData ? "&" : "?") + "inclsub";
             return await _Sdk.Get<Edge>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<List<Edge>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, CancellationToken token = default)
+        public async Task<List<Edge>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default)
         {
             if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges?guids=" + string.Join(",", guids);
+            if (includeData) url += "&incldata";
+            if (includeSubordinates) url += "&inclsub";
             return await _Sdk.Get<List<Edge>>(url, token).ConfigureAwait(false);
         }
 
@@ -95,10 +99,17 @@
             NameValueCollection tags = null,
             Expr edgeFilter = null,
             EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
-            int skip = 0, 
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
             CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/edges";
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
             return await _Sdk.GetMany<Edge>(url, token).ConfigureAwait(false);
         }
 
@@ -108,10 +119,17 @@
             Guid graphGuid,
             Guid nodeGuid,
             EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
-            int skip = 0, 
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
             CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/edges/from";
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
             return await _Sdk.GetMany<Edge>(url, token).ConfigureAwait(false);
         }
 
@@ -121,10 +139,17 @@
             Guid graphGuid,
             Guid nodeGuid,
             EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
-            int skip = 0, 
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
             CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/edges/to";
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
             return await _Sdk.GetMany<Edge>(url, token).ConfigureAwait(false);
         }
 
@@ -170,6 +195,13 @@
         public async Task DeleteNodeEdges(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/edges";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/all";
             await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
 
