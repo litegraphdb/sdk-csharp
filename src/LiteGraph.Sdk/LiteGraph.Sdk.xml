@@ -872,13 +872,13 @@
         <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.CreateMany(System.Guid,System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.Node},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Update(LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
@@ -1743,7 +1743,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Nodes.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read nodes.
             </summary>
@@ -1751,26 +1751,32 @@
             <param name="graphGuid">Graph GUID.</param>
             <param name="order">Enumeration order.</param>
             <param name="skip">The number of records to skip.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Nodes.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read node.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="graphGuid">Graph GUID.</param>
             <param name="nodeGuid">Node GUID.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Node.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read nodes by GUIDs.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="graphGuid">Graph GUID.</param>
             <param name="guids">Node GUIDs.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>List.</returns>
         </member>
