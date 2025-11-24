@@ -38,18 +38,22 @@
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="guid">GUID.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Graph.</returns>
-        Task<Graph> ReadByGuid(Guid tenantGuid, Guid guid, CancellationToken token = default);
+        Task<Graph> ReadByGuid(Guid tenantGuid, Guid guid, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default);
 
         /// <summary>
         /// Read graphs by GUIDs.
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="guids">GUIDs.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>List.</returns>
-        Task<List<Graph>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default);
+        Task<List<Graph>> ReadByGuids(Guid tenantGuid, List<Guid> guids, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default);
 
         /// <summary>
         /// Update a graph.
@@ -142,9 +146,10 @@
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="deleteIndexFile">Whether to delete the index file.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Task.</returns>
-        Task DeleteVectorIndex(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+        Task DeleteVectorIndex(Guid tenantGuid, Guid graphGuid, bool deleteIndexFile = false, CancellationToken token = default);
 
         /// <summary>
         /// Read the vector index configuration for a graph.
@@ -206,6 +211,22 @@
             int maxDepth = 2,
             int maxNodes = 0,
             int maxEdges = 0,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Export graph to GEXF format.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="includeData">True to include data.</param>
+        /// <param name="includeSubordinates">True to include subordinates (labels, tags, vectors).</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>GEXF XML string.</returns>
+        Task<string> ExportGraphToGexf(
+            Guid tenantGuid,
+            Guid graphGuid,
+            bool includeData = false,
+            bool includeSubordinates = false,
             CancellationToken token = default);
     }
 }
