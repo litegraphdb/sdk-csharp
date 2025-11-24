@@ -37,12 +37,18 @@
         /// Read labels.
         /// </summary>
         /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID (optional filter).</param>
+        /// <param name="nodeGuid">Node GUID (optional filter).</param>
+        /// <param name="edgeGuid">Edge GUID (optional filter).</param>
         /// <param name="order">Enumeration order.</param>
         /// <param name="skip">Number of records to skip.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Labels.</returns>
         Task<List<LabelMetadata>> ReadMany(
             Guid tenantGuid,
+            Guid? graphGuid = null,
+            Guid? nodeGuid = null,
+            Guid? edgeGuid = null,
             EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
             int skip = 0,
             CancellationToken token = default);

@@ -2,11 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Reflection.Emit;
-    using System.Runtime.Serialization.Json;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
     using LiteGraph.Sdk.Interfaces;
@@ -60,12 +55,21 @@
         /// <inheritdoc />
         public async Task<List<LabelMetadata>> ReadMany(
             Guid tenantGuid,
+            Guid? graphGuid = null,
+            Guid? nodeGuid = null,
+            Guid? edgeGuid = null,
             EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
-            int skip = 0, 
+            int skip = 0,
             CancellationToken token = default)
         {
             if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/labels?skip=" + skip + "&order=" + order.ToString();
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/labels";
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (graphGuid.HasValue) { url += (hasQuery ? "&" : "?") + "graphGuid=" + graphGuid.Value; hasQuery = true; }
+            if (nodeGuid.HasValue) { url += (hasQuery ? "&" : "?") + "nodeGuid=" + nodeGuid.Value; hasQuery = true; }
+            if (edgeGuid.HasValue) { url += (hasQuery ? "&" : "?") + "edgeGuid=" + edgeGuid.Value; hasQuery = true; }
             return await _Sdk.GetMany<LabelMetadata>(url, token).ConfigureAwait(false);
         }
 
