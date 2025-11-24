@@ -2,11 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.Specialized;
-    using System.Data;
-    using System.Linq;
-    using System.Reflection.Emit;
-    using System.Runtime.Serialization.Json;
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
@@ -66,26 +61,34 @@
             Guid tenantGuid,
             Guid graphGuid,
             EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
-            int skip = 0, 
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
             CancellationToken token = default)
         {
             if (skip < 0) throw new ArgumentNullException(nameof(skip));
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes?skip=" + skip + "&order=" + order.ToString();
+            if (includeData) url += "&incldata";
+            if (includeSubordinates) url += "&inclsub";
             return await _Sdk.GetMany<Node>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<Node> ReadByGuid(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        public async Task<Node> ReadByGuid(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid;
+            if (includeData) url += "?incldata";
+            if (includeSubordinates) url += (includeData ? "&" : "?") + "inclsub";
             return await _Sdk.Get<Node>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<List<Node>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, CancellationToken token = default)
+        public async Task<List<Node>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default)
         {
             if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes?guids=" + string.Join(",", guids);
+            if (includeData) url += "&incldata";
+            if (includeSubordinates) url += "&inclsub";
             return await _Sdk.Get<List<Node>>(url, token).ConfigureAwait(false);
         }
 

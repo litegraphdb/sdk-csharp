@@ -698,19 +698,19 @@
         <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadNodeEdges(System.Guid,System.Guid,System.Guid,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,ExpressionTree.Expr,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadNodeEdges(System.Guid,System.Guid,System.Guid,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,ExpressionTree.Expr,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadEdgesFromNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadEdgesFromNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadEdgesToNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadEdgesToNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ReadEdgesBetweenNodes(System.Guid,System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
@@ -726,6 +726,9 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.DeleteNodeEdges(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.EdgeMethods.ExistsByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
@@ -757,10 +760,10 @@
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadMany(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadByGuid(System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.Update(LiteGraph.Sdk.Graph,System.Threading.CancellationToken)">
@@ -793,7 +796,7 @@
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.RebuildVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.DeleteVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.DeleteVectorIndex(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadVectorIndexConfig(System.Guid,System.Guid,System.Threading.CancellationToken)">
@@ -806,6 +809,9 @@
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.GetSubgraphStatistics(System.Guid,System.Guid,System.Guid,System.Int32,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ExportGraphToGexf(System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:LiteGraph.Sdk.Implementations.LabelMethods">
@@ -866,13 +872,13 @@
         <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.CreateMany(System.Guid,System.Guid,System.Collections.Generic.List{LiteGraph.Sdk.Node},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:LiteGraph.Sdk.Implementations.NodeMethods.Update(LiteGraph.Sdk.Node,System.Threading.CancellationToken)">
@@ -1263,27 +1269,31 @@
             <param name="token">Cancellation token.</param>
             <returns>Edges.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read edge.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="graphGuid">Graph GUID.</param>
             <param name="edgeGuid">Edge GUID.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Edge.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read edges by GUIDs.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="graphGuid">Graph GUID.</param>
             <param name="guids">Edge GUIDs.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>List.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadNodeEdges(System.Guid,System.Guid,System.Guid,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,ExpressionTree.Expr,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadNodeEdges(System.Guid,System.Guid,System.Guid,System.Collections.Generic.List{System.String},System.Collections.Specialized.NameValueCollection,ExpressionTree.Expr,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Get edges connected to or initiated from a given node.
             </summary>
@@ -1298,10 +1308,12 @@
             For example, to retrieve the 'Name' property, use '$.Name', OperatorEnum.Equals, '[name here]'.</param>
             <param name="order">Enumeration order.</param>
             <param name="skip">The number of records to skip.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Edges.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadEdgesFromNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadEdgesFromNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Get edges from a given node.
             </summary>
@@ -1310,10 +1322,12 @@
             <param name="nodeGuid">Node GUID.</param>
             <param name="order">Enumeration order.</param>
             <param name="skip">The number of records to skip.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Edges.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadEdgesToNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.ReadEdgesToNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Get edges to a given node.
             </summary>
@@ -1322,6 +1336,8 @@
             <param name="nodeGuid">Node GUID.</param>
             <param name="order">Enumeration order.</param>
             <param name="skip">The number of records to skip.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Edges.</returns>
         </member>
@@ -1353,6 +1369,14 @@
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="graphGuid">Graph GUID.</param>
             <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all edges from a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
             <param name="token">Cancellation token.</param>
         </member>
         <member name="M:LiteGraph.Sdk.Interfaces.IEdgeMethods.DeleteNodeEdges(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
@@ -1430,21 +1454,25 @@
             <param name="token">Cancellation token.</param>
             <returns>Graphs.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadByGuid(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadByGuid(System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read a graph by GUID.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="guid">GUID.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Graph.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadByGuids(System.Guid,System.Collections.Generic.List{System.Guid},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read graphs by GUIDs.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="guids">GUIDs.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>List.</returns>
         </member>
@@ -1534,12 +1562,13 @@
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.DeleteVectorIndex(System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.DeleteVectorIndex(System.Guid,System.Guid,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Delete the vector index for a graph.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="graphGuid">Graph GUID.</param>
+            <param name="deleteIndexFile">Whether to delete the index file.</param>
             <param name="token">Cancellation token.</param>
             <returns>Task.</returns>
         </member>
@@ -1588,6 +1617,17 @@
             <param name="maxEdges">Maximum number of edges to retrieve (0 = unlimited).</param>
             <param name="token">Cancellation token.</param>
             <returns>Graph statistics containing node and edge counts for the subgraph.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ExportGraphToGexf(System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Export graph to GEXF format.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="includeData">True to include data.</param>
+            <param name="includeSubordinates">True to include subordinates (labels, tags, vectors).</param>
+            <param name="token">Cancellation token.</param>
+            <returns>GEXF XML string.</returns>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.ILabelMethods">
             <summary>
@@ -1703,7 +1743,7 @@
             <param name="token">Cancellation token.</param>
             <returns>Nodes.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadMany(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read nodes.
             </summary>
@@ -1711,26 +1751,32 @@
             <param name="graphGuid">Graph GUID.</param>
             <param name="order">Enumeration order.</param>
             <param name="skip">The number of records to skip.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Nodes.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuid(System.Guid,System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read node.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="graphGuid">Graph GUID.</param>
             <param name="nodeGuid">Node GUID.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>Node.</returns>
         </member>
-        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Threading.CancellationToken)">
+        <member name="M:LiteGraph.Sdk.Interfaces.INodeMethods.ReadByGuids(System.Guid,System.Guid,System.Collections.Generic.List{System.Guid},System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Read nodes by GUIDs.
             </summary>
             <param name="tenantGuid">Tenant GUID.</param>
             <param name="graphGuid">Graph GUID.</param>
             <param name="guids">Node GUIDs.</param>
+            <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+            <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
             <param name="token">Cancellation token.</param>
             <returns>List.</returns>
         </member>

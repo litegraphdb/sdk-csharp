@@ -58,17 +58,21 @@
         }
 
         /// <inheritdoc />
-        public async Task<Graph> ReadByGuid(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        public async Task<Graph> ReadByGuid(Guid tenantGuid, Guid graphGuid, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default)
         {
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid;
+            if (includeData) url += "?incldata";
+            if (includeSubordinates) url += (includeData ? "&" : "?") + "inclsub";
             return await _Sdk.Get<Graph>(url, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<List<Graph>> ReadByGuids(Guid tenantGuid, List<Guid> guids, CancellationToken token = default)
+        public async Task<List<Graph>> ReadByGuids(Guid tenantGuid, List<Guid> guids, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default)
         {
             if (guids == null || guids.Count < 1) throw new ArgumentNullException(nameof(guids));
             string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs?guids=" + string.Join(",", guids);
+            if (includeData) url += "&incldata";
+            if (includeSubordinates) url += "&inclsub";
             return await _Sdk.Get<List<Graph>>(url, token).ConfigureAwait(false);
         }
 
@@ -150,9 +154,10 @@
         }
 
         /// <inheritdoc />
-        public async Task DeleteVectorIndex(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        public async Task DeleteVectorIndex(Guid tenantGuid, Guid graphGuid, bool deleteIndexFile = false, CancellationToken token = default)
         {
-            string url = _Sdk.Endpoint + "v2.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectorindex";
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectorindex";
+            if (deleteIndexFile) url += "?deleteFile=true";
             await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
 
@@ -216,6 +221,26 @@
             url += "&maxEdges=" + maxEdges;
 
             return await _Sdk.Get<GraphStatistics>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<string> ExportGraphToGexf(
+            Guid tenantGuid,
+            Guid graphGuid,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/export/gexf";
+            if (includeData) url += "?incldata";
+            if (includeSubordinates) url += (includeData ? "&" : "?") + "inclsub";
+
+            byte[] bytes = await _Sdk.Get(url, token).ConfigureAwait(false);
+            if (bytes != null && bytes.Length > 0)
+            {
+                return System.Text.Encoding.UTF8.GetString(bytes);
+            }
+            return null;
         }
 
         #endregion

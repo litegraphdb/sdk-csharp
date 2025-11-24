@@ -41,6 +41,8 @@
         /// <param name="graphGuid">Graph GUID.</param>
         /// <param name="order">Enumeration order.</param>
         /// <param name="skip">The number of records to skip.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Nodes.</returns>
         Task<List<Node>> ReadMany(
@@ -48,6 +50,8 @@
             Guid graphGuid,
             EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
             int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
             CancellationToken token = default);
 
         /// <summary>
@@ -56,9 +60,11 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="graphGuid">Graph GUID.</param>
         /// <param name="nodeGuid">Node GUID.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>Node.</returns>
-        Task<Node> ReadByGuid(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+        Task<Node> ReadByGuid(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default);
 
         /// <summary>
         /// Read nodes by GUIDs.
@@ -66,9 +72,11 @@
         /// <param name="tenantGuid">Tenant GUID.</param>
         /// <param name="graphGuid">Graph GUID.</param>
         /// <param name="guids">Node GUIDs.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
         /// <param name="token">Cancellation token.</param>
         /// <returns>List.</returns>
-        Task<List<Node>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, CancellationToken token = default);
+        Task<List<Node>> ReadByGuids(Guid tenantGuid, Guid graphGuid, List<Guid> guids, bool includeData = false, bool includeSubordinates = false, CancellationToken token = default);
 
         /// <summary>
         /// Update node.
