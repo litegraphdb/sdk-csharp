@@ -167,6 +167,36 @@
                     case "label delete":
                         LabelDelete();
                         break;
+                    case "label all tenant":
+                        LabelReadAllInTenant();
+                        break;
+                    case "label all graph":
+                        LabelReadAllInGraph();
+                        break;
+                    case "label graph":
+                        LabelReadManyGraph();
+                        break;
+                    case "label node":
+                        LabelReadManyNode();
+                        break;
+                    case "label edge":
+                        LabelReadManyEdge();
+                        break;
+                    case "label delete all tenant":
+                        LabelDeleteAllInTenant();
+                        break;
+                    case "label delete all graph":
+                        LabelDeleteAllInGraph();
+                        break;
+                    case "label delete graph":
+                        LabelDeleteGraphLabels();
+                        break;
+                    case "label delete node":
+                        LabelDeleteNodeLabels();
+                        break;
+                    case "label delete edge":
+                        LabelDeleteEdgeLabels();
+                        break;
 
                     case "tag exists":
                         TagExists();
@@ -391,7 +421,7 @@
             Console.WriteLine("  Tenants                    : tenant [create|update|all|read|enum|stats|delete|exists]");
             Console.WriteLine("  Users                      : user [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("  Credentials                : cred [create|update|all|read|enum|delete|exists|read bearer|delete all|delete user]");
-            Console.WriteLine("  Labels                     : label [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Labels                     : label [create|update|all|read|enum|delete|exists|all tenant|all graph|graph|node|edge|delete all tenant|delete all graph|delete graph|delete node|delete edge]");
             Console.WriteLine("  Tags                       : tag [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("  Vectors                    : vector [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("");
@@ -856,6 +886,83 @@
             _Sdk.Label.DeleteByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Wait();
+        }
+
+        private static void LabelReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Label.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void LabelReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Label.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void LabelReadManyGraph()
+        {
+            EnumerateResult(_Sdk.Label.ReadManyGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void LabelReadManyNode()
+        {
+            EnumerateResult(_Sdk.Label.ReadManyNode(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Result);
+        }
+
+        private static void LabelReadManyEdge()
+        {
+            EnumerateResult(_Sdk.Label.ReadManyEdge(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Result);
+        }
+
+        private static void LabelDeleteAllInTenant()
+        {
+            _Sdk.Label.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All labels in tenant deleted successfully.");
+        }
+
+        private static void LabelDeleteAllInGraph()
+        {
+            _Sdk.Label.DeleteAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("All labels in graph deleted successfully.");
+        }
+
+        private static void LabelDeleteGraphLabels()
+        {
+            _Sdk.Label.DeleteGraphLabels(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("Graph labels deleted successfully.");
+        }
+
+        private static void LabelDeleteNodeLabels()
+        {
+            _Sdk.Label.DeleteNodeLabels(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Wait();
+            Console.WriteLine("Node labels deleted successfully.");
+        }
+
+        private static void LabelDeleteEdgeLabels()
+        {
+            _Sdk.Label.DeleteEdgeLabels(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Wait();
+            Console.WriteLine("Edge labels deleted successfully.");
         }
 
         #endregion

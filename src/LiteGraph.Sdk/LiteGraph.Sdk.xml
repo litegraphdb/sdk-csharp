@@ -876,6 +876,36 @@
         <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadAllInTenant(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadAllInGraph(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadManyGraph(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadManyNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.ReadManyEdge(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.DeleteGraphLabels(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.DeleteNodeLabels(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.LabelMethods.DeleteEdgeLabels(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.NodeMethods">
             <summary>
             Node methods.
@@ -1804,6 +1834,103 @@
             <param name="query">Enumeration query.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ReadAllInTenant(System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read all labels in a tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Labels.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ReadAllInGraph(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read all labels in a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Labels.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ReadManyGraph(System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read many labels for a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Labels.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ReadManyNode(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read many labels for a node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Labels.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.ReadManyEdge(System.Guid,System.Guid,System.Guid,LiteGraph.Sdk.EnumerationOrderEnum,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Read many labels for an edge.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="order">Enumeration order.</param>
+            <param name="skip">Number of records to skip.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Labels.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all labels in a tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all labels in a graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.DeleteGraphLabels(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete graph labels.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.DeleteNodeLabels(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete node labels.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ILabelMethods.DeleteEdgeLabels(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete edge labels.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.INodeMethods">
             <summary>

@@ -118,6 +118,132 @@
             return await _Sdk.Post<EnumerationRequest, EnumerationResult<LabelMetadata>>(url, query, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<List<LabelMetadata>> ReadAllInTenant(
+            Guid tenantGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/labels/all";
+            
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) url += (hasQuery ? "&" : "?") + "order=" + order.ToString();
+            
+            return await _Sdk.GetMany<LabelMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<LabelMetadata>> ReadAllInGraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/labels/all";
+            
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) url += (hasQuery ? "&" : "?") + "order=" + order.ToString();
+            
+            return await _Sdk.GetMany<LabelMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<LabelMetadata>> ReadManyGraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/labels";
+            
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) url += (hasQuery ? "&" : "?") + "order=" + order.ToString();
+            
+            return await _Sdk.GetMany<LabelMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<LabelMetadata>> ReadManyNode(
+            Guid tenantGuid,
+            Guid graphGuid,
+            Guid nodeGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/labels";
+            
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) url += (hasQuery ? "&" : "?") + "order=" + order.ToString();
+            
+            return await _Sdk.GetMany<LabelMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<LabelMetadata>> ReadManyEdge(
+            Guid tenantGuid,
+            Guid graphGuid,
+            Guid edgeGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/" + edgeGuid + "/labels";
+            
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) url += (hasQuery ? "&" : "?") + "order=" + order.ToString();
+            
+            return await _Sdk.GetMany<LabelMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/labels/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/labels/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteGraphLabels(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/labels";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteNodeLabels(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/labels";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteEdgeLabels(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/" + edgeGuid + "/labels";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods
