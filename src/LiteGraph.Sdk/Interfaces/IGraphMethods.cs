@@ -228,5 +228,20 @@
             bool includeData = false,
             bool includeSubordinates = false,
             CancellationToken token = default);
+
+        /// <summary>
+        /// Read all graphs in tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Graphs.</returns>
+        Task<List<Graph>> ReadAllInTenant(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all graphs in tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default);
     }
 }

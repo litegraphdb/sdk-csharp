@@ -835,6 +835,12 @@
         <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ExportGraphToGexf(System.Guid,System.Guid,System.Boolean,System.Boolean,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.ReadAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.GraphMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.LabelMethods">
             <summary>
             Label methods.
@@ -1788,6 +1794,21 @@
             <param name="includeSubordinates">True to include subordinates (labels, tags, vectors).</param>
             <param name="token">Cancellation token.</param>
             <returns>GEXF XML string.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.ReadAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read all graphs in tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Graphs.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IGraphMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all graphs in tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.ILabelMethods">
             <summary>

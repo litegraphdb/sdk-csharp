@@ -327,6 +327,12 @@
                     case "graph index stats":
                         GraphVectorIndexStats();
                         break;
+                    case "graph read all in tenant":
+                        GraphReadAllInTenant();
+                        break;
+                    case "graph delete all in tenant":
+                        GraphDeleteAllInTenant();
+                        break;
 
                     case "node exists":
                         NodeExists();
@@ -2345,6 +2351,19 @@
             Guid tenantGuid = GetGuid("Tenant GUID:", _Tenant);
             Guid graphGuid = GetGuid("Graph GUID:", _Graph);
             EnumerateResult(_Sdk.Graph.GetVectorIndexStatistics(tenantGuid, graphGuid).Result);
+        }
+
+        private static void GraphReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Graph.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void GraphDeleteAllInTenant()
+        {
+            _Sdk.Graph.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All graphs in tenant deleted successfully.");
         }
 
         #endregion

@@ -243,6 +243,20 @@
             return null;
         }
 
+        /// <inheritdoc />
+        public async Task<List<Graph>> ReadAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/all";
+            return await _Sdk.GetMany<Graph>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods
