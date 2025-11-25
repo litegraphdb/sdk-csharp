@@ -1200,6 +1200,36 @@
         <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadManyGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadManyNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.ReadManyEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.DeleteGraphVectors(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.DeleteNodeVectors(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.VectorMethods.DeleteEdgeVectors(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IAdminMethods">
             <summary>
             Interface for admin methods.
@@ -2707,6 +2737,93 @@
             <param name="query">Enumeration query.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ReadAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read all vectors across tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vectors.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ReadAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read all vectors in specific graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vectors.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ReadManyGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read vectors attached to graph object.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vectors.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ReadManyNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read vectors attached to specific node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vectors.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.ReadManyEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read vectors attached to specific edge.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Vectors.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all vectors in tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all vectors in graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.DeleteGraphVectors(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete graph-specific vectors.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.DeleteNodeVectors(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete node-specific vectors.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.IVectorMethods.DeleteEdgeVectors(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete edge-specific vectors.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
         </member>
         <member name="T:LiteGraph.Sdk.LabelMetadata">
             <summary>

@@ -273,6 +273,37 @@
                         VectorDelete();
                         break;
 
+                    case "vector read all in tenant":
+                        VectorReadAllInTenant();
+                        break;
+                    case "vector read all in graph":
+                        VectorReadAllInGraph();
+                        break;
+                    case "vector read many graph":
+                        VectorReadManyGraph();
+                        break;
+                    case "vector read many node":
+                        VectorReadManyNode();
+                        break;
+                    case "vector read many edge":
+                        VectorReadManyEdge();
+                        break;
+                    case "vector delete all in tenant":
+                        VectorDeleteAllInTenant();
+                        break;
+                    case "vector delete all in graph":
+                        VectorDeleteAllInGraph();
+                        break;
+                    case "vector delete graph vectors":
+                        VectorDeleteGraphVectors();
+                        break;
+                    case "vector delete node vectors":
+                        VectorDeleteNodeVectors();
+                        break;
+                    case "vector delete edge vectors":
+                        VectorDeleteEdgeVectors();
+                        break;
+
                     case "graph exists":
                         GraphExists();
                         break;
@@ -1212,6 +1243,83 @@
             _Sdk.Vector.DeleteByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Wait();
+        }
+
+        private static void VectorReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Vector.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void VectorReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Vector.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void VectorReadManyGraph()
+        {
+            EnumerateResult(_Sdk.Vector.ReadManyGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void VectorReadManyNode()
+        {
+            EnumerateResult(_Sdk.Vector.ReadManyNode(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Result);
+        }
+
+        private static void VectorReadManyEdge()
+        {
+            EnumerateResult(_Sdk.Vector.ReadManyEdge(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Result);
+        }
+
+        private static void VectorDeleteAllInTenant()
+        {
+            _Sdk.Vector.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All vectors in tenant deleted successfully.");
+        }
+
+        private static void VectorDeleteAllInGraph()
+        {
+            _Sdk.Vector.DeleteAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("All vectors in graph deleted successfully.");
+        }
+
+        private static void VectorDeleteGraphVectors()
+        {
+            _Sdk.Vector.DeleteGraphVectors(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("Graph vectors deleted successfully.");
+        }
+
+        private static void VectorDeleteNodeVectors()
+        {
+            _Sdk.Vector.DeleteNodeVectors(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Wait();
+            Console.WriteLine("Node vectors deleted successfully.");
+        }
+
+        private static void VectorDeleteEdgeVectors()
+        {
+            _Sdk.Vector.DeleteEdgeVectors(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Wait();
+            Console.WriteLine("Edge vectors deleted successfully.");
         }
 
         #endregion
