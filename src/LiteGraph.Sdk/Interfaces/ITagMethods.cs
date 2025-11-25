@@ -111,5 +111,92 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
         Task<EnumerationResult<TagMetadata>> Enumerate(EnumerationRequest query, CancellationToken token = default);
+
+        /// <summary>
+        /// Read all tags across tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Tags.</returns>
+        Task<List<TagMetadata>> ReadAllInTenant(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read all tags in specific graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Tags.</returns>
+        Task<List<TagMetadata>> ReadAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read tags attached to graph object.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Tags.</returns>
+        Task<List<TagMetadata>> ReadManyGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read tags attached to specific node.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="nodeGuid">Node GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Tags.</returns>
+        Task<List<TagMetadata>> ReadManyNode(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read tags attached to specific edge.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="edgeGuid">Edge GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Tags.</returns>
+        Task<List<TagMetadata>> ReadManyEdge(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all tags in tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all tags in graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete graph-specific tags.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteGraphTags(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete node-specific tags.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="nodeGuid">Node GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteNodeTags(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete edge-specific tags.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="edgeGuid">Edge GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteEdgeTags(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default);
     }
 }

@@ -220,6 +220,37 @@
                         TagDelete();
                         break;
 
+                    case "tag read all in tenant":
+                        TagReadAllInTenant();
+                        break;
+                    case "tag read all in graph":
+                        TagReadAllInGraph();
+                        break;
+                    case "tag read many graph":
+                        TagReadManyGraph();
+                        break;
+                    case "tag read many node":
+                        TagReadManyNode();
+                        break;
+                    case "tag read many edge":
+                        TagReadManyEdge();
+                        break;
+                    case "tag delete all in tenant":
+                        TagDeleteAllInTenant();
+                        break;
+                    case "tag delete all in graph":
+                        TagDeleteAllInGraph();
+                        break;
+                    case "tag delete graph tags":
+                        TagDeleteGraphTags();
+                        break;
+                    case "tag delete node tags":
+                        TagDeleteNodeTags();
+                        break;
+                    case "tag delete edge tags":
+                        TagDeleteEdgeTags();
+                        break;
+
                     case "vector exists":
                         VectorExists();
                         break;
@@ -1035,6 +1066,83 @@
             _Sdk.Tag.DeleteByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Wait();
+        }
+
+        private static void TagReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Tag.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void TagReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Tag.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void TagReadManyGraph()
+        {
+            EnumerateResult(_Sdk.Tag.ReadManyGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void TagReadManyNode()
+        {
+            EnumerateResult(_Sdk.Tag.ReadManyNode(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Result);
+        }
+
+        private static void TagReadManyEdge()
+        {
+            EnumerateResult(_Sdk.Tag.ReadManyEdge(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Result);
+        }
+
+        private static void TagDeleteAllInTenant()
+        {
+            _Sdk.Tag.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All tags in tenant deleted successfully.");
+        }
+
+        private static void TagDeleteAllInGraph()
+        {
+            _Sdk.Tag.DeleteAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("All tags in graph deleted successfully.");
+        }
+
+        private static void TagDeleteGraphTags()
+        {
+            _Sdk.Tag.DeleteGraphTags(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("Graph tags deleted successfully.");
+        }
+
+        private static void TagDeleteNodeTags()
+        {
+            _Sdk.Tag.DeleteNodeTags(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Wait();
+            Console.WriteLine("Node tags deleted successfully.");
+        }
+
+        private static void TagDeleteEdgeTags()
+        {
+            _Sdk.Tag.DeleteEdgeTags(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Wait();
+            Console.WriteLine("Edge tags deleted successfully.");
         }
 
         #endregion

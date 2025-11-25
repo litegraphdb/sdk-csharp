@@ -1024,6 +1024,36 @@
         <member name="M:LiteGraph.Sdk.Implementations.TagMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadManyGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadManyNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.ReadManyEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.DeleteGraphTags(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.DeleteNodeTags(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.TagMethods.DeleteEdgeTags(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.TenantMethods">
             <summary>
             Tenant methods.
@@ -2282,6 +2312,93 @@
             <param name="query">Enumeration query.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ReadAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read all tags across tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tags.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ReadAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read all tags in specific graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tags.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ReadManyGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read tags attached to graph object.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tags.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ReadManyNode(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read tags attached to specific node.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tags.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.ReadManyEdge(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Read tags attached to specific edge.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Tags.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all tags in tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.DeleteAllInGraph(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all tags in graph.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.DeleteGraphTags(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete graph-specific tags.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.DeleteNodeTags(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete node-specific tags.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="nodeGuid">Node GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ITagMethods.DeleteEdgeTags(System.Guid,System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete edge-specific tags.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="graphGuid">Graph GUID.</param>
+            <param name="edgeGuid">Edge GUID.</param>
+            <param name="token">Cancellation token.</param>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.ITenantMethods">
             <summary>
