@@ -678,6 +678,15 @@
         <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.Enumerate(LiteGraph.Sdk.EnumerationRequest,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.ReadByBearerToken(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:LiteGraph.Sdk.Implementations.CredentialMethods.DeleteByUser(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
         <member name="T:LiteGraph.Sdk.Implementations.EdgeMethods">
             <summary>
             Edge methods.
@@ -1234,6 +1243,29 @@
             <param name="query">Enumeration query.</param>
             <param name="token">Cancellation token.</param>
             <returns>Enumeration result.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.ReadByBearerToken(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Read a credential by bearer token.
+            </summary>
+            <param name="bearerToken">Bearer token.</param>
+            <param name="token">Cancellation token.</param>
+            <returns>Credential.</returns>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.DeleteAllInTenant(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all credentials in a tenant.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="token">Cancellation token.</param>
+        </member>
+        <member name="M:LiteGraph.Sdk.Interfaces.ICredentialMethods.DeleteByUser(System.Guid,System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Delete all credentials for a user.
+            </summary>
+            <param name="tenantGuid">Tenant GUID.</param>
+            <param name="userGuid">User GUID.</param>
+            <param name="token">Cancellation token.</param>
         </member>
         <member name="T:LiteGraph.Sdk.Interfaces.IEdgeMethods">
             <summary>

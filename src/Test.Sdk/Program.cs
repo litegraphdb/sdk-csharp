@@ -136,6 +136,15 @@
                     case "cred delete":
                         CredentialDelete();
                         break;
+                    case "cred read bearer":
+                        CredentialReadByBearerToken();
+                        break;
+                    case "cred delete all":
+                        CredentialDeleteAllInTenant();
+                        break;
+                    case "cred delete user":
+                        CredentialDeleteByUser();
+                        break;
 
                     case "label exists":
                         LabelExists();
@@ -366,7 +375,7 @@
             Console.WriteLine("Administrative commands (requires administrative bearer token):");
             Console.WriteLine("  Tenants                    : tenant [create|update|all|read|enum|stats|delete|exists]");
             Console.WriteLine("  Users                      : user [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Credentials                : cred [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Credentials                : cred [create|update|all|read|enum|delete|exists|read bearer|delete all|delete user]");
             Console.WriteLine("  Labels                     : label [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("  Tags                       : tag [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("  Vectors                    : vector [create|update|all|read|enum|delete|exists]");
@@ -755,6 +764,27 @@
             _Sdk.Credential.DeleteByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Wait();
+        }
+
+        private static void CredentialReadByBearerToken()
+        {
+            string bearerToken = Inputty.GetString("Bearer Token:", null, false);
+            EnumerateResult(_Sdk.Credential.ReadByBearerToken(bearerToken).Result);
+        }
+
+        private static void CredentialDeleteAllInTenant()
+        {
+            _Sdk.Credential.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All credentials in tenant deleted successfully.");
+        }
+
+        private static void CredentialDeleteByUser()
+        {
+            _Sdk.Credential.DeleteByUser(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("User GUID:")).Wait();
+            Console.WriteLine("All credentials for user deleted successfully.");
         }
 
         #endregion
