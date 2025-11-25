@@ -336,6 +336,21 @@
                     case "edges between":
                         EdgesBetween();
                         break;
+                    case "edge all tenant":
+                        EdgeReadAllInTenant();
+                        break;
+                    case "edge all graph":
+                        EdgeReadAllInGraph();
+                        break;
+                    case "edge delete all tenant":
+                        EdgeDeleteAllInTenant();
+                        break;
+                    case "edge delete node":
+                        EdgeDeleteNodeEdges();
+                        break;
+                    case "edge delete nodes":
+                        EdgeDeleteNodeEdgesMany();
+                        break;
 
                     case "route":
                         Route();
@@ -383,7 +398,7 @@
             Console.WriteLine("User commands:");
             Console.WriteLine("  Graphs                     : graph [create|update|all|read|enum|stats|delete|exists|search|subgraph|subgraph stats|enable index|rebuild index|delete index|read index config|index stats]");
             Console.WriteLine("  Nodes                      : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
-            Console.WriteLine("  Edges                      : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
+            Console.WriteLine("  Edges                      : edge [create|update|all|read|enum|delete|exists|from|to|search|between|all tenant|all graph|delete all tenant|delete node|delete nodes]");
             Console.WriteLine("  Vector search              : vsearch");
             Console.WriteLine("");
             Console.WriteLine("Test commands:");
@@ -2389,6 +2404,64 @@
                     GetGuid("To GUID   :")
                 )
                 .Result);
+        }
+
+        private static void EdgeReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Edge.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void EdgeReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Edge.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void EdgeDeleteAllInTenant()
+        {
+            _Sdk.Edge.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All edges in tenant deleted successfully.");
+        }
+
+        private static void EdgeDeleteNodeEdges()
+        {
+            _Sdk.Edge.DeleteNodeEdges(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Wait();
+            Console.WriteLine("All edges for node deleted successfully.");
+        }
+
+        private static void EdgeDeleteNodeEdgesMany()
+        {
+            string nodeGuidsInput = Inputty.GetString("Node GUIDs (comma-separated):", null, false);
+            if (string.IsNullOrEmpty(nodeGuidsInput)) return;
+
+            var nodeGuidsStrings = nodeGuidsInput.Split(',');
+            var nodeGuids = new List<Guid>();
+            
+            foreach (string guidString in nodeGuidsStrings)
+            {
+                if (Guid.TryParse(guidString.Trim(), out Guid guid))
+                {
+                    nodeGuids.Add(guid);
+                }
+            }
+
+            if (nodeGuids.Count == 0)
+            {
+                Console.WriteLine("No valid GUIDs provided.");
+                return;
+            }
+
+            _Sdk.Edge.DeleteNodeEdgesMany(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                nodeGuids).Wait();
+            Console.WriteLine($"All edges for {nodeGuids.Count} nodes deleted successfully.");
         }
 
         #endregion
