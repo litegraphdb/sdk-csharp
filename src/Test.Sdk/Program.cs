@@ -331,6 +331,21 @@
                     case "node children":
                         NodeChildren();
                         break;
+                    case "node all tenant":
+                        NodeReadAllInTenant();
+                        break;
+                    case "node all graph":
+                        NodeReadAllInGraph();
+                        break;
+                    case "node most connected":
+                        NodeReadMostConnected();
+                        break;
+                    case "node least connected":
+                        NodeReadLeastConnected();
+                        break;
+                    case "node delete all tenant":
+                        NodeDeleteAllInTenant();
+                        break;
 
                     case "edge exists":
                         EdgeExists();
@@ -427,7 +442,7 @@
             Console.WriteLine("");
             Console.WriteLine("User commands:");
             Console.WriteLine("  Graphs                     : graph [create|update|all|read|enum|stats|delete|exists|search|subgraph|subgraph stats|enable index|rebuild index|delete index|read index config|index stats]");
-            Console.WriteLine("  Nodes                      : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
+            Console.WriteLine("  Nodes                      : node [create|update|all|read|enum|delete|exists|search|edges|parents|children|all tenant|all graph|most connected|least connected|delete all tenant]");
             Console.WriteLine("  Edges                      : edge [create|update|all|read|enum|delete|exists|from|to|search|between|all tenant|all graph|delete all tenant|delete node|delete nodes]");
             Console.WriteLine("  Vector search              : vsearch");
             Console.WriteLine("");
@@ -2368,6 +2383,40 @@
                     GetGuid("Node GUID:")
                 )
                 .Result);
+        }
+
+        private static void NodeReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Node.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void NodeReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Node.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void NodeReadMostConnected()
+        {
+            EnumerateResult(_Sdk.Node.ReadMostConnected(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void NodeReadLeastConnected()
+        {
+            EnumerateResult(_Sdk.Node.ReadLeastConnected(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void NodeDeleteAllInTenant()
+        {
+            _Sdk.Node.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All nodes in tenant deleted successfully.");
         }
 
         #endregion
