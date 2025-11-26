@@ -283,7 +283,7 @@
         /// <inheritdoc />
         public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
         {
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/edges";
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/edges/all";
             await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
 
