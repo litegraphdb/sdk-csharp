@@ -247,7 +247,7 @@
             CancellationToken token = default)
         {
             if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/edges";
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/edges/all";
 
             bool hasQuery = false;
             if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }

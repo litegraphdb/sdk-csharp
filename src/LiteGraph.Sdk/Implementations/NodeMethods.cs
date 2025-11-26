@@ -237,7 +237,7 @@
             CancellationToken token = default)
         {
             if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/nodes";
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/nodes/all";
 
             bool hasQuery = false;
             if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
@@ -317,7 +317,7 @@
         /// <inheritdoc />
         public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
         {
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/nodes";
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/nodes/all";
             await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
 
