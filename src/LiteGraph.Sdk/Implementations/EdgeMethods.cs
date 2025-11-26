@@ -293,8 +293,8 @@
             if (nodeGuids == null) throw new ArgumentNullException(nameof(nodeGuids));
             if (nodeGuids.Count < 1) return;
 
-            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/edges";
-            await _Sdk.Delete<List<Guid>>(url, nodeGuids, token).ConfigureAwait(false);
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/edges/bulk?guids=" + string.Join(",", nodeGuids);
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
         }
 
         #endregion

@@ -112,13 +112,9 @@
         public async Task<Credential> ReadByBearerToken(string bearerToken, CancellationToken token = default)
         {
             if (string.IsNullOrEmpty(bearerToken)) throw new ArgumentNullException(nameof(bearerToken));
-            
-            string url = _Sdk.Endpoint + "v1.0/credentials/bearer";
-            Dictionary<string, string> headers = new Dictionary<string, string>
-            {
-                ["Authorization"] = "Bearer " + bearerToken
-            };
-            return await _Sdk.Get<Credential>(url, headers, token).ConfigureAwait(false);
+
+            string url = _Sdk.Endpoint + $"v1.0/credentials/bearer/{bearerToken}";
+            return await _Sdk.Get<Credential>(url, null, token).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
