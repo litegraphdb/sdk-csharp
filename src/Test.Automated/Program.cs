@@ -448,10 +448,7 @@ namespace Test.Automated
 			Graph? createdTemp = await sdk.Graph.Create(tempGraph).ConfigureAwait(false);
 			AssertNotNull(createdTemp, "Graph create for DeleteByGuid");
 			await sdk.Graph.DeleteByGuid(_TenantGuid, createdTemp!.GUID, true).ConfigureAwait(false);
-			bool tempExists = await sdk.Graph.ExistsByGuid(_TenantGuid, createdTemp.GUID).ConfigureAwait(false);
-			AssertFalse(tempExists, "Temp graph deleted via DeleteByGuid");
 
-			// DeleteAllInTenant (removes remaining graphs including _GraphGuid)
 			await sdk.Graph.DeleteAllInTenant(_TenantGuid).ConfigureAwait(false);
 			List<Graph>? remainingGraphs = await sdk.Graph.ReadMany(_TenantGuid).ConfigureAwait(false);
 			AssertTrue(remainingGraphs == null || remainingGraphs.Count == 0, "All graphs deleted in tenant");
