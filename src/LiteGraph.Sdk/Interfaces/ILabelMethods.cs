@@ -105,5 +105,128 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
         Task<EnumerationResult<LabelMetadata>> Enumerate(EnumerationRequest query, CancellationToken token = default);
+
+        /// <summary>
+        /// Read all labels in a tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">Number of records to skip.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Labels.</returns>
+        Task<List<LabelMetadata>> ReadAllInTenant(
+            Guid tenantGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Read all labels in a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">Number of records to skip.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Labels.</returns>
+        Task<List<LabelMetadata>> ReadAllInGraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Read many labels for a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">Number of records to skip.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Labels.</returns>
+        Task<List<LabelMetadata>> ReadManyGraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Read many labels for a node.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="nodeGuid">Node GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">Number of records to skip.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Labels.</returns>
+        Task<List<LabelMetadata>> ReadManyNode(
+            Guid tenantGuid,
+            Guid graphGuid,
+            Guid nodeGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Read many labels for an edge.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="edgeGuid">Edge GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">Number of records to skip.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Labels.</returns>
+        Task<List<LabelMetadata>> ReadManyEdge(
+            Guid tenantGuid,
+            Guid graphGuid,
+            Guid edgeGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all labels in a tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all labels in a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete graph labels.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteGraphLabels(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete node labels.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="nodeGuid">Node GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteNodeLabels(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete edge labels.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="edgeGuid">Edge GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteEdgeLabels(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default);
     }
 }

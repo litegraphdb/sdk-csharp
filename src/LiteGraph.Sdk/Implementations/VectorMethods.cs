@@ -151,6 +151,76 @@
             return await _Sdk.Post<EnumerationRequest, EnumerationResult<VectorMetadata>>(url, query, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<List<VectorMetadata>> ReadAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/vectors/all";
+            return await _Sdk.GetMany<VectorMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<VectorMetadata>> ReadAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectors/all";
+            return await _Sdk.GetMany<VectorMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<VectorMetadata>> ReadManyGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectors";
+            return await _Sdk.GetMany<VectorMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<VectorMetadata>> ReadManyNode(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/vectors";
+            return await _Sdk.GetMany<VectorMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<VectorMetadata>> ReadManyEdge(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/" + edgeGuid + "/vectors";
+            return await _Sdk.GetMany<VectorMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/vectors/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectors/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteGraphVectors(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/vectors";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteNodeVectors(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/vectors";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteEdgeVectors(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/" + edgeGuid + "/vectors";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

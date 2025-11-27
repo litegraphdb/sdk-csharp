@@ -136,6 +136,15 @@
                     case "cred delete":
                         CredentialDelete();
                         break;
+                    case "cred read bearer":
+                        CredentialReadByBearerToken();
+                        break;
+                    case "cred delete all":
+                        CredentialDeleteAllInTenant();
+                        break;
+                    case "cred delete user":
+                        CredentialDeleteByUser();
+                        break;
 
                     case "label exists":
                         LabelExists();
@@ -157,6 +166,36 @@
                         break;
                     case "label delete":
                         LabelDelete();
+                        break;
+                    case "label all tenant":
+                        LabelReadAllInTenant();
+                        break;
+                    case "label all graph":
+                        LabelReadAllInGraph();
+                        break;
+                    case "label graph":
+                        LabelReadManyGraph();
+                        break;
+                    case "label node":
+                        LabelReadManyNode();
+                        break;
+                    case "label edge":
+                        LabelReadManyEdge();
+                        break;
+                    case "label delete all tenant":
+                        LabelDeleteAllInTenant();
+                        break;
+                    case "label delete all graph":
+                        LabelDeleteAllInGraph();
+                        break;
+                    case "label delete graph":
+                        LabelDeleteGraphLabels();
+                        break;
+                    case "label delete node":
+                        LabelDeleteNodeLabels();
+                        break;
+                    case "label delete edge":
+                        LabelDeleteEdgeLabels();
                         break;
 
                     case "tag exists":
@@ -181,6 +220,37 @@
                         TagDelete();
                         break;
 
+                    case "tag read all in tenant":
+                        TagReadAllInTenant();
+                        break;
+                    case "tag read all in graph":
+                        TagReadAllInGraph();
+                        break;
+                    case "tag read many graph":
+                        TagReadManyGraph();
+                        break;
+                    case "tag read many node":
+                        TagReadManyNode();
+                        break;
+                    case "tag read many edge":
+                        TagReadManyEdge();
+                        break;
+                    case "tag delete all in tenant":
+                        TagDeleteAllInTenant();
+                        break;
+                    case "tag delete all in graph":
+                        TagDeleteAllInGraph();
+                        break;
+                    case "tag delete graph tags":
+                        TagDeleteGraphTags();
+                        break;
+                    case "tag delete node tags":
+                        TagDeleteNodeTags();
+                        break;
+                    case "tag delete edge tags":
+                        TagDeleteEdgeTags();
+                        break;
+
                     case "vector exists":
                         VectorExists();
                         break;
@@ -201,6 +271,37 @@
                         break;
                     case "vector delete":
                         VectorDelete();
+                        break;
+
+                    case "vector read all in tenant":
+                        VectorReadAllInTenant();
+                        break;
+                    case "vector read all in graph":
+                        VectorReadAllInGraph();
+                        break;
+                    case "vector read many graph":
+                        VectorReadManyGraph();
+                        break;
+                    case "vector read many node":
+                        VectorReadManyNode();
+                        break;
+                    case "vector read many edge":
+                        VectorReadManyEdge();
+                        break;
+                    case "vector delete all in tenant":
+                        VectorDeleteAllInTenant();
+                        break;
+                    case "vector delete all in graph":
+                        VectorDeleteAllInGraph();
+                        break;
+                    case "vector delete graph vectors":
+                        VectorDeleteGraphVectors();
+                        break;
+                    case "vector delete node vectors":
+                        VectorDeleteNodeVectors();
+                        break;
+                    case "vector delete edge vectors":
+                        VectorDeleteEdgeVectors();
                         break;
 
                     case "graph exists":
@@ -257,6 +358,12 @@
                     case "graph index stats":
                         GraphVectorIndexStats();
                         break;
+                    case "graph read all in tenant":
+                        GraphReadAllInTenant();
+                        break;
+                    case "graph delete all in tenant":
+                        GraphDeleteAllInTenant();
+                        break;
 
                     case "node exists":
                         NodeExists();
@@ -292,6 +399,21 @@
                     case "node children":
                         NodeChildren();
                         break;
+                    case "node all tenant":
+                        NodeReadAllInTenant();
+                        break;
+                    case "node all graph":
+                        NodeReadAllInGraph();
+                        break;
+                    case "node most connected":
+                        NodeReadMostConnected();
+                        break;
+                    case "node least connected":
+                        NodeReadLeastConnected();
+                        break;
+                    case "node delete all tenant":
+                        NodeDeleteAllInTenant();
+                        break;
 
                     case "edge exists":
                         EdgeExists();
@@ -326,6 +448,21 @@
                         break;
                     case "edges between":
                         EdgesBetween();
+                        break;
+                    case "edge all tenant":
+                        EdgeReadAllInTenant();
+                        break;
+                    case "edge all graph":
+                        EdgeReadAllInGraph();
+                        break;
+                    case "edge delete all tenant":
+                        EdgeDeleteAllInTenant();
+                        break;
+                    case "edge delete node":
+                        EdgeDeleteNodeEdges();
+                        break;
+                    case "edge delete nodes":
+                        EdgeDeleteNodeEdgesMany();
                         break;
 
                     case "route":
@@ -366,15 +503,15 @@
             Console.WriteLine("Administrative commands (requires administrative bearer token):");
             Console.WriteLine("  Tenants                    : tenant [create|update|all|read|enum|stats|delete|exists]");
             Console.WriteLine("  Users                      : user [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Credentials                : cred [create|update|all|read|enum|delete|exists]");
-            Console.WriteLine("  Labels                     : label [create|update|all|read|enum|delete|exists]");
+            Console.WriteLine("  Credentials                : cred [create|update|all|read|enum|delete|exists|read bearer|delete all|delete user]");
+            Console.WriteLine("  Labels                     : label [create|update|all|read|enum|delete|exists|all tenant|all graph|graph|node|edge|delete all tenant|delete all graph|delete graph|delete node|delete edge]");
             Console.WriteLine("  Tags                       : tag [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("  Vectors                    : vector [create|update|all|read|enum|delete|exists]");
             Console.WriteLine("");
             Console.WriteLine("User commands:");
             Console.WriteLine("  Graphs                     : graph [create|update|all|read|enum|stats|delete|exists|search|subgraph|subgraph stats|enable index|rebuild index|delete index|read index config|index stats]");
-            Console.WriteLine("  Nodes                      : node [create|update|all|read|enum|delete|exists|search|edges|parents|children]");
-            Console.WriteLine("  Edges                      : edge [create|update|all|read|enum|delete|exists|from|to|search|between]");
+            Console.WriteLine("  Nodes                      : node [create|update|all|read|enum|delete|exists|search|edges|parents|children|all tenant|all graph|most connected|least connected|delete all tenant]");
+            Console.WriteLine("  Edges                      : edge [create|update|all|read|enum|delete|exists|from|to|search|between|all tenant|all graph|delete all tenant|delete node|delete nodes]");
             Console.WriteLine("  Vector search              : vsearch");
             Console.WriteLine("");
             Console.WriteLine("Test commands:");
@@ -757,6 +894,27 @@
                 GetGuid("GUID:")).Wait();
         }
 
+        private static void CredentialReadByBearerToken()
+        {
+            string bearerToken = Inputty.GetString("Bearer Token:", null, false);
+            EnumerateResult(_Sdk.Credential.ReadByBearerToken(bearerToken).Result);
+        }
+
+        private static void CredentialDeleteAllInTenant()
+        {
+            _Sdk.Credential.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All credentials in tenant deleted successfully.");
+        }
+
+        private static void CredentialDeleteByUser()
+        {
+            _Sdk.Credential.DeleteByUser(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("User GUID:")).Wait();
+            Console.WriteLine("All credentials for user deleted successfully.");
+        }
+
         #endregion
 
         #region Label
@@ -811,6 +969,83 @@
             _Sdk.Label.DeleteByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Wait();
+        }
+
+        private static void LabelReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Label.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void LabelReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Label.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void LabelReadManyGraph()
+        {
+            EnumerateResult(_Sdk.Label.ReadManyGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void LabelReadManyNode()
+        {
+            EnumerateResult(_Sdk.Label.ReadManyNode(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Result);
+        }
+
+        private static void LabelReadManyEdge()
+        {
+            EnumerateResult(_Sdk.Label.ReadManyEdge(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Result);
+        }
+
+        private static void LabelDeleteAllInTenant()
+        {
+            _Sdk.Label.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All labels in tenant deleted successfully.");
+        }
+
+        private static void LabelDeleteAllInGraph()
+        {
+            _Sdk.Label.DeleteAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("All labels in graph deleted successfully.");
+        }
+
+        private static void LabelDeleteGraphLabels()
+        {
+            _Sdk.Label.DeleteGraphLabels(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("Graph labels deleted successfully.");
+        }
+
+        private static void LabelDeleteNodeLabels()
+        {
+            _Sdk.Label.DeleteNodeLabels(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Wait();
+            Console.WriteLine("Node labels deleted successfully.");
+        }
+
+        private static void LabelDeleteEdgeLabels()
+        {
+            _Sdk.Label.DeleteEdgeLabels(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Wait();
+            Console.WriteLine("Edge labels deleted successfully.");
         }
 
         #endregion
@@ -868,6 +1103,83 @@
             _Sdk.Tag.DeleteByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Wait();
+        }
+
+        private static void TagReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Tag.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void TagReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Tag.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void TagReadManyGraph()
+        {
+            EnumerateResult(_Sdk.Tag.ReadManyGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void TagReadManyNode()
+        {
+            EnumerateResult(_Sdk.Tag.ReadManyNode(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Result);
+        }
+
+        private static void TagReadManyEdge()
+        {
+            EnumerateResult(_Sdk.Tag.ReadManyEdge(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Result);
+        }
+
+        private static void TagDeleteAllInTenant()
+        {
+            _Sdk.Tag.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All tags in tenant deleted successfully.");
+        }
+
+        private static void TagDeleteAllInGraph()
+        {
+            _Sdk.Tag.DeleteAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("All tags in graph deleted successfully.");
+        }
+
+        private static void TagDeleteGraphTags()
+        {
+            _Sdk.Tag.DeleteGraphTags(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("Graph tags deleted successfully.");
+        }
+
+        private static void TagDeleteNodeTags()
+        {
+            _Sdk.Tag.DeleteNodeTags(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Wait();
+            Console.WriteLine("Node tags deleted successfully.");
+        }
+
+        private static void TagDeleteEdgeTags()
+        {
+            _Sdk.Tag.DeleteEdgeTags(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Wait();
+            Console.WriteLine("Edge tags deleted successfully.");
         }
 
         #endregion
@@ -931,6 +1243,83 @@
             _Sdk.Vector.DeleteByGuid(
                 GetGuid("Tenant GUID:", _Tenant),
                 GetGuid("GUID:")).Wait();
+        }
+
+        private static void VectorReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Vector.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void VectorReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Vector.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void VectorReadManyGraph()
+        {
+            EnumerateResult(_Sdk.Vector.ReadManyGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void VectorReadManyNode()
+        {
+            EnumerateResult(_Sdk.Vector.ReadManyNode(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Result);
+        }
+
+        private static void VectorReadManyEdge()
+        {
+            EnumerateResult(_Sdk.Vector.ReadManyEdge(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Result);
+        }
+
+        private static void VectorDeleteAllInTenant()
+        {
+            _Sdk.Vector.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All vectors in tenant deleted successfully.");
+        }
+
+        private static void VectorDeleteAllInGraph()
+        {
+            _Sdk.Vector.DeleteAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("All vectors in graph deleted successfully.");
+        }
+
+        private static void VectorDeleteGraphVectors()
+        {
+            _Sdk.Vector.DeleteGraphVectors(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Wait();
+            Console.WriteLine("Graph vectors deleted successfully.");
+        }
+
+        private static void VectorDeleteNodeVectors()
+        {
+            _Sdk.Vector.DeleteNodeVectors(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Wait();
+            Console.WriteLine("Node vectors deleted successfully.");
+        }
+
+        private static void VectorDeleteEdgeVectors()
+        {
+            _Sdk.Vector.DeleteEdgeVectors(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Edge GUID:")).Wait();
+            Console.WriteLine("Edge vectors deleted successfully.");
         }
 
         #endregion
@@ -2072,6 +2461,19 @@
             EnumerateResult(_Sdk.Graph.GetVectorIndexStatistics(tenantGuid, graphGuid).Result);
         }
 
+        private static void GraphReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Graph.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void GraphDeleteAllInTenant()
+        {
+            _Sdk.Graph.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All graphs in tenant deleted successfully.");
+        }
+
         #endregion
 
         #region Node
@@ -2218,6 +2620,40 @@
                 .Result);
         }
 
+        private static void NodeReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Node.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void NodeReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Node.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void NodeReadMostConnected()
+        {
+            EnumerateResult(_Sdk.Node.ReadMostConnected(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void NodeReadLeastConnected()
+        {
+            EnumerateResult(_Sdk.Node.ReadLeastConnected(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void NodeDeleteAllInTenant()
+        {
+            _Sdk.Node.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All nodes in tenant deleted successfully.");
+        }
+
         #endregion
 
         #region Edge
@@ -2359,6 +2795,64 @@
                     GetGuid("To GUID   :")
                 )
                 .Result);
+        }
+
+        private static void EdgeReadAllInTenant()
+        {
+            EnumerateResult(_Sdk.Edge.ReadAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Result);
+        }
+
+        private static void EdgeReadAllInGraph()
+        {
+            EnumerateResult(_Sdk.Edge.ReadAllInGraph(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph)).Result);
+        }
+
+        private static void EdgeDeleteAllInTenant()
+        {
+            _Sdk.Edge.DeleteAllInTenant(
+                GetGuid("Tenant GUID:", _Tenant)).Wait();
+            Console.WriteLine("All edges in tenant deleted successfully.");
+        }
+
+        private static void EdgeDeleteNodeEdges()
+        {
+            _Sdk.Edge.DeleteNodeEdges(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                GetGuid("Node GUID:")).Wait();
+            Console.WriteLine("All edges for node deleted successfully.");
+        }
+
+        private static void EdgeDeleteNodeEdgesMany()
+        {
+            string nodeGuidsInput = Inputty.GetString("Node GUIDs (comma-separated):", null, false);
+            if (string.IsNullOrEmpty(nodeGuidsInput)) return;
+
+            var nodeGuidsStrings = nodeGuidsInput.Split(',');
+            var nodeGuids = new List<Guid>();
+            
+            foreach (string guidString in nodeGuidsStrings)
+            {
+                if (Guid.TryParse(guidString.Trim(), out Guid guid))
+                {
+                    nodeGuids.Add(guid);
+                }
+            }
+
+            if (nodeGuids.Count == 0)
+            {
+                Console.WriteLine("No valid GUIDs provided.");
+                return;
+            }
+
+            _Sdk.Edge.DeleteNodeEdgesMany(
+                GetGuid("Tenant GUID:", _Tenant),
+                GetGuid("Graph GUID:", _Graph),
+                nodeGuids).Wait();
+            Console.WriteLine($"All edges for {nodeGuids.Count} nodes deleted successfully.");
         }
 
         #endregion

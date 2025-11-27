@@ -126,6 +126,76 @@
             return await _Sdk.Post<EnumerationRequest, EnumerationResult<TagMetadata>>(url, query, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<List<TagMetadata>> ReadAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/tags/all";
+            return await _Sdk.GetMany<TagMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<TagMetadata>> ReadAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/tags/all";
+            return await _Sdk.GetMany<TagMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<TagMetadata>> ReadManyGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/tags";
+            return await _Sdk.GetMany<TagMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<TagMetadata>> ReadManyNode(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/tags";
+            return await _Sdk.GetMany<TagMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<TagMetadata>> ReadManyEdge(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/" + edgeGuid + "/tags";
+            return await _Sdk.GetMany<TagMetadata>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/tags/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/tags/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteGraphTags(Guid tenantGuid, Guid graphGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/tags";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteNodeTags(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/" + nodeGuid + "/tags";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteEdgeTags(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/" + edgeGuid + "/tags";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

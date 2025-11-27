@@ -237,6 +237,66 @@
             return await _Sdk.Post<EnumerationRequest, EnumerationResult<Edge>>(url, query, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<List<Edge>> ReadAllInTenant(
+            Guid tenantGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/edges/all";
+
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
+
+            return await _Sdk.GetMany<Edge>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<Edge>> ReadAllInGraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/edges/all";
+
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
+
+            return await _Sdk.GetMany<Edge>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/edges/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteNodeEdgesMany(Guid tenantGuid, Guid graphGuid, List<Guid> nodeGuids, CancellationToken token = default)
+        {
+            if (nodeGuids == null) throw new ArgumentNullException(nameof(nodeGuids));
+            if (nodeGuids.Count < 1) return;
+
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/edges/bulk";
+            await _Sdk.Delete<List<Guid>>(url, nodeGuids, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

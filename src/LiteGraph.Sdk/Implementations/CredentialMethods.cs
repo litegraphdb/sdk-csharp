@@ -108,6 +108,29 @@
             return await _Sdk.Post<EnumerationRequest, EnumerationResult<Credential>>(url, query, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<Credential> ReadByBearerToken(string bearerToken, CancellationToken token = default)
+        {
+            if (string.IsNullOrEmpty(bearerToken)) throw new ArgumentNullException(nameof(bearerToken));
+
+            string url = _Sdk.Endpoint + $"v1.0/credentials/bearer/{bearerToken}";
+            return await _Sdk.Get<Credential>(url, null, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/credentials";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteByUser(Guid tenantGuid, Guid userGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/users/" + userGuid + "/credentials";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

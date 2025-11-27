@@ -88,5 +88,28 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
         Task<EnumerationResult<Credential>> Enumerate(EnumerationRequest query, CancellationToken token = default);
+
+        /// <summary>
+        /// Read a credential by bearer token.
+        /// </summary>
+        /// <param name="bearerToken">Bearer token.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Credential.</returns>
+        Task<Credential> ReadByBearerToken(string bearerToken, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all credentials in a tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all credentials for a user.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="userGuid">User GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteByUser(Guid tenantGuid, Guid userGuid, CancellationToken token = default);
     }
 }

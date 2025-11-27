@@ -227,6 +227,100 @@
             return await _Sdk.Post<EnumerationRequest, EnumerationResult<Node>>(url, query, token).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<List<Node>> ReadAllInTenant(
+            Guid tenantGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/nodes/all";
+
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
+
+            return await _Sdk.GetMany<Node>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<Node>> ReadAllInGraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/all";
+
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
+
+            return await _Sdk.GetMany<Node>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<Node>> ReadMostConnected(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/mostconnected";
+
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
+
+            return await _Sdk.GetMany<Node>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<List<Node>> ReadLeastConnected(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default)
+        {
+            if (skip < 0) throw new ArgumentOutOfRangeException(nameof(skip));
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/graphs/" + graphGuid + "/nodes/leastconnected";
+
+            bool hasQuery = false;
+            if (skip > 0) { url += "?skip=" + skip; hasQuery = true; }
+            if (order != EnumerationOrderEnum.CreatedDescending) { url += (hasQuery ? "&" : "?") + "order=" + order.ToString(); hasQuery = true; }
+            if (includeData) { url += (hasQuery ? "&" : "?") + "incldata"; hasQuery = true; }
+            if (includeSubordinates) url += (hasQuery ? "&" : "?") + "inclsub";
+
+            return await _Sdk.GetMany<Node>(url, token).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default)
+        {
+            string url = _Sdk.Endpoint + "v1.0/tenants/" + tenantGuid + "/nodes/all";
+            await _Sdk.Delete(url, token).ConfigureAwait(false);
+        }
+
         #endregion
 
         #region Private-Methods

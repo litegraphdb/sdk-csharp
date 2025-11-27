@@ -227,5 +227,90 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
         Task<EnumerationResult<Node>> Enumerate(EnumerationRequest query, CancellationToken token = default);
+
+        /// <summary>
+        /// Read all nodes in a tenant across all graphs.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">The number of records to skip.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Nodes.</returns>
+        Task<List<Node>> ReadAllInTenant(
+            Guid tenantGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Read all nodes in a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">The number of records to skip.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Nodes.</returns>
+        Task<List<Node>> ReadAllInGraph(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Read most connected nodes in a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">The number of records to skip.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Nodes.</returns>
+        Task<List<Node>> ReadMostConnected(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Read least connected nodes in a graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="order">Enumeration order.</param>
+        /// <param name="skip">The number of records to skip.</param>
+        /// <param name="includeData">Boolean indicating whether the object's data property should be included.</param>
+        /// <param name="includeSubordinates">Boolean indicating whether the object's subordinate properties (labels, tags, vectors) should be included.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Nodes.</returns>
+        Task<List<Node>> ReadLeastConnected(
+            Guid tenantGuid,
+            Guid graphGuid,
+            EnumerationOrderEnum order = EnumerationOrderEnum.CreatedDescending,
+            int skip = 0,
+            bool includeData = false,
+            bool includeSubordinates = false,
+            CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all nodes in a tenant across all graphs.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default);
     }
 }

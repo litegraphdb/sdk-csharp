@@ -122,5 +122,92 @@
         /// <param name="token">Cancellation token.</param>
         /// <returns>Enumeration result.</returns>
         Task<EnumerationResult<VectorMetadata>> Enumerate(EnumerationRequest query, CancellationToken token = default);
+
+        /// <summary>
+        /// Read all vectors across tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vectors.</returns>
+        Task<List<VectorMetadata>> ReadAllInTenant(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read all vectors in specific graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vectors.</returns>
+        Task<List<VectorMetadata>> ReadAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read vectors attached to graph object.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vectors.</returns>
+        Task<List<VectorMetadata>> ReadManyGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read vectors attached to specific node.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="nodeGuid">Node GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vectors.</returns>
+        Task<List<VectorMetadata>> ReadManyNode(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Read vectors attached to specific edge.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="edgeGuid">Edge GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        /// <returns>Vectors.</returns>
+        Task<List<VectorMetadata>> ReadManyEdge(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all vectors in tenant.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInTenant(Guid tenantGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete all vectors in graph.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteAllInGraph(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete graph-specific vectors.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteGraphVectors(Guid tenantGuid, Guid graphGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete node-specific vectors.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="nodeGuid">Node GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteNodeVectors(Guid tenantGuid, Guid graphGuid, Guid nodeGuid, CancellationToken token = default);
+
+        /// <summary>
+        /// Delete edge-specific vectors.
+        /// </summary>
+        /// <param name="tenantGuid">Tenant GUID.</param>
+        /// <param name="graphGuid">Graph GUID.</param>
+        /// <param name="edgeGuid">Edge GUID.</param>
+        /// <param name="token">Cancellation token.</param>
+        Task DeleteEdgeVectors(Guid tenantGuid, Guid graphGuid, Guid edgeGuid, CancellationToken token = default);
     }
 }
